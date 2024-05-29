@@ -1,14 +1,14 @@
 {
   "*.ts": [
-    "eslint 'src/**'  --fix"
+    "eslint 'src/**' --cache  --fix"
   ],
   "*.tsx": [
-    "eslint 'src/**'  --fix"
+    "eslint 'src/**'  --cache  --fix"
   ],
   "*.js": [
-    "eslint 'src/**'  --fix"
+    "eslint 'src/**'  --cache --fix"
   ],
   "*.jsx": [
-    "eslint 'src/**'  --fix"
+    "eslint 'src/**'  --cache  --fix"
   ]
 }
