@@ -1,6 +1,7 @@
 'use client';
 
 import { createGlobalStyle } from 'styled-components';
+import { colors } from './variables';
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -8,18 +9,21 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    scrollbar-color: #5c59bb #ebeaed ;
+    scrollbar-color: ${colors.primary} ${colors.white} ;
 
     &::-webkit-scrollbar {
         width: 10px;
      }
 
     &::-webkit-scrollbar-thumb {
-        background: #5c59bb;
+        background: ${colors.primary};
     }
 
   	&::-webkit-scrollbar-track {
-  		background-color: #ebeaed;
+  		background-color: ${colors.white};
   	}
+  }
+  body {
+    background-color: ${colors.white};
   }
 `;

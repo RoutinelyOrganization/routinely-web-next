@@ -4,11 +4,5 @@
   ],
   "*.tsx": [
     "eslint 'src/**'  --cache  --fix"
-  ],
-  "*.js": [
-    "eslint 'src/**'  --cache --fix"
-  ],
-  "*.jsx": [
-    "eslint 'src/**'  --cache  --fix"
   ]
 }
