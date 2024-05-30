@@ -30,7 +30,7 @@ export default function WelcomePage() {
           <S.Title>Boas-vindas</S.Title>
           <S.Caption>Escolha uma das opções para acessar </S.Caption>
           <S.ContainerButton>
-            <ButtonPrincipal href="/">Já tenho conta</ButtonPrincipal>
+            <ButtonPrincipal href="/login">Já tenho conta</ButtonPrincipal>
             <ButtonSecondary href="/">Criar Conta</ButtonSecondary>
           </S.ContainerButton>
         </div>

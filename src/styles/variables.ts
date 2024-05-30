@@ -5,8 +5,10 @@ export const colors = {
   white: '#F6F7F8',
   black: '#171A21',
   lightShadow: 'rgba(0, 0, 0, 0.1)',
-  green: '#5fbe2f',
-  lightGreen: '#a2f07b',
+  shadow: 'rgba(0, 0, 0, 0.3)',
+  success: '#5fbe2f',
+  lightSuccess: '#a2f07b',
+  danger: '#B3261B',
 };
 
 export const fonts = {

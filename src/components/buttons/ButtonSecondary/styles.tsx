@@ -7,7 +7,7 @@ import styled from 'styled-components';
 export const Button = styled.button`
   height: 40px;
   padding: 10px 16px;
-  max-width: 360px;
+
   width: 100%;
   border-radius: 8px;
   font-size: ${fonts.sizes.xxxsmall};
@@ -28,6 +28,5 @@ export const Button = styled.button`
 `;
 
 export const LinkNext = styled(Link)`
-  max-width: 360px;
   width: 100%;
 `;
