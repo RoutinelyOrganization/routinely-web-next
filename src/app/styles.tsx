@@ -1,6 +1,6 @@
 'use client';
 
-import { Button as ButtonStyle } from '@/components/buttons/ButtonPrincipal/styles';
+import { Button as ButtonStyle } from '@/components/buttons/ButtonPrimary/styles';
 import { ContainerIcons, Container as MenuHeader } from '@/components/headers/MenuHeader/styles';
 import { LinkNext as Logo } from '@/components/logos/Logo/styles';
 import media from '@/styles/mediaQueries';
@@ -48,7 +48,7 @@ export const Header = styled.header`
 export const ContainerButtonsHeader = styled.div`
   display: flex;
   align-items: center;
-  max-width: 800px;
+  max-width: 500px;
   width: 100%;
   justify-content: space-between;
 

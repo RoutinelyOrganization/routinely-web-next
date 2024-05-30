@@ -7,7 +7,7 @@ type IButton = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   href?: string;
 };
 
-export default function ButtonPrincipal({
+export default function ButtonPrimary({
   children,
   hover = true,
   secondaryColor,

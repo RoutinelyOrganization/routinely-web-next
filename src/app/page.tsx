@@ -1,5 +1,5 @@
 import ButtonDownloadApp from '@/components/buttons/ButtonDowloadApp';
-import ButtonPrincipal from '@/components/buttons/ButtonPrincipal';
+import ButtonPrincipal from '@/components/buttons/ButtonPrimary';
 import MenuHeader, { IMenuItem } from '@/components/headers/MenuHeader';
 import Logo from '@/components/logos/Logo';
 import completedTasks from '@public/imagens/homePage/completed_tasks.svg';
@@ -33,7 +33,7 @@ export default function HomePage() {
           <ButtonPrincipal className="d-none-mobile" hover={false}>
             Planos
           </ButtonPrincipal>
-          <ButtonPrincipal secondaryColor={true} href="/">
+          <ButtonPrincipal secondaryColor={true} href="/welcome">
             Acesse
           </ButtonPrincipal>
           <MenuHeader menuItems={menuItems} />

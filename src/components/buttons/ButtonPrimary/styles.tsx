@@ -10,7 +10,7 @@ type ButtonProps = {
 };
 
 export const Button = styled.button<ButtonProps>`
-  max-width: 160px;
+  max-width: 360px;
   width: 100%;
   padding: 10px 16px;
   border-radius: 8px;
@@ -47,6 +47,6 @@ export const Button = styled.button<ButtonProps>`
 `;
 
 export const LinkNext = styled(Link)`
-  max-width: 160px;
+  max-width: 360px;
   width: 100%;
 `;
