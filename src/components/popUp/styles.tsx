@@ -10,6 +10,7 @@ export const Modal = styled.div`
   max-width: 550px;
   max-height: calc(100vh - 48px);
   overflow-y: auto;
+  box-shadow: 0px 0px 24px ${colors.shadow};
 `;
 
 export const Container = styled.div`

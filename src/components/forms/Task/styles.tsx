@@ -26,6 +26,7 @@ export const ImageNext = styled(Image)`
   position: absolute;
   top: 3px;
   right: 0;
+  cursor: pointer;
 `;
 
 export const Description = styled.span`
@@ -79,6 +80,7 @@ export const ContainerOpenWeekFrequency = styled.div`
   > img {
     width: 32px;
     height: 32px;
+    cursor: pointer;
   }
 `;
 

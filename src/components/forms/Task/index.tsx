@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import ButtonDanger from '@/components/buttons/ButtonDanger';
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import ButtonSecondary from '@/components/buttons/ButtonSecondary';
+import DateCalendar from '@/components/calendar';
 import { Task } from '@/types/task';
 import { pastDate } from '@/utils/validators/pastDate';
 import Image from 'next/image';
@@ -191,10 +192,10 @@ export default function TaskForm() {
             <WeekDaysCheckBox />
           </div>
 
-          {/* <S.ContainerCalendar>
+          <S.ContainerCalendar>
             <p>Finaliza em:</p>
-            <DateCalendar version="compact" setReturnDateValue={setFinallyDate} />
-          </S.ContainerCalendar> */}
+            <DateCalendar version="compact" />
+          </S.ContainerCalendar>
         </>
       )}
 

@@ -16,6 +16,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@mui/x-date-pickers": "^7.6.1",
+    "dayjs": "^1.11.11",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
@@ -26,6 +28,8 @@
     "@chromatic-com/storybook": "^1.5.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@storybook/addon-essentials": "^8.1.4",
     "@storybook/addon-interactions": "^8.1.4",
     "@storybook/addon-links": "^8.1.4",
