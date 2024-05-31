@@ -123,7 +123,7 @@ export default function LoginForm() {
           <label htmlFor="checkboxSignIn">Lembrar meu acesso</label>
           <S.Checkbox type="checkbox" id="checkboxSignIn" {...register('remember')} />
         </S.CheckboxWrapper>
-        <S.LinkNext href="/">Esqueci minha senha</S.LinkNext>
+        <S.LinkNext href="/forgot-password">Esqueci minha senha</S.LinkNext>
       </S.CheckboxAndForgetPasswordWrapper>
 
       {showError && <ErrorMessage>email ou senha inválidos</ErrorMessage>}

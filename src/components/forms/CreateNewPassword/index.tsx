@@ -1,29 +1,21 @@
 'use client';
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import infoError from '@public/icons/infoErro.svg';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
 
-interface ISignUpInput {
-  name: string;
-  email: string;
+export interface INewPassword {
   password: string;
   confirmPassword: string;
-  acceptedTerms: boolean;
 }
-
-export default function SignUpForm() {
+export default function CreateNewPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading] = useState(false);
   const [labelConfirmPassword, setLabelConfirmPassword] = useState('Repetir senha');
-  const [errorApi] = useState('');
 
   const {
     register,
@@ -31,14 +23,14 @@ export default function SignUpForm() {
     formState: { errors },
     setError,
     watch,
-  } = useForm<ISignUpInput>({
+  } = useForm<INewPassword>({
     mode: 'onChange',
   });
 
   const password = watch('password');
   const confirmPassword = watch('confirmPassword');
 
-  const handleSignUp = async (data: ISignUpInput) => {
+  const handlePasswords = async (data: INewPassword) => {
     console.log(data);
 
     //   try {
@@ -72,46 +64,7 @@ export default function SignUpForm() {
   }, []);
 
   return (
-    <S.Form onSubmit={handleSubmit(handleSignUp)}>
-      <Input
-        label="Nome"
-        hasError={!!errors.name}
-        type="text"
-        id="name"
-        placeholder="nome"
-        register={register('name', {
-          required: 'Este campo é obrigatório.',
-          minLength: {
-            value: 3,
-            message: 'Este campo precisa ter no mínimo 3 letras.',
-          },
-          pattern: {
-            value: /^[a-zA-ZÀ-ÿ\s~]+$/,
-            message: 'O campo nome não pode conter números nem caracteres especiais.',
-          },
-        })}
-        errorMessage={errors.name?.message}
-      >
-        {!!errors.name && <Image src={infoError} alt="icone de erro no campo nome" />}
-      </Input>
-
-      <Input
-        label="Email"
-        hasError={!!errors.email}
-        errorMessage={errors.email?.message}
-        type="text"
-        id="Email"
-        placeholder="email"
-        register={register('email', {
-          required: 'Este campo é obrigatório.',
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: 'Este campo precisa ser um email válido.',
-          },
-        })}
-      >
-        {!!errors.email && <Image src={infoError} alt="icone de info erro no campo email" />}
-      </Input>
+    <S.Form onSubmit={handleSubmit(handlePasswords)}>
       <S.ContainerPasswords>
         <Input
           label="Senha"
@@ -169,7 +122,7 @@ export default function SignUpForm() {
         >
           <S.ShowPasswordSpand onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
             <>
-              {errors.confirmPassword && !showConfirmPassword ? (
+              {errors.confirmPassword?.message && !showConfirmPassword ? (
                 <Image src={infoError} alt="icone de info erro" />
               ) : showConfirmPassword ? (
                 'ESCONDER'
@@ -179,33 +132,9 @@ export default function SignUpForm() {
             </>
           </S.ShowPasswordSpand>
         </Input>
+
+        <ButtonPrimary>Atualizar senha</ButtonPrimary>
       </S.ContainerPasswords>
-
-      <S.TermsOfUseContainer>
-        <S.Checkbox
-          type="checkbox"
-          {...register('acceptedTerms', {
-            required: {
-              value: true,
-              message: 'O usuário deve estar de acordo com os termos.',
-            },
-          })}
-        />
-
-        <span>
-          Declaro que li e concordo com os <a href="#">termos de uso e política de privacidade.</a>
-        </span>
-      </S.TermsOfUseContainer>
-      {errors.acceptedTerms && <ErrorMessage>{errors.acceptedTerms.message}</ErrorMessage>}
-      {errorApi && <ErrorMessage>{errorApi}</ErrorMessage>}
-      <S.ContainerButtons>
-        {loading ? (
-          <ButtonPrimary disabled>Carregando...</ButtonPrimary>
-        ) : (
-          <ButtonPrimary>Criar Conta</ButtonPrimary>
-        )}
-        {/* <ButtonSocialGoogle>Continuar com Google</ButtonSocialGoogle> */}
-      </S.ContainerButtons>
     </S.Form>
   );
 }
