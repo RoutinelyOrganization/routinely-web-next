@@ -196,7 +196,9 @@ export default function SignUpForm() {
           Declaro que li e concordo com os <a href="#">termos de uso e política de privacidade.</a>
         </span>
       </S.TermsOfUseContainer>
-      {errors.acceptedTerms && <ErrorMessage>{errors.acceptedTerms.message}</ErrorMessage>}
+      {errors.acceptedTerms && (
+        <ErrorMessage>{errors.acceptedTerms.message as string}</ErrorMessage>
+      )}
       {errorApi && <ErrorMessage>{errorApi}</ErrorMessage>}
       <S.ContainerButtons>
         {loading ? (
@@ -204,7 +206,6 @@ export default function SignUpForm() {
         ) : (
           <ButtonPrimary>Criar Conta</ButtonPrimary>
         )}
-        {/* <ButtonSocialGoogle>Continuar com Google</ButtonSocialGoogle> */}
       </S.ContainerButtons>
     </S.Form>
   );

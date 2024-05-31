@@ -9,7 +9,6 @@ export const Form = styled.form`
   width: 100%;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   gap: 24px;
 `;
 
