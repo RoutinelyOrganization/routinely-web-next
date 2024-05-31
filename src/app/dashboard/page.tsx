@@ -1,5 +1,10 @@
+'use client';
+
 import TaskForm from '@/components/forms/Task';
 import PopUp from '@/components/popUp';
+import Task from '@/components/tasks';
+import { tasks } from '@/mocks/task';
+import { useState } from 'react';
 
 export interface Itasks {
   id: number;
@@ -14,6 +19,7 @@ export interface Itasks {
 }
 
 export default function DashboardPage() {
+  const [openForm] = useState(false);
   // const { handleAddTask, handleEditTask, handleDeleteTask } = UseCRUD();
   // const [selectTypeTaskOpen, setSelectTypeTaskOpen] = useState<boolean>(false);
   // const [isConfirmActionOpen, setIsConfirmActionOpen] = useState<boolean>(false);
@@ -79,18 +85,14 @@ export default function DashboardPage() {
   // }, [token, user.email, navigate, authorization]);
 
   return (
-    <PopUp>
-      <TaskForm />
-    </PopUp>
-    // <PopUpCustom setIsTaskOpen={setSelectTypeTaskOpen}>
-    //   {/* <FormTask
-    //           setIsTaskOpen={setIsTaskOpen}
-    //           setCrudTasksOptions={setCrudTasksOptions}
-    //           setDataTask={setDataTask}
-    //           setIsConfirmActionOpen={setIsConfirmActionOpen}
-    //         /> */}
-    //   <FormTask />
-    // </PopUpCustom>
+    <>
+      {openForm && (
+        <PopUp>
+          <TaskForm />
+        </PopUp>
+      )}
+      <Task tasks={tasks} />
+    </>
   );
 
   // return (
