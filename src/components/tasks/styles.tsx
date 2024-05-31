@@ -16,6 +16,7 @@ export const Select = styled.select`
   max-width: 250px;
   width: 100%;
   outline-color: ${colors.primary};
+  cursor: pointer;
 
   ${media.tablet} {
     max-width: 200px;

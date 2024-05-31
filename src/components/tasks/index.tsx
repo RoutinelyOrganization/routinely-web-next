@@ -1,6 +1,8 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { type Task } from '../../types/task';
-import ContainerTask from '../containers/ContainerTaskNew';
+import ContainerTask from '../containers/ContainerTask';
 import * as S from './styles';
 
 interface ITask {

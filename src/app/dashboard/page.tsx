@@ -1,10 +1,17 @@
 'use client';
 
+import ButtonFooter from '@/components/buttons/ButtonFooter';
+import CalendarContainer from '@/components/containers/CalendarContainer';
 import TaskForm from '@/components/forms/Task';
+import Header from '@/components/headers';
 import PopUp from '@/components/popUp';
 import Task from '@/components/tasks';
+import AddNewTask from '@/components/tasks/AddNewTask';
 import { tasks } from '@/mocks/task';
+import newTask from '@public/imagens/nova tarefa.svg';
+import Image from 'next/image';
 import { useState } from 'react';
+import * as S from './styles';
 
 export interface Itasks {
   id: number;
@@ -91,24 +98,23 @@ export default function DashboardPage() {
           <TaskForm />
         </PopUp>
       )}
-      <Task tasks={tasks} />
+      <>
+        <Header />
+        <S.Main>
+          <S.ContainerCalendar>
+            <CalendarContainer />
+            <AddNewTask />
+          </S.ContainerCalendar>
+          <Task tasks={tasks} />
+        </S.Main>
+      </>
+      <ButtonFooter>
+        <Image src={newTask} alt="" />
+      </ButtonFooter>
     </>
   );
 
   // return (
-  //   <CalendarProvider>
-  //     {formTaskOpen && (
-  //       <PopUpCustom setIsTaskOpen={setSelectTypeTaskOpen}>
-  //         {/* <FormTask
-  //             setIsTaskOpen={setIsTaskOpen}
-  //             setCrudTasksOptions={setCrudTasksOptions}
-  //             setDataTask={setDataTask}
-  //             setIsConfirmActionOpen={setIsConfirmActionOpen}
-  //           /> */}
-  //         <FormTask />
-  //       </PopUpCustom>
-  //     )}
-
   //     {isConfirmActionOpen && (
   //       <PopupAlert>
   //         <ConfirmAction
@@ -121,30 +127,5 @@ export default function DashboardPage() {
   //         </ConfirmAction>
   //       </PopupAlert>
   //     )}
-  //     <S.Container $visible={selectTypeTaskOpen}>
-  //       <Header />
-  //       <S.Main onClick={closeTaskInMain}>
-  //         <S.ContainerCalendar>
-  //           <SectionCalendar />
-  //           <S.ContainerNewTask>
-  //             <S.ButtonEditTask onClick={() => setSelectTypeTaskOpen(true)}>
-  //               <img src={closeIcon} alt="close button" />
-  //             </S.ButtonEditTask>
-  //             {selectTypeTaskOpen && <TypeTask />}
-  //           </S.ContainerNewTask>
-  //         </S.ContainerCalendar>
-  //         <Task tasks={tasks} />
-
-  //         {/* <S.ContainerCalendar>
-  //             <DateCalendar />
-  //             <img className="desktop" src={ImageCompleteTask} alt="imagem da pagina complete Task" />
-  //             <img className="tablet" src={ImageCompleteTask2} alt="imagem da pagina complete Task" />
-  //           </S.ContainerCalendar> */}
-  //       </S.Main>
-  //     </S.Container>
-  //     <ButtonFooter onClick={() => setSelectTypeTaskOpen(v => !v)}>
-  //       <img src={newTask} alt="" />
-  //     </ButtonFooter>
-  //   </CalendarProvider>
   // );
 }

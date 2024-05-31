@@ -25,18 +25,20 @@ export const MobileChangeDisplay = styled.div<IChangeDisplayCalendar>`
 
 export const Button = styled.button<IChangeDisplayCalendar>`
   display: none;
+  cursor: pointer;
 
   ${media.mobile} {
     display: block;
     position: absolute;
-    top: ${props => (props.open ? '4%' : '30%')};
-    right: 5%;
+    top: ${props => (props.open ? '0' : '9%')};
+    right: 0;
     border: none;
     background-color: transparent;
     transform: ${props => (props.open ? 'rotate(180deg)' : '')};
 
     > img {
       width: 50px;
+      height: 50px;
       fill: ${colors.primary};
     }
   }

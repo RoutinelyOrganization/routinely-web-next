@@ -10,6 +10,7 @@ export const colors = {
   success: '#5fbe2f',
   lightSuccess: '#a2f07b',
   danger: '#B3261B',
+  lightgray: '#ebeaed',
 };
 
 export const fonts = {
