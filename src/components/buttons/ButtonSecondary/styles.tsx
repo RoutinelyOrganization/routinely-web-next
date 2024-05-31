@@ -2,12 +2,15 @@
 
 import { colors, fonts } from '@/styles/variables';
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Button = styled.button`
+interface IButtonProps {
+  $hover?: boolean;
+}
+
+export const Button = styled.button<IButtonProps>`
   height: 40px;
   padding: 10px 16px;
-
   width: 100%;
   border-radius: 8px;
   font-size: ${fonts.sizes.xxxsmall};
@@ -19,12 +22,17 @@ export const Button = styled.button`
   color: ${colors.primary};
   border: 1px ${colors.primary} solid;
   outline: none;
-  &:hover {
-    transition: all 0.4s ease;
-    background-color: ${colors.tertiary};
-    color: #222;
-    font-weight: bold;
-  }
+
+  ${({ $hover }) =>
+    $hover &&
+    css`
+      &:hover {
+        transition: all 0.4s ease;
+        background-color: ${colors.tertiary};
+        color: #222;
+        font-weight: bold;
+      }
+    `}
 `;
 
 export const LinkNext = styled(Link)`

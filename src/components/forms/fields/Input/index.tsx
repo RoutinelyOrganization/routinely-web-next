@@ -12,7 +12,7 @@ interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
   as?: React.ElementType;
 }
 
-export default function InputComponent({
+export default function Input({
   children,
   id,
   label,
@@ -23,7 +23,7 @@ export default function InputComponent({
   ...props
 }: IInput) {
   return (
-    <>
+    <S.Div>
       <S.InputContainer $hasErro={hasError}>
         <S.InputStyle as={as} $hasErro={hasError} id={id} {...register} {...props} />
         <S.LabelInput>
@@ -33,6 +33,6 @@ export default function InputComponent({
         <S.Children>{children}</S.Children>
       </S.InputContainer>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-    </>
+    </S.Div>
   );
 }

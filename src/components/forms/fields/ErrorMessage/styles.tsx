@@ -8,5 +8,4 @@ export const ErrorMessage = styled.span`
   font-size: ${fonts.sizes.xxxsmall};
   max-width: 368px;
   text-align: justify;
-  text-transform: lowercase;
 `;

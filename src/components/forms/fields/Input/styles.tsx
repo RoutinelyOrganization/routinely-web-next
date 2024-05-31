@@ -9,6 +9,8 @@ type InputProps = {
   $as?: string;
 };
 
+export const Div = styled.div``;
+
 export const InputContainer = styled.div<InputProps>`
   position: relative;
   display: flex;

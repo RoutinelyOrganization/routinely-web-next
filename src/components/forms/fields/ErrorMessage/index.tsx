@@ -1,9 +1,10 @@
 import * as S from './styles';
 
 interface IErrorMessage {
-  children?: string;
+  children: string;
 }
 
 export default function ErrorMessage({ children }: IErrorMessage) {
-  return <S.ErrorMessage>{children}</S.ErrorMessage>;
+  const formatedMessage = children[0].toUpperCase() + children.slice(1);
+  return <S.ErrorMessage>{formatedMessage}</S.ErrorMessage>;
 }
