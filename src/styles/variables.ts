@@ -6,6 +6,7 @@ export const colors = {
   black: '#171A21',
   lightShadow: 'rgba(0, 0, 0, 0.1)',
   shadow: 'rgba(0, 0, 0, 0.3)',
+  darkShadow: 'rgba(0, 0, 0, 0.7)',
   success: '#5fbe2f',
   lightSuccess: '#a2f07b',
   danger: '#B3261B',

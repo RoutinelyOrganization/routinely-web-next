@@ -108,11 +108,7 @@ export default function LoginForm() {
           <S.ShowPassword onClick={() => setShowPassword(!showPassord)}>
             <>
               {errors.password && !showPassord ? (
-                <Image
-                  src={infoError}
-                  alt="icone de info erro"
-                  onClick={() => setShowPassword(true)}
-                />
+                <Image src={infoError} alt="icone de info erro" />
               ) : errors.password && showPassord ? (
                 'ESCONDER'
               ) : (
@@ -142,8 +138,3 @@ export default function LoginForm() {
     </S.Form>
   );
 }
-
-// onChange(event: React.ChangeEvent<HTMLInputElement>) {
-//   console.log('matchErro');
-//
-// },

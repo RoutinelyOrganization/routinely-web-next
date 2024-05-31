@@ -15,7 +15,7 @@ export const ButtonSocial = styled.button`
   border-radius: 8px;
   border: 1px solid ${colors.primary};
   background: ${colors.white};
-  color: ${colors.lightShadow};
+  color: ${colors.darkShadow};
   font-size: ${fonts.sizes.xxxsmall};
   font-weight: 500;
   letter-spacing: 0.219px;

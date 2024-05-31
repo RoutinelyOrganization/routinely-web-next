@@ -21,6 +21,12 @@ export const InputContainer = styled.div<InputProps>`
   }
 `;
 
+export const Children = styled.div`
+  position: absolute;
+  top: 33%;
+  right: 3%;
+`;
+
 export const BorderWhite = styled.span`
   position: relative;
   display: block;
@@ -37,7 +43,7 @@ export const Label = styled.label`
 
 export const LabelInput = styled.div`
   font-size: ${fonts.sizes.xxsmall};
-  font-weight: 400;
+  font-weight: normal;
   line-height: 24px;
   letter-spacing: 0.5px;
   position: absolute;

@@ -14,9 +14,9 @@ export default function Login() {
           <LogoShared />
           <S.Title>Acessar conta</S.Title>
           <LoginForm />
-          <S.LinkNext href="/">Não tem uma conta?</S.LinkNext>
+          <S.LinkNext href="/signup">Não tem uma conta?</S.LinkNext>
         </div>
-        <Image src={signInPageImage} alt="Imagem da página acessar conta" />
+        <Image src={signInPageImage} alt="Personagem abrindo a porta" />
       </S.Wrapper>
     </>
   );

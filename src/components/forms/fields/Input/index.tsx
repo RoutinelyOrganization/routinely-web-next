@@ -30,7 +30,7 @@ export default function InputComponent({
           <S.BorderWhite></S.BorderWhite>
           <S.Label htmlFor={id}>{label}</S.Label>
         </S.LabelInput>
-        {children}
+        <S.Children>{children}</S.Children>
       </S.InputContainer>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </>

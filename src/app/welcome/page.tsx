@@ -31,7 +31,7 @@ export default function WelcomePage() {
           <S.Caption>Escolha uma das opções para acessar </S.Caption>
           <S.ContainerButton>
             <ButtonPrincipal href="/login">Já tenho conta</ButtonPrincipal>
-            <ButtonSecondary href="/">Criar Conta</ButtonSecondary>
+            <ButtonSecondary href="/signup">Criar Conta</ButtonSecondary>
           </S.ContainerButton>
         </div>
         <Image src={welcomePageImage} alt="Imagem da página de boas vindas" />

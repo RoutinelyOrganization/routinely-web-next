@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 370px;
+  max-width: 450px;
   width: 100%;
 
   ${media.tablet} {
@@ -20,12 +20,8 @@ export const InputWrapper = styled.div`
   gap: 1.5rem;
 `;
 export const ShowPassword = styled.span`
-  position: absolute;
-  right: 5%;
-  top: 35%;
   cursor: pointer;
   font-size: ${fonts.sizes.xxxsmall};
-  color: ${colors.black};
 
   > img {
     position: relative;
@@ -48,7 +44,6 @@ export const CheckboxWrapper = styled.div`
   gap: 4px;
   > label {
     font-size: ${fonts.sizes.xxxsmall};
-    font-weight: 400;
     line-height: 16px;
     letter-spacing: 0.5px;
     text-align: left;
@@ -63,7 +58,6 @@ export const Checkbox = styled.input`
 
 export const ForgetPassword = styled.span`
   font-size: ${fonts.sizes.xxxsmall};
-  font-weight: 400;
   line-height: 1rem;
   letter-spacing: 0.5px;
   text-align: left;
