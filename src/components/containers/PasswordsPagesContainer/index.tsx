@@ -23,7 +23,7 @@ export default function PasswordsPagesContainer({
   return (
     <>
       <Header header="secondary" hrefBackPage={headerHrefBackPage} />
-      <S.Main>
+      <S.Main className="container-main">
         <S.Wrapper>
           <LogoShared />
           <S.Title>{title}</S.Title>

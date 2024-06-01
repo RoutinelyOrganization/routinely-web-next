@@ -24,7 +24,7 @@ export default function WelcomePage() {
   return (
     <>
       <Header header="secondary" hrefBackPage="/" />
-      <S.Wrapper>
+      <S.Wrapper className="container-main">
         <div>
           <LogoShared />
           <S.Title>Boas-vindas</S.Title>

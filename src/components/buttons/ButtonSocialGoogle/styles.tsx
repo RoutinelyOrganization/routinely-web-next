@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 export const ButtonSocial = styled.button`
   display: flex;
-  max-width: 368px;
   width: 100%;
   height: 40px;
   padding: 11px 10px;

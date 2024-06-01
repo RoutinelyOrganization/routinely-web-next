@@ -25,22 +25,24 @@ export default function HomePage() {
   return (
     <>
       <S.Header>
-        <Logo />
-        <S.ContainerButtonsHeader>
-          <ButtonPrincipal className="d-none-mobile" hover={false}>
-            Recursos
-          </ButtonPrincipal>
-          <ButtonPrincipal className="d-none-mobile" hover={false}>
-            Planos
-          </ButtonPrincipal>
-          <ButtonPrincipal secondaryColor={true} href="/welcome">
-            Acesse
-          </ButtonPrincipal>
-          <MenuHeader menuItems={menuItems} />
-        </S.ContainerButtonsHeader>
+        <div className="container-main">
+          <Logo />
+          <S.ContainerButtonsHeader>
+            <ButtonPrincipal className="d-none-mobile" hover={false}>
+              Recursos
+            </ButtonPrincipal>
+            <ButtonPrincipal className="d-none-mobile" hover={false}>
+              Planos
+            </ButtonPrincipal>
+            <ButtonPrincipal secondaryColor={true} href="/welcome">
+              Acesse
+            </ButtonPrincipal>
+            <MenuHeader menuItems={menuItems} />
+          </S.ContainerButtonsHeader>
+        </div>
       </S.Header>
 
-      <S.Main>
+      <S.Main className="container-main">
         <S.Title>Domine sua rotina e conquiste o dia com nossa ferramenta Routinely.</S.Title>
         <S.ContainerCaptionImg>
           <div>

@@ -6,14 +6,17 @@ import styled from 'styled-components';
 import { Header } from '../styles';
 
 export const SecondaryHeader = styled(Header)`
-  padding: 32px 120px;
+  padding-top: 32px;
+  padding-bottom: 32px;
 
   ${media.desktop} {
-    padding: 24px 32px;
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   ${media.tablet} {
-    padding: 14px 24px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
   ${media.mobile} {

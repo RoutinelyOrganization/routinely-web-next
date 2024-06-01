@@ -5,13 +5,12 @@ import { colors } from '@/styles/variables';
 import { styled } from 'styled-components';
 
 export const Main = styled.main`
-  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
 
-  ${media.tablet} {
-    flex-direction: column;
-    align-items: center;
-  }
+  padding-top: 64px;
+  padding-bottom: 64px;
 
   ${media.mobile} {
     padding: 10px 10px 74px;

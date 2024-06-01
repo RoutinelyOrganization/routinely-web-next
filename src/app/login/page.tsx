@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <>
       <Header header="secondary" hrefBackPage="/welcome" />
-      <S.Wrapper>
+      <S.Wrapper className="container-main">
         <div>
           <LogoShared />
           <S.Title>Acessar conta</S.Title>

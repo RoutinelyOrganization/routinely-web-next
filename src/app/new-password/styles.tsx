@@ -5,6 +5,9 @@ import media from '@/styles/mediaQueries';
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  .container-main {
+    justify-content: space-between;
+  }
   ${media.desktop} {
     ${ImageNext} {
       max-width: 50%;

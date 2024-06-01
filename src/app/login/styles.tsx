@@ -16,22 +16,25 @@ export const Wrapper = styled.main`
   display: grid;
   grid-template-columns: 40% 60%;
   align-items: center;
-  justify-content: space-evenly;
   justify-items: center;
   gap: 32px;
-  padding: 100px 50px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 
+  &.container-main {
+    justify-content: space-evenly;
+  }
   > div {
     width: 100%;
   }
 
   > img {
-    max-width: 680px;
-    width: 100%;
+    width: 90%;
   }
 
   ${media.desktop} {
-    padding: 64px 32px;
+    padding-top: 64px;
+    padding-bottom: 64px;
     gap: 16px;
     > img {
       position: relative;

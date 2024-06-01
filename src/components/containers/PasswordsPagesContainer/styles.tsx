@@ -10,7 +10,7 @@ export const Main = styled.main`
   display: flex;
   justify-content: space-around;
   gap: 32px;
-  padding: 64px 24px;
+  padding: 64px 0;
 
   ${media.desktop} {
     padding-top: 40px;

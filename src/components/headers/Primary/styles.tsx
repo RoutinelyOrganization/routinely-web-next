@@ -6,15 +6,10 @@ import styled from 'styled-components';
 import { Header } from '../styles';
 
 export const PrimaryHeader = styled(Header)`
-  padding: 14px 140px;
-
-  ${media.tablet} {
-    padding: 14px 32px;
-  }
+  padding-top: 14px;
+  padding-bottom: 14px;
 
   ${media.mobile} {
-    padding: 14px 24px;
-
     ${ButtonBackPage} {
       > .mobile {
         display: none;

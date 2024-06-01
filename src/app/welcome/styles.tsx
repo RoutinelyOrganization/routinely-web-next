@@ -6,10 +6,13 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.main`
   display: flex;
-  justify-content: space-around;
-  padding: 96px 32px 0;
+  padding: 96px 0 0;
   height: 100vh;
   gap: 24px;
+
+  &.container-main {
+    justify-content: space-between;
+  }
 
   > img {
     width: 40%;

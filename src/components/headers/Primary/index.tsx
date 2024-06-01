@@ -21,8 +21,10 @@ export default function PrimaryHeader({ menuItems, hasUser = false }: IPrimaryHe
 
   return (
     <S.PrimaryHeader>
-      <Logo />
-      {hasUser && <MenuHeader menuItems={menuItems} />}
+      <div className="container-main">
+        <Logo />
+        {hasUser && <MenuHeader menuItems={menuItems} />}
+      </div>
     </S.PrimaryHeader>
   );
 }

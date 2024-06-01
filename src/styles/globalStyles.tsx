@@ -25,5 +25,15 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     background-color: ${colors.white};
+
+    .container-main {
+      max-width: 1200px;
+      width: 100%;
+      margin: auto;
+      justify-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
+
+    }
   }
 `;

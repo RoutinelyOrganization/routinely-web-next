@@ -35,8 +35,10 @@ export default function SecondaryHeader({
 
   return (
     <S.SecondaryHeader>
-      <ButtonBackPage href={hrefBackPage} />
-      {hasUser && <MenuHeader menuItems={menuItems} />}
+      <div className="container-main">
+        <ButtonBackPage href={hrefBackPage} />
+        {hasUser && <MenuHeader menuItems={menuItems} />}
+      </div>
     </S.SecondaryHeader>
   );
 }

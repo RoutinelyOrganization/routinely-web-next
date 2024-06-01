@@ -100,7 +100,7 @@ export default function DashboardPage() {
       )}
       <>
         <Header />
-        <S.Main>
+        <S.Main className="container-main">
           <S.ContainerCalendar>
             <CalendarContainer />
             <AddNewTask />

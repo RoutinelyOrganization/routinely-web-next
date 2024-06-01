@@ -10,7 +10,7 @@ export default function SignUpPage() {
   return (
     <>
       <Header header="secondary" hrefBackPage="/welcome" />
-      <S.Main>
+      <S.Main className="container-main">
         <S.Wrapper>
           <LogoShared />
           <S.Title>Crie sua conta</S.Title>

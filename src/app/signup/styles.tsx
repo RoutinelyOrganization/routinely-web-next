@@ -10,8 +10,12 @@ export const Main = styled.main`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 64px 50px;
+  padding: 64px 0;
   gap: 14px;
+
+  &.container-main {
+    justify-content: space-between;
+  }
 
   > img {
     width: 50%;
@@ -77,19 +81,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 32px;
-  max-width: 368px;
+  max-width: 450px;
   width: 50%;
 
   ${ButtonSocial} {
-    margin-top: -24px;
+    margin-top: -25px;
   }
 
   ${media.tablet} {
     width: 456px;
     padding-bottom: 32px;
-  }
-
-  ${media.mobile} {
-    max-width: 312px;
   }
 `;

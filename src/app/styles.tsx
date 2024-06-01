@@ -8,11 +8,14 @@ import { colors, fonts } from '@/styles/variables';
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  display: flex;
-  padding: 0.92rem 6.7rem;
-  align-items: center;
-  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
   background-color: ${colors.primary};
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   ${Logo} {
     margin-right: 100px;
@@ -22,10 +25,6 @@ export const Header = styled.header`
     max-width: 160px;
   }
 
-  ${media.desktop} {
-    padding: 15px 32px;
-  }
-
   ${media.tablet} {
     ${Logo} {
       margin-right: 45px;
@@ -33,7 +32,7 @@ export const Header = styled.header`
   }
 
   ${media.mobile} {
-    padding: 4px 24px;
+    padding: 4px 0;
 
     & ${ButtonStyle} {
       margin-right: 8px;
@@ -89,7 +88,7 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 152px 32px 80px;
+  padding: 152px 0 80px 0;
 
   > hr {
     display: none;
@@ -153,7 +152,7 @@ export const Button = styled.button`
   width: 50%;
   height: 40px;
   border-radius: 8px;
-  background-color: ${colors.green};
+  background-color: ${colors.success};
   color: ${colors.white};
   outline: none;
   border: none;
@@ -161,7 +160,7 @@ export const Button = styled.button`
   margin-bottom: 38px;
   &:hover {
     transition: all 0.4s ease;
-    background-color: ${colors.lightGreen};
+    background-color: ${colors.lightSuccess};
     color: ${colors.black};
     font-weight: bold;
   }
