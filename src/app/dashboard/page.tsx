@@ -7,6 +7,7 @@ import Header from '@/components/headers';
 import PopUp from '@/components/popUp';
 import Task from '@/components/tasks';
 import AddNewTask from '@/components/tasks/AddNewTask';
+import { CalendarProvider } from '@/contexts/CalendarContext';
 import { tasks } from '@/mocks/task';
 import newTask from '@public/imagens/nova tarefa.svg';
 import Image from 'next/image';
@@ -26,7 +27,7 @@ export interface Itasks {
 }
 
 export default function DashboardPage() {
-  const [openForm] = useState(true);
+  const [openForm] = useState(false);
   // const { handleAddTask, handleEditTask, handleDeleteTask } = UseCRUD();
   // const [selectTypeTaskOpen, setSelectTypeTaskOpen] = useState<boolean>(false);
   // const [isConfirmActionOpen, setIsConfirmActionOpen] = useState<boolean>(false);
@@ -98,7 +99,7 @@ export default function DashboardPage() {
           <TaskForm />
         </PopUp>
       )}
-      <>
+      <CalendarProvider>
         <Header />
         <S.Main className="container-main">
           <S.ContainerCalendar>
@@ -107,7 +108,7 @@ export default function DashboardPage() {
           </S.ContainerCalendar>
           <Task tasks={tasks} />
         </S.Main>
-      </>
+      </CalendarProvider>
       <ButtonFooter>
         <Image src={newTask} alt="" />
       </ButtonFooter>
