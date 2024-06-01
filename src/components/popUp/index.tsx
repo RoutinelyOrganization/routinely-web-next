@@ -1,3 +1,5 @@
+import ButtonFooter from '@/components/buttons/ButtonFooter';
+import Header from '@/components/headers';
 import React from 'react';
 import * as S from './styles';
 
@@ -8,11 +10,9 @@ interface IPopUpProps {
 export default function PopUp({ children }: IPopUpProps) {
   return (
     <S.Container>
-      <S.Modal>
-        {/* <Header setIsTaskOpen={setIsTaskOpen} />*/}
-        {children}
-        {/* <ButtonFooter onClick={handleBack} /> */}
-      </S.Modal>
+      <Header />
+      <S.Modal>{children}</S.Modal>
+      <ButtonFooter />
     </S.Container>
   );
 }

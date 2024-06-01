@@ -26,7 +26,7 @@ export interface Itasks {
 }
 
 export default function DashboardPage() {
-  const [openForm] = useState(false);
+  const [openForm] = useState(true);
   // const { handleAddTask, handleEditTask, handleDeleteTask } = UseCRUD();
   // const [selectTypeTaskOpen, setSelectTypeTaskOpen] = useState<boolean>(false);
   // const [isConfirmActionOpen, setIsConfirmActionOpen] = useState<boolean>(false);

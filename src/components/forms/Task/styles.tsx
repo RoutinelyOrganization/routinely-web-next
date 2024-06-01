@@ -19,6 +19,9 @@ export const Form = styled.form`
     max-height: calc(100vh - 107px);
     min-height: 82vh;
     border-radius: 0px;
+    width: calc(100vw - 48px);
+    overflow-y: auto;
+    padding-bottom: 60px;
   }
 `;
 

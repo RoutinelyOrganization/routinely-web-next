@@ -1,7 +1,10 @@
 'use client';
 
+import media from '@/styles/mediaQueries';
 import { colors } from '@/styles/variables';
 import styled from 'styled-components';
+import { ButtonFooter } from '../buttons/ButtonFooter/styles';
+import { Header } from '../headers/styles';
 
 export const Modal = styled.div`
   background-color: ${colors.white};
@@ -11,6 +14,11 @@ export const Modal = styled.div`
   max-height: calc(100vh - 48px);
   overflow-y: auto;
   box-shadow: 0px 0px 24px ${colors.shadow};
+
+  ${media.mobile} {
+    width: 100vw;
+    border-radius: 0;
+  }
 `;
 
 export const Container = styled.div`
@@ -25,4 +33,17 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 24px 0;
+
+  ${Header} {
+    display: none;
+  }
+
+  ${media.mobile} {
+    flex-direction: column;
+    padding: 0;
+
+    ${Header}, ${ButtonFooter} {
+      width: 100vw;
+    }
+  }
 `;
