@@ -25,15 +25,22 @@ export const ButtonAddTask = styled.button`
 `;
 
 export const ContainerTypeTask = styled.div`
+  max-width: 180px;
+  max-height: 100px;
   width: 100%;
   height: 100%;
   padding: 4px 0;
   border-radius: 8px 0 8px 0;
   box-shadow: 2px 3px 11px -1px;
   background-color: ${colors.white};
+  position: absolute;
+  right: 23px;
+  top: 23px;
+  z-index: 20;
 
   ${media.desktop} {
     border-radius: 0 8px 0 8px;
+    top: -64px;
   }
 `;
 
@@ -52,25 +59,15 @@ export const ContainerNewTask = styled.div`
   width: 100%;
   height: 80px;
   top: 20px;
-
-  > ${ContainerTypeTask} {
-    position: absolute;
-    right: 73px;
-    top: 23px;
-    z-index: 20;
-    max-width: 180px;
-    max-height: 80px;
-  }
+  display: flex;
+  justify-content: end;
 
   ${media.desktop} {
     position: fixed;
     z-index: 20;
     top: auto;
     bottom: 0px;
-    right: -30px;
-    > ${ContainerTypeTask} {
-      top: -64px;
-    }
+    right: 20px;
   }
 
   ${media.mobile} {
