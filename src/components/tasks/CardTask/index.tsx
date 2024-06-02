@@ -1,50 +1,29 @@
+'use client';
+
 import ButtonEdit from '@/components/buttons/ButtonEdit';
 import CustonCheckedBox from '@/components/forms/fields/CustonCheckedBox';
+import { useTask } from '@/hooks/useTask';
+import { typeTaskOptions } from '@/mocks/typeTask';
 import { Task } from '@/types/task';
 import { useState } from 'react';
 import * as S from './styles';
-
-interface IItemOptionsProps {
-  title: string;
-  icon: string;
-}
-
-type IOptionsProps = {
-  [key in 'habit' | 'project' | 'task']: IItemOptionsProps;
-};
 
 interface ICardTask {
   task: Task;
 }
 
 export default function CardTask({ task }: ICardTask) {
-  const options: IOptionsProps = {
-    habit: {
-      title: 'Hábitos',
-      icon: '📌',
-    },
-    project: {
-      title: 'Projeto',
-      icon: '🚀',
-    },
-    task: {
-      title: 'Tarefa',
-      icon: '📋',
-    },
-  };
-
-  const { id, name, type, checked } = task;
-
+  const { setFormIsOpen, setSelectedTask, setSelectedTypeTask } = useTask();
+  const { id, name, type, checked, category } = task;
   const [isChecked, setChecked] = useState<boolean>(checked);
-  const { icon, title } = options[type];
   const descrptionFormated = name.length > 91 ? name.slice(0, 90) + '...' : name;
+  const typeTaskOption = typeTaskOptions.find(item => item.type === type);
+  const { name: title, icon } = typeTaskOption || {};
 
-  // const { setFormTaskOpen, setTempTask } = useContext(TasksContext);
   const handleEditTask = () => {
-    console.log(task);
-
-    // setTempTask({ ...task, checked: isChecked });
-    // setFormTaskOpen(true);
+    setSelectedTask(task);
+    setFormIsOpen(true);
+    setSelectedTypeTask(type);
   };
   return (
     <S.Container category={type} checked={isChecked}>
@@ -57,7 +36,7 @@ export default function CardTask({ task }: ICardTask) {
         <CustonCheckedBox checked={isChecked} id={id} setChecked={setChecked} />
       </S.ContainerDescription>
       <S.ContainerBtnIcon>
-        <S.Button>Carreira</S.Button>
+        <S.Button>{category}</S.Button>
         <ButtonEdit onClick={handleEditTask} />
       </S.ContainerBtnIcon>
     </S.Container>

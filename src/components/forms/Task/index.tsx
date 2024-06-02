@@ -9,8 +9,12 @@ import ButtonDanger from '@/components/buttons/ButtonDanger';
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import ButtonSecondary from '@/components/buttons/ButtonSecondary';
 import DateCalendar from '@/components/calendar';
+import { useTask } from '@/hooks/useTask';
 import { Task } from '@/types/task';
+import { DaysOfWeek } from '@/types/weekDays';
+import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import { pastDate } from '@/utils/validators/pastDate';
+import dayjs, { Dayjs } from 'dayjs';
 import Image from 'next/image';
 import { useState } from 'react';
 import CategoryInputSelect from '../fields/CategoryInputSelect';
@@ -21,76 +25,71 @@ import * as S from './styles';
 
 type IFormData = Partial<Task>;
 
-// interface CustomFormEvent extends React.FormEvent {
-//   submitter: {
-//     name: string;
-//   };
-// }
+interface CustomFormEvent extends React.FormEvent {
+  submitter: {
+    name: string;
+  };
+}
 
 export default function TaskForm() {
+  const { selectedTask, setFormIsOpen, selectedTypeTask, setActionForm } = useTask();
   const [isWeekFrequencyOpen, setIWeekFrequencyOpen] = useState(false);
-  const [tempTask] = useState(false);
-  // const [weekDays, setWeekDays] = useState<DaysOfWeek[]>([]);
+  const [weekDays, setWeekDays] = useState<DaysOfWeek[]>([]);
+  const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
   // const { formTypeTask, setFormTaskOpen, formTypeAndDescTask, tempTask } = useContext(TasksContext);
   // const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [categorySelected, setCategorySelected] = useState<string>('');
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<IFormData>({
-    // defaultValues: {
-    //   ...tempTask,
-    //   date: tempTask?.date as unknown as Date,
-    // },
+    defaultValues: {
+      ...selectedTask,
+      date: dateFormat(selectedTask?.date as Date) as unknown as Date,
+      hour: TimeFormat(selectedTask?.date as Date),
+    },
   });
 
-  const handleSubmitFormTask: SubmitHandler<IFormData> = async data => {
-    console.log(data);
+  const handleSubmitFormTask: SubmitHandler<IFormData> = async (data, event) => {
+    const pastDateValidate = pastDate(`${data.date} ${data.hour}`);
+    if (!pastDateValidate) {
+      setError('date', { message: 'Data menor que a data atual' });
+      return;
+    }
 
-    // const buttonSubmited = (event!.nativeEvent as CustomFormEvent).submitter.name;
-    // const finallyDateTemp = dateFormat(dayjs(finallyDate).format('YYYY-MM-DD'));
-    // data.finallyDate = (finallyDateTemp as unknown as string).match('/^[^a-zA-Z]*$/')
-    //   ? (finallyDateTemp as unknown as Date)
-    //   : undefined;
-    // data.weekDays = weekDays;
-    // data.category = categorySelected;
-    // switch (buttonSubmited) {
-    //   case "addTask":
-    //     setIsConfirmActionOpen(true);
-    //     setCrudTasksOptions("addTask");
-    //     setDataTask(data);
-    //     break;
-    //   case "duplicateTask":
-    //     setIsConfirmActionOpen(true);
-    //     setCrudTasksOptions("duplicateTask");
-    //     setDataTask(data);
-    //     break;
-    //   case "editTask":
-    //     setIsConfirmActionOpen(true);
-    //     setCrudTasksOptions("editTask");
-    //     setDataTask(data);
-    //     break;
-    //   case "deleteTask":
-    //     setIsConfirmActionOpen(true);
-    //     setCrudTasksOptions("deleteTask");
-    //     setDataTask(data);
-    //     break;
-    // }
+    data.weekDays = weekDays;
+    data.finallyDate = finallyDate ? new Date(finallyDate.format('YYYY-MM-DD')) : undefined;
+
+    const buttonSubmited = (event!.nativeEvent as CustomFormEvent).submitter.name;
+
+    switch (buttonSubmited) {
+      case 'saveTask':
+        selectedTask ? setActionForm('update') : setActionForm('create');
+        break;
+      case 'duplicateTask':
+        setActionForm('create');
+        break;
+      case 'deleteTask':
+        setActionForm('delete');
+        break;
+    }
   };
-
-  // const { type, description } = formTypeAndDescTask.find(task => task.type === formTypeTask) || {};
 
   return (
     <S.Form onSubmit={handleSubmit(handleSubmitFormTask)}>
-      <S.ImageNext src={closeFormIcon} alt="fechar formulario" />
+      <S.ImageNext
+        src={closeFormIcon}
+        alt="fechar formulario"
+        onClick={() => setFormIsOpen(false)}
+      />
       <S.Title>
-        adicionar
+        {selectedTask ? 'Editar' : 'Adicionar'} {selectedTypeTask?.name}
         <span>
           <Image src={infoIcon} alt="icone de exclamação" />
-          <S.Description>description</S.Description>
+          <S.Description>{selectedTypeTask?.description}</S.Description>
         </span>
       </S.Title>
 
@@ -118,8 +117,7 @@ export default function TaskForm() {
           errorMessage={errors.date?.message}
           register={register('date', {
             required: 'campo data é obrigatório',
-            // setValueAs: value => dayjs(value).format('YYYY-MM-DD'),
-            validate: value => pastDate(value!) || 'Data anterior a atual',
+            // validate: value => pastDate(value!) || 'Data anterior a atual',
           })}
         ></Input>
         <Input
@@ -133,8 +131,14 @@ export default function TaskForm() {
       </S.ContainerDateTime>
 
       <CategoryInputSelect
-        setReturnValue={setCategorySelected}
-        register={register('category', { required: 'Campo categoria é obrigatório' })}
+        initailValue={selectedTask?.category}
+        register={register('category', {
+          required: 'Campo categoria é obrigatório',
+          maxLength: {
+            value: 10,
+            message: 'Quantidade de caracteres máximo, 10!',
+          },
+        })}
         error={!!errors.category}
         messageError={errors.category?.message}
       />
@@ -176,7 +180,6 @@ export default function TaskForm() {
               register={register('quantityPerWeek', {
                 validate: value => {
                   if (value) {
-                    console.log(typeof Number(value) === 'number' && Number(value) > 0);
                     return typeof Number(value) === 'number' && Number(value) > 0;
                   }
                   return true;
@@ -189,24 +192,32 @@ export default function TaskForm() {
 
           <div>
             <p>Dias da semana</p>
-            <WeekDaysCheckBox />
+            <WeekDaysCheckBox weekDays={selectedTask?.weekDays} setWeekDays={setWeekDays} />
           </div>
 
           <S.ContainerCalendar>
             <p>Finaliza em:</p>
-            <DateCalendar version="compact" />
+            <DateCalendar
+              version="compact"
+              setReturnDateValue={setFinallyDate}
+              initialDate={dayjs(dateFormat(selectedTask?.finallyDate as Date))}
+            />
           </S.ContainerCalendar>
         </>
       )}
 
       <S.ContainerButtons>
-        {!tempTask && (
+        {selectedTask && (
           <>
-            <ButtonDanger>Excluir</ButtonDanger>
-            <ButtonSecondary hover={false}>Duplicar</ButtonSecondary>
+            <ButtonDanger name="deleteTask">Excluir</ButtonDanger>
+            <ButtonSecondary name="duplicateTask" hover={false}>
+              Duplicar
+            </ButtonSecondary>
           </>
         )}
-        <ButtonPrimary className="mobile">Salvar Alterações</ButtonPrimary>
+        <ButtonPrimary name="saveTask" className="mobile">
+          Salvar Alterações
+        </ButtonPrimary>
       </S.ContainerButtons>
     </S.Form>
   );

@@ -29,9 +29,11 @@ export default function CalendarContainer() {
   return (
     <>
       <S.Container>
-        <h1>
-          {weekDay}, {day} de {nameMonth} de {year}
-        </h1>
+        {weekDay && day && nameMonth && year && (
+          <h1>
+            {weekDay}, {day} de {nameMonth} de {year}
+          </h1>
+        )}
         <S.ContainerIcons>
           <Image src={iconCalendar} alt="" onClick={() => setOpenCalendar(!openCalendar)} />
           <ContainerPrevNext setChangePage={setChangePage} />

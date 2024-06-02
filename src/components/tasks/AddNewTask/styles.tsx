@@ -26,9 +26,7 @@ export const ButtonAddTask = styled.button`
 
 export const ContainerTypeTask = styled.div`
   max-width: 180px;
-  max-height: 100px;
   width: 100%;
-  height: 100%;
   padding: 4px 0;
   border-radius: 8px 0 8px 0;
   box-shadow: 2px 3px 11px -1px;

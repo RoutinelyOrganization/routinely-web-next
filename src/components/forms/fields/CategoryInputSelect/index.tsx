@@ -7,31 +7,26 @@ import * as S from './styles';
 
 const categories = ['Trabalho123456', 'Estudos', 'Casa', 'Lazer'];
 interface ICategoryInputProps {
-  setReturnValue: React.Dispatch<React.SetStateAction<string>>;
-  // register: (
-  //   name: string,
-  //   options?: RegisterOptions<Record<string, any>, string> | undefined,
-  // ) => UseFormRegisterReturn<string>;
   register: UseFormRegisterReturn<string>;
   error: boolean;
   messageError?: string;
+  initailValue?: string;
 }
 
 export default function CategoryInputSelect({
-  setReturnValue,
   register,
   error,
   messageError,
+  initailValue,
 }: ICategoryInputProps) {
   const [categoriesSelected, setCategoriesSelected] = useState<string[]>(categories);
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(initailValue || '');
   const [visibility, setVisibility] = useState<boolean>(false);
 
   const handleSelectCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setValue(value);
-    setReturnValue(value);
-    setVisibility(true);
+    !messageError && setVisibility(true);
 
     const newCategoriesSelected = value
       ? categories.filter(item => item.toLowerCase().includes(value.toLowerCase()))
@@ -42,12 +37,11 @@ export default function CategoryInputSelect({
 
   const handleClick = (category: string) => {
     setValue(category);
-    setReturnValue(category);
     setVisibility(false);
   };
 
   const handleClickInput = (value: string) => {
-    setVisibility(true);
+    !messageError && setVisibility(true);
     handleSelectCategory({ target: { value: value } } as React.ChangeEvent<HTMLInputElement>);
   };
 

@@ -1,33 +1,8 @@
-'use client';
-
-import ButtonFooter from '@/components/buttons/ButtonFooter';
-import CalendarContainer from '@/components/containers/CalendarContainer';
-import TaskForm from '@/components/forms/Task';
-import Header from '@/components/headers';
-import PopUp from '@/components/popUp';
-import Task from '@/components/tasks';
-import AddNewTask from '@/components/tasks/AddNewTask';
-import { CalendarProvider } from '@/contexts/CalendarContext';
-import { tasks } from '@/mocks/task';
-import newTask from '@public/imagens/nova tarefa.svg';
-import Image from 'next/image';
-import { useState } from 'react';
-import * as S from './styles';
-
-export interface Itasks {
-  id: number;
-  name: string;
-  date: Date;
-  hour: string;
-  description: string;
-  priority: string;
-  tag: string;
-  category: string;
-  checked?: boolean;
-}
+import DashboardContainer from '@/components/containers/DashboardContainer';
+import { TaskProvider } from '@/contexts/TaskContext';
 
 export default function DashboardPage() {
-  const [openForm] = useState(false);
+  // const { formIsOpen } = useTask();
   // const { handleAddTask, handleEditTask, handleDeleteTask } = UseCRUD();
   // const [selectTypeTaskOpen, setSelectTypeTaskOpen] = useState<boolean>(false);
   // const [isConfirmActionOpen, setIsConfirmActionOpen] = useState<boolean>(false);
@@ -93,26 +68,9 @@ export default function DashboardPage() {
   // }, [token, user.email, navigate, authorization]);
 
   return (
-    <>
-      {openForm && (
-        <PopUp>
-          <TaskForm />
-        </PopUp>
-      )}
-      <CalendarProvider>
-        <Header />
-        <S.Main className="container-main">
-          <S.ContainerCalendar>
-            <CalendarContainer />
-            <AddNewTask />
-          </S.ContainerCalendar>
-          <Task tasks={tasks} />
-        </S.Main>
-      </CalendarProvider>
-      <ButtonFooter>
-        <Image src={newTask} alt="" />
-      </ButtonFooter>
-    </>
+    <TaskProvider>
+      <DashboardContainer />
+    </TaskProvider>
   );
 
   // return (

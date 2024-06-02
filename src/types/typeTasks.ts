@@ -1,3 +1,6 @@
 export interface TypeTask {
-  type: 'habit' | 'project' | 'task';
+  type: 'habit' | 'task';
+  name: string;
+  description: string;
+  icon?: string;
 }

@@ -20,11 +20,11 @@ export const tasks: Task[] = [
     name: 'Tarefa 2',
     checked: false,
     category: 'habit',
-    date: new Date(),
+    date: new Date('2024-10-01'),
     description: 'teste',
     hour: '10:00',
     quantityPerWeek: 1,
-    finallyDate: new Date(),
+    finallyDate: new Date('2024-11-01'),
     weekDays: ['Monday', 'Friday'],
   },
   {

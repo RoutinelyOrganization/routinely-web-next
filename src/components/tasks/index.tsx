@@ -10,7 +10,7 @@ interface ITask {
 }
 
 export default function Task({ tasks }: ITask) {
-  const [isTask, setIsTask] = useState<Task[]>(tasks);
+  const [isTask, setIsTask] = useState<Task[]>([]);
   const [selected, setSelected] = useState('all tasks');
 
   useEffect(() => {

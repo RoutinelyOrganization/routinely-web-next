@@ -27,13 +27,13 @@ export const Form = styled.form`
 
 export const ImageNext = styled(Image)`
   position: absolute;
-  top: 3px;
+  top: 1px;
   right: 0;
   cursor: pointer;
 `;
 
 export const Description = styled.span`
-  background-color: ${colors.lightShadow};
+  background-color: ${colors.gray};
   font-size: calc(${fonts.sizes.xxxsmall} - 2px);
   padding: 8px;
   border-radius: 8px;
@@ -119,9 +119,10 @@ export const ContainerSelectWeekDays = styled.div`
 `;
 
 export const ContainerButtons = styled.div`
+  margin-top: 32px;
   display: flex;
   gap: 8px;
-  justify-content: space-between;
+  justify-content: end;
 
   > button {
     max-width: 150px;

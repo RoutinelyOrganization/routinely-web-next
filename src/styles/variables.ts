@@ -11,6 +11,7 @@ export const colors = {
   lightSuccess: '#a2f07b',
   danger: '#B3261B',
   lightgray: '#ebeaed',
+  gray: '#d8d6dc',
 };
 
 export const fonts = {
