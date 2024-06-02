@@ -1,11 +1,5 @@
 'use client';
 
-import arrow from '@public/icons/arrowDown.svg';
-import closeFormIcon from '@public/icons/closeIcon.svg';
-import infoIcon from '@public/icons/informacao.svg';
-import type { SubmitHandler } from 'react-hook-form';
-import { useForm } from 'react-hook-form';
-
 import ButtonDanger from '@/components/buttons/ButtonDanger';
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import ButtonSecondary from '@/components/buttons/ButtonSecondary';
@@ -15,10 +9,15 @@ import type { Task } from '@/types/task';
 import type { DaysOfWeek } from '@/types/weekDays';
 import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import { pastDate } from '@/utils/validators/pastDate';
+import arrow from '@public/icons/arrowDown.svg';
+import closeFormIcon from '@public/icons/closeIcon.svg';
+import infoIcon from '@public/icons/informacao.svg';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import CategoryInputSelect from '../fields/CategoryInputSelect';
 import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
