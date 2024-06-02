@@ -4,7 +4,7 @@ import ButtonEdit from '@/components/buttons/ButtonEdit';
 import CustonCheckedBox from '@/components/forms/fields/CustonCheckedBox';
 import { useTask } from '@/hooks/useTask';
 import { typeTaskOptions } from '@/mocks/typeTask';
-import { Task } from '@/types/task';
+import type { Task } from '@/types/task';
 import { useState } from 'react';
 import * as S from './styles';
 

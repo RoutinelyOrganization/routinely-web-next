@@ -1,6 +1,7 @@
 import ButtonDownloadApp from '@/components/buttons/ButtonDowloadApp';
 import ButtonPrincipal from '@/components/buttons/ButtonPrimary';
-import MenuHeader, { IMenuItem } from '@/components/headers/MenuHeader';
+import type { IMenuItem } from '@/components/headers/MenuHeader';
+import MenuHeader from '@/components/headers/MenuHeader';
 import Logo from '@/components/logos/Logo';
 import completedTasks from '@public/imagens/homePage/completed_tasks.svg';
 import completedTasksLitlle from '@public/imagens/homePage/completed_tasks_menor.svg';

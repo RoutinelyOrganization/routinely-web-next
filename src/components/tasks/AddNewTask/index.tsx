@@ -2,7 +2,7 @@
 
 import { useTask } from '@/hooks/useTask';
 import { typeTaskOptions } from '@/mocks/typeTask';
-import { TypeTask } from '@/types/typeTasks';
+import type { TypeTask } from '@/types/typeTasks';
 import addIcon from '@public/icons/addIcon.svg';
 import Image from 'next/image';
 import { useState } from 'react';

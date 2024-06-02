@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import type { UseFormRegisterReturn } from 'react-hook-form';
 import Input from '../Input';
 import * as S from './styles';
 

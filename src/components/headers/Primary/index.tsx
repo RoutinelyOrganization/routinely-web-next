@@ -1,5 +1,6 @@
 import Logo from '@/components/logos/Logo';
-import MenuHeader, { IMenuItem } from '../MenuHeader';
+import type { IMenuItem } from '../MenuHeader';
+import MenuHeader from '../MenuHeader';
 import * as S from './styles';
 
 export interface IPrimaryHeader {

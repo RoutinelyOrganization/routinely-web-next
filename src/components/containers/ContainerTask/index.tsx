@@ -1,5 +1,5 @@
 import CardTask from '@/components/tasks/CardTask';
-import { Task } from '@/types/task';
+import type { Task } from '@/types/task';
 import * as S from './styles';
 
 interface IContainerTask {

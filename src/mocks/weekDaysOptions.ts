@@ -1,4 +1,4 @@
-import { DaysOfWeek } from '@/types/weekDays';
+import type { DaysOfWeek } from '@/types/weekDays';
 
 export interface IWeekDayMock {
   id: number;

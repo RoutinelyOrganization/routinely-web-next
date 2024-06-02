@@ -1,7 +1,7 @@
 'use client';
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import type { SignUp } from '@/types/signUp';
 import infoError from '@public/icons/infoErro.svg';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -10,12 +10,8 @@ import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
 
-interface ISignUpInput {
-  name: string;
-  email: string;
-  password: string;
+export interface ISignUpProps extends SignUp {
   confirmPassword: string;
-  acceptedTerms: boolean;
 }
 
 export default function SignUpForm() {
@@ -31,14 +27,14 @@ export default function SignUpForm() {
     formState: { errors },
     setError,
     watch,
-  } = useForm<ISignUpInput>({
+  } = useForm<ISignUpProps>({
     mode: 'onChange',
   });
 
   const password = watch('password');
   const confirmPassword = watch('confirmPassword');
 
-  const handleSignUp = async (data: ISignUpInput) => {
+  const handleSignUp = async (data: ISignUpProps) => {
     console.log(data);
 
     //   try {

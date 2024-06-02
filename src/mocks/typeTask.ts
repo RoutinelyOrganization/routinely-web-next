@@ -1,4 +1,4 @@
-import { TypeTask } from '@/types/typeTasks';
+import type { TypeTask } from '@/types/typeTasks';
 
 export const typeTaskOptions: TypeTask[] = [
   {

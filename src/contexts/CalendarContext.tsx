@@ -1,6 +1,7 @@
 'use client';
 
-import dayjs, { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { createContext, useEffect, useState } from 'react';
 
 interface ICalendarProps {

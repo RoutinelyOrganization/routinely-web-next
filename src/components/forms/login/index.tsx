@@ -1,19 +1,15 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import type { Login } from '@/types/login';
 import infoError from '@public/icons/infoErro.svg';
 import Image from 'next/image';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
-
-export interface ISingInProps {
-  email: string;
-  password: string;
-  remember?: boolean;
-}
 
 // interface IAuthorization {
 //   token: string;
@@ -32,11 +28,11 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISingInProps>({
+  } = useForm<Login>({
     mode: 'onChange',
   });
 
-  const handleSubmitSignIn: SubmitHandler<ISingInProps> = async (data: ISingInProps) => {
+  const handleSubmitSignIn: SubmitHandler<Login> = async (data: Login) => {
     console.log(data);
 
     // try {

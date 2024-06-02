@@ -1,4 +1,4 @@
-import { IMenuItem } from './MenuHeader';
+import type { IMenuItem } from './MenuHeader';
 import PrimaryHeader from './Primary';
 import SecondaryHeader from './Secondary';
 

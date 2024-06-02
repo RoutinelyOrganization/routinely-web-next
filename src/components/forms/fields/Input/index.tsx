@@ -1,4 +1,4 @@
-import { UseFormRegisterReturn } from 'react-hook-form';
+import type { UseFormRegisterReturn } from 'react-hook-form';
 import ErrorMessage from '../ErrorMessage';
 import * as S from './styles';
 

@@ -1,8 +1,8 @@
 'use client';
 
 import { typeTaskOptions } from '@/mocks/typeTask';
-import { Task } from '@/types/task';
-import { TypeTask } from '@/types/typeTasks';
+import type { Task } from '@/types/task';
+import type { TypeTask } from '@/types/typeTasks';
 import { createContext, useEffect, useState } from 'react';
 
 interface ITaskProvider {
