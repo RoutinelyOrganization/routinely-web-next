@@ -3,7 +3,7 @@ import { makeClientAndToken } from '@/services/factories/makeClientAndToken';
 import { updateTask } from '@/services/requests/updateTasks';
 import type { Task } from '@/types/task';
 
-export const makeUpdateTask = (id: number, body: Partial<Task>): Promise<HttpResponse> => {
-  const { httpClient, token } = makeClientAndToken();
+export const makeUpdateTask = async (id: number, body: Partial<Task>): Promise<HttpResponse> => {
+  const { httpClient, token } = await makeClientAndToken();
   return updateTask(httpClient, id, body, token);
 };

@@ -1,8 +1,20 @@
+import { nextAuthOptions } from '@/app/api/auth/[...nextauth]/route';
 import { FetchAdapter } from '@/services/adapter/fetchAdapter';
 import type { HttpClient } from '@/services/contracts/httpClient';
+import { getServerSession } from 'next-auth';
 
-export const makeClientAndToken = () => {
+interface makeClientAndTokenReturn {
+  httpClient: HttpClient;
+  token: string;
+  refreshToken: string;
+}
+
+export const makeClientAndToken = async (): Promise<makeClientAndTokenReturn> => {
   const httpClient: HttpClient = new FetchAdapter();
-  const token = window.localStorage.getItem('token') || '';
-  return { httpClient, token };
+  const { user } = (await getServerSession(nextAuthOptions)) as any;
+  const { token, refreshToken } = user;
+
+  console.log(token, refreshToken);
+
+  return { httpClient, token, refreshToken };
 };
