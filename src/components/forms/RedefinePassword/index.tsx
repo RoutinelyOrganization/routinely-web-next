@@ -17,9 +17,8 @@ export default function RedefinePasswordForm() {
   } = useForm<IRedefinePassword>({
     mode: 'onChange',
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const submitForm = async (data: IRedefinePassword) => {
-    console.log(data);
-
     // const { data } = await instance.post('/auth/resetpassword', dataForm);
     // window.localStorage.setItem('accountId', data.accountId);
     // console.log(data);

@@ -8,6 +8,7 @@ export const login = async (httpClient: HttpClient, body: Login): Promise<HttpRe
       method: 'POST',
       body,
     });
+
     return response;
   } catch (error) {
     throw error;

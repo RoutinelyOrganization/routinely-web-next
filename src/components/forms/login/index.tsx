@@ -3,7 +3,9 @@
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import type { Login } from '@/types/login';
 import infoError from '@public/icons/infoErro.svg';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
@@ -11,17 +13,10 @@ import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
 
-// interface IAuthorization {
-//   token: string;
-//   refreshToken: string;
-//   expiresIn: string;
-// }
-
 export default function LoginForm() {
   const [showPassord, setShowPassword] = useState<boolean>(false);
   const [loading] = useState<boolean>(false);
-  // const { login } = useAuth();
-
+  const router = useRouter();
   const [showError] = useState(false);
 
   const {
@@ -33,38 +28,12 @@ export default function LoginForm() {
   });
 
   const handleSubmitSignIn: SubmitHandler<Login> = async (data: Login) => {
-    console.log(data);
-
-    // try {
-    //   setLoading(true);
-    //   const response: AxiosResponse<IAuthorization> | undefined = await login(Data);
-
-    //   if (response!.status === 200) {
-    //     setUser(Data);
-    //     if (Data) {
-    //       const { refreshToken, token } = response!.data;
-    //       window.localStorage.setItem('token', response! && token);
-    //       window.localStorage.setItem('refreshToken', response! && refreshToken);
-    //     }
-    //     navigate('/dashboardpage');
-    //     setShowError(false);
-    //   }
-    // } catch (error) {
-    //   const erro = error as AxiosError;
-    //   console.error(erro.message);
-    //   setErrorEmail(true);
-    //   setErrorPassword(true);
-    //   setShowError(true);
-    // } finally {
-    //   setLoading(false);
-    // }
+    await signIn('credentials', {
+      ...data,
+      redirect: false,
+    });
+    router.replace('/dashboard');
   };
-  // useEffect(() => {
-  //   if (isSubmitted) {
-  //     setErrorEmail(true);
-  //     setErrorPassword(true);
-  //   }
-  // }, [isSubmitted]);
 
   return (
     <S.Form onSubmit={handleSubmit(handleSubmitSignIn)}>

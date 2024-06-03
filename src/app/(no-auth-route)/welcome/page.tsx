@@ -1,9 +1,9 @@
+import ButtonPrincipal from '@/components/buttons/ButtonPrimary';
 import ButtonSecondary from '@/components/buttons/ButtonSecondary';
 import Header from '@/components/headers';
 import LogoShared from '@/components/logos/LogoShared';
 import welcomePageImage from '@public/imagens/welcomePageImage.svg';
 import Image from 'next/image';
-import ButtonPrincipal from '../../components/buttons/ButtonPrimary';
 import * as S from './styles';
 
 export default function WelcomePage() {

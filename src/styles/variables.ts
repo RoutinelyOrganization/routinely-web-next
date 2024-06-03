@@ -12,6 +12,7 @@ export const colors = {
   danger: '#B3261B',
   lightgray: '#ebeaed',
   gray: '#d8d6dc',
+  darkgray: '#767676',
 };
 
 export const fonts = {

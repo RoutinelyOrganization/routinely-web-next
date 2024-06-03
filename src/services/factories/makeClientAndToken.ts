@@ -14,7 +14,5 @@ export const makeClientAndToken = async (): Promise<makeClientAndTokenReturn> =>
   const { user } = (await getServerSession(nextAuthOptions)) as any;
   const { token, refreshToken } = user;
 
-  console.log(token, refreshToken);
-
   return { httpClient, token, refreshToken };
 };

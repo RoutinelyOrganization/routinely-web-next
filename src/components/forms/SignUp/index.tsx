@@ -34,9 +34,8 @@ export default function SignUpForm() {
   const password = watch('password');
   const confirmPassword = watch('confirmPassword');
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSignUp = async (data: ISignUpProps) => {
-    console.log(data);
-
     //   try {
     //     setLoading(true);
     //     await signUp(body);

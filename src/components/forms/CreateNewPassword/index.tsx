@@ -30,9 +30,8 @@ export default function CreateNewPassword() {
   const password = watch('password');
   const confirmPassword = watch('confirmPassword');
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handlePasswords = async (data: INewPassword) => {
-    console.log(data);
-
     //   try {
     //     setLoading(true);
     //     await signUp(body);

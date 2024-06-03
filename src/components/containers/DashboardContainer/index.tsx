@@ -10,12 +10,15 @@ import Task from '@/components/tasks';
 import AddNewTask from '@/components/tasks/AddNewTask';
 import { CalendarProvider } from '@/contexts/CalendarContext';
 import { useTask } from '@/hooks/useTask';
-import { tasks } from '@/mocks/task';
+import { type Task as ITask } from '@/types/task';
 import newTask from '@public/imagens/nova tarefa.svg';
 import Image from 'next/image';
 import * as S from './styles';
 
-export default function DashboardContainer() {
+export interface IDashboardContainer {
+  tasks: ITask[];
+}
+export default function DashboardContainer({ tasks }: IDashboardContainer) {
   const { formIsOpen, selectedActionForm } = useTask();
 
   return (

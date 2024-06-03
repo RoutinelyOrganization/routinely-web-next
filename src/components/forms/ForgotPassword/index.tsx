@@ -17,9 +17,8 @@ export default function ForgotPasswordForm() {
   } = useForm<IForgotPassword>({
     mode: 'onChange',
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const submitForm = async (data: IForgotPassword) => {
-    console.log(data);
-
     // const { data } = await instance.post('/auth/resetpassword', dataForm);
     // window.localStorage.setItem('accountId', data.accountId);
     // console.log(data);

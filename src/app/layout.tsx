@@ -1,3 +1,4 @@
+import NextSessionProvider from '@/providers/sessionProvider';
 import StyledComponentsRegistry from '@/styles/registry';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <NextSessionProvider>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </NextSessionProvider>
       </body>
     </html>
   );

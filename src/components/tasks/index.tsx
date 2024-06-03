@@ -39,7 +39,11 @@ export default function Task({ tasks }: ITask) {
         <option value="task">Tarefas</option>
         <option value="completed">Concluidas</option>
       </S.Select>
-      <ContainerTask tasks={isTask} />
+      {tasks.length ? (
+        <ContainerTask tasks={isTask} />
+      ) : (
+        <S.NoTask>Você ainda não tem atividades para hoje.</S.NoTask>
+      )}
     </S.Conteiner>
   );
 }

@@ -1,8 +1,10 @@
 export class ErrorApi extends Error {
   status: number;
-  constructor(message: string, status: number, name?: string) {
-    super(message);
+  body: any;
+  constructor(body: any, status: number, name?: string) {
+    super();
     this.name = name || 'ErrorApi';
     this.status = status;
+    this.body = body;
   }
 }

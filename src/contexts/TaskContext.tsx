@@ -42,7 +42,6 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
       case 'create':
         setExecuteServiceTask(() => {
           return () => {
-            console.log('create');
             return Promise.resolve();
           };
         });
@@ -50,7 +49,6 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
       case 'update':
         setExecuteServiceTask(() => {
           return () => {
-            console.log('update');
             return Promise.resolve();
           };
         });
@@ -58,7 +56,6 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
       case 'delete':
         setExecuteServiceTask(() => {
           return () => {
-            console.log('delete');
             return Promise.resolve();
           };
         });
