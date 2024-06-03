@@ -1,6 +1,6 @@
-import type { HttpResponse } from '@/services/contracts/httpResponse';
-import { makeClientAndToken } from '@/services/factories/makeClientAndToken';
+import { makeClientAndToken } from '@/factories/services/makeClientAndToken';
 import { getTasks } from '@/services/requests/getTasks';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 
 export const makeGetTasks = async (month?: number, year?: number): Promise<HttpResponse> => {
   const date = new Date();

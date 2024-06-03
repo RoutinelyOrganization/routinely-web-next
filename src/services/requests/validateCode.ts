@@ -1,5 +1,5 @@
-import type { HttpClient } from '@/services/contracts/httpClient';
 import type { ChangePassword } from '@/services/requests/changePassword';
+import type { HttpClient } from '@/types/contracts/services/httpClient';
 
 export interface ValidateCode extends Omit<ChangePassword, 'password'> {}
 

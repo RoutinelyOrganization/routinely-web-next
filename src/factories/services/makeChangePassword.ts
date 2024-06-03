@@ -1,6 +1,6 @@
-import type { HttpResponse } from '@/services/contracts/httpResponse';
-import { makeClientAndToken } from '@/services/factories/makeClientAndToken';
+import { makeClientAndToken } from '@/factories/services/makeClientAndToken';
 import { changePassword, type ChangePassword } from '@/services/requests/changePassword';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 
 export const makeChangePassword = async (body: ChangePassword): Promise<HttpResponse> => {
   const { httpClient, token } = await makeClientAndToken();

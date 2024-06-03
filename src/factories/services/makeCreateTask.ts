@@ -1,5 +1,5 @@
-import type { HttpResponse } from '@/services/contracts/httpResponse';
 import { createTask } from '@/services/requests/createTask';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 import type { Task } from '@/types/task';
 import { makeClientAndToken } from './makeClientAndToken';
 

@@ -1,5 +1,5 @@
-import type { HttpClient } from '@/services/contracts/httpClient';
-import type { HttpResponse } from '@/services/contracts/httpResponse';
+import type { HttpClient } from '@/types/contracts/services/httpClient';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 import type { Login } from '@/types/login';
 
 export const login = async (httpClient: HttpClient, body: Login): Promise<HttpResponse> => {

@@ -1,7 +1,7 @@
-import type { HttpClient } from '@/services/contracts/httpClient';
-import type { RequestOptions } from '@/services/contracts/requestOptions';
-import type { HttpResponse } from '../contracts/httpResponse';
-import { ErrorApi } from '../errors/errorApi';
+import type { HttpClient } from '@/types/contracts/services/httpClient';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
+import type { RequestOptions } from '@/types/contracts/services/requestOptions';
+import { ErrorApi } from '../services/errors/errorApi';
 
 export class FetchAdapter implements HttpClient {
   async request(url: string, options: RequestOptions): Promise<HttpResponse> {
@@ -16,8 +16,7 @@ export class FetchAdapter implements HttpClient {
       });
 
       if (!response.ok) {
-        const errors = await response.json();
-
+        const { errors } = await response.json();
         throw new ErrorApi(errors, response.status, response.statusText);
       }
       return {

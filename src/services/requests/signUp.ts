@@ -1,5 +1,5 @@
-import type { HttpClient } from '@/services/contracts/httpClient';
-import type { HttpResponse } from '@/services/contracts/httpResponse';
+import type { HttpClient } from '@/types/contracts/services/httpClient';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 import type { SignUp } from '@/types/signUp';
 
 export default async function signUp(httpClient: HttpClient, body: SignUp): Promise<HttpResponse> {

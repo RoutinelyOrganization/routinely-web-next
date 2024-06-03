@@ -1,4 +1,4 @@
-import { makeLogin } from '@/services/factories/makeLogin';
+import { makeLogin } from '@/factories/services/makeLogin';
 import type { NextAuthOptions, User } from 'next-auth';
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';

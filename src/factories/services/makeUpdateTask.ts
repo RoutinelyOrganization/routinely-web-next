@@ -1,6 +1,6 @@
-import type { HttpResponse } from '@/services/contracts/httpResponse';
-import { makeClientAndToken } from '@/services/factories/makeClientAndToken';
+import { makeClientAndToken } from '@/factories/services/makeClientAndToken';
 import { updateTask } from '@/services/requests/updateTasks';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 import type { Task } from '@/types/task';
 
 export const makeUpdateTask = async (id: number, body: Partial<Task>): Promise<HttpResponse> => {

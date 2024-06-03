@@ -1,6 +1,6 @@
 import DashboardContainer from '@/components/containers/DashboardContainer';
 import { TaskProvider } from '@/contexts/TaskContext';
-import { makeGetTasks } from '@/services/factories/makeGetTasks';
+import { makeGetTasks } from '@/factories/services/makeGetTasks';
 
 export default async function DashboardPage() {
   const { body } = await makeGetTasks();

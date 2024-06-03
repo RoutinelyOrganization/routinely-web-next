@@ -1,6 +1,8 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import { makeCookies } from '@/factories/cookies/makeCookies';
+import { makeResetPassword } from '@/factories/services/makeResetPassword';
 import { useForm } from 'react-hook-form';
 import Input from '../fields/Input';
 import * as S from './styles';
@@ -17,12 +19,10 @@ export default function ForgotPasswordForm() {
   } = useForm<IForgotPassword>({
     mode: 'onChange',
   });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const submitForm = async (data: IForgotPassword) => {
-    // const { data } = await instance.post('/auth/resetpassword', dataForm);
-    // window.localStorage.setItem('accountId', data.accountId);
-    // console.log(data);
-    // navigate('/redefinePasswordPage');
+    const { body } = await makeResetPassword(data.email);
+    const cookie = makeCookies();
+    cookie.setCookies(body);
   };
   return (
     <S.Form onSubmit={handleSubmit(submitForm)}>

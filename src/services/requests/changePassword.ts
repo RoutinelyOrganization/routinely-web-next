@@ -1,4 +1,4 @@
-import type { HttpClient } from '@/services/contracts/httpClient';
+import type { HttpClient } from '@/types/contracts/services/httpClient';
 
 export interface ChangePassword {
   password: string;

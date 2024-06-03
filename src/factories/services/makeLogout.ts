@@ -1,4 +1,4 @@
-import { makeClientAndToken } from '@/services/factories/makeClientAndToken';
+import { makeClientAndToken } from '@/factories/services/makeClientAndToken';
 import { logout } from '@/services/requests/logout';
 
 export const makeLogout = async (): Promise<void> => {

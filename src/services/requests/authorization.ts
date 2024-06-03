@@ -1,5 +1,5 @@
-import type { HttpClient } from '../contracts/httpClient';
-import type { HttpResponse } from '../contracts/httpResponse';
+import type { HttpClient } from '@/types/contracts/services/httpClient';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 
 export const authorization = async (
   httpClient: HttpClient,

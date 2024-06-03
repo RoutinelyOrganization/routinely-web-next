@@ -1,6 +1,6 @@
-import type { HttpResponse } from '@/services/contracts/httpResponse';
-import { makeClientAndToken } from '@/services/factories/makeClientAndToken';
+import { makeClientAndToken } from '@/factories/services/makeClientAndToken';
 import { login } from '@/services/requests/login';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 import type { Login } from '@/types/login';
 
 export const makeLogin = async (body: Login): Promise<HttpResponse> => {

@@ -1,17 +1,10 @@
-import type { HttpClient } from '@/services/contracts/httpClient';
-import type { HttpResponse } from '@/services/contracts/httpResponse';
+import type { HttpClient } from '@/types/contracts/services/httpClient';
+import type { HttpResponse } from '@/types/contracts/services/httpResponse';
 
-export const resetPassword = (
-  httpClient: HttpClient,
-  email: string,
-  token: string,
-): Promise<HttpResponse> => {
+export const resetPassword = (httpClient: HttpClient, email: string): Promise<HttpResponse> => {
   try {
     const response = httpClient.request('/auth/resetpassword', {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
       body: {
         email,
       },
