@@ -31,8 +31,7 @@ export default function CodeValidationForm() {
     try {
       await makeValidateCode({ code, accountId });
 
-      const cookie = makeCookies();
-      cookie.setCookies({ code });
+      cookies.setCookies({ code });
 
       router.push('/new-password');
     } catch (error) {

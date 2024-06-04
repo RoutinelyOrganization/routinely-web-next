@@ -5,7 +5,7 @@ export class ErrorApi extends Error {
     super();
     this.name = name || 'ErrorApi';
     this.status = status;
-    this.body = body;
+    this.body = this.cleanErrormessages(body);
   }
 
   private cleanErrormessages(body: any) {
@@ -14,7 +14,6 @@ export class ErrorApi extends Error {
       const { message } = error;
       return message;
     });
-    this.body = newErrors;
-    return;
+    return newErrors;
   }
 }

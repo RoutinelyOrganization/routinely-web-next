@@ -55,21 +55,6 @@ export default function CreateNewPassword() {
       const errorApi = error as ErrorApi;
       setErrorsApi(errorApi.body);
     }
-    //   try {
-    //     setLoading(true);
-    //     await signUp(body);
-    //     setShowError(false);
-    //     navigate('/signinpage');
-    //   } catch (err) {
-    //     const { response } = err as AxiosError<{ errors: { message: string }[] }>;
-    //     if (response?.data.errors[0].message) {
-    //       setShowError(true);
-    //       setErroEmail(true);
-    //       setLoading(false);
-    //     }
-    //   } finally {
-    //     setLoading(false);
-    //   }
   };
 
   useEffect(() => {

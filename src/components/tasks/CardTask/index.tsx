@@ -33,7 +33,11 @@ export default function CardTask({ task }: ICardTask) {
       </S.Title>
       <S.ContainerDescription>
         <p>{descrptionFormated}</p>
-        <CustonCheckedBox checked={isChecked} id={id} setChecked={setChecked} />
+        <CustonCheckedBox
+          checked={isChecked}
+          id={id.toString()}
+          onClick={() => setChecked(!isChecked)}
+        />
       </S.ContainerDescription>
       <S.ContainerBtnIcon>
         <S.Button>{category}</S.Button>

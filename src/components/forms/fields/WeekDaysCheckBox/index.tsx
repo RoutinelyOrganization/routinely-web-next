@@ -1,7 +1,7 @@
 import type { IWeekDayMock } from '@/mocks/weekDaysOptions';
 import { weekDaysOptions } from '@/mocks/weekDaysOptions';
 import type { DaysOfWeek } from '@/types/weekDays';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CustonCheckedBox from '../CustonCheckedBox';
 import * as S from './styles';
 
@@ -10,11 +10,19 @@ interface IWeekDayProps {
   setWeekDays?: React.Dispatch<React.SetStateAction<DaysOfWeek[]>>;
 }
 
+interface IEventClickTarget {
+  id: string;
+  checked: boolean;
+  name: string;
+}
+
 export default function WeekDaysCheckBox({ weekDays, setWeekDays }: IWeekDayProps) {
   const [weekDaysDefault, setWeekDaysDefault] = useState<IWeekDayMock[]>(weekDaysOptions);
   const [weekDaysChecked, setWeekDaysChecked] = useState<DaysOfWeek[]>(weekDays || []);
 
-  const handleWeekDays = (id: number, checked: boolean, name?: string) => {
+  const handleWeekDays = (event: React.MouseEvent<HTMLInputElement>) => {
+    const { id, checked, name } = event.target as unknown as IEventClickTarget;
+    const splitId = Number(id.split('-')[1]);
     weekDaysChecked.includes(name as DaysOfWeek)
       ? weekDaysChecked.splice(weekDaysChecked.indexOf(name as DaysOfWeek), 1)
       : weekDaysChecked.push(name as DaysOfWeek);
@@ -22,7 +30,7 @@ export default function WeekDaysCheckBox({ weekDays, setWeekDays }: IWeekDayProp
     setWeekDays && setWeekDays(weekDaysChecked);
 
     const newWeekDaysOptions: IWeekDayMock[] = weekDaysDefault.map(weekDay => {
-      if (weekDay.id === id) {
+      if (weekDay.id === splitId) {
         return { ...weekDay, checked };
       }
       return weekDay;
@@ -39,9 +47,9 @@ export default function WeekDaysCheckBox({ weekDays, setWeekDays }: IWeekDayProp
           checked={weekDaysChecked?.includes(day.name) || false}
         >
           <CustonCheckedBox
-            id={day.id}
-            text={day.shortName}
-            setValue={handleWeekDays}
+            id={day.id.toString()}
+            value={day.shortName}
+            onClick={e => handleWeekDays(e)}
             checked={weekDaysChecked?.includes(day.name) || false}
             name={day.name}
           />
