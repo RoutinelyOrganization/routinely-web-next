@@ -14,7 +14,7 @@ import Input from '../fields/Input';
 import * as S from './styles';
 
 export default function LoginForm() {
-  const [showPassord, setShowPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading] = useState<boolean>(false);
   const router = useRouter();
   const [showError] = useState(false);
@@ -56,7 +56,7 @@ export default function LoginForm() {
 
         <Input
           label="Senha"
-          type={showPassord ? 'text' : 'password'}
+          type={showPassword ? 'text' : 'password'}
           hasError={!!errors.password}
           id="Password"
           placeholder="senha"
@@ -70,11 +70,11 @@ export default function LoginForm() {
             },
           })}
         >
-          <S.ShowPassword onClick={() => setShowPassword(!showPassord)}>
+          <S.ShowPassword onClick={() => setShowPassword(!showPassword)}>
             <>
-              {errors.password && !showPassord ? (
+              {errors.password && !showPassword ? (
                 <Image src={infoError} alt="icone de info erro" />
-              ) : errors.password && showPassord ? (
+              ) : showPassword ? (
                 'ESCONDER'
               ) : (
                 'EXIBIR'
