@@ -9,17 +9,6 @@ export interface IPrimaryHeader {
 }
 
 export default function PrimaryHeader({ menuItems, hasUser = false }: IPrimaryHeader) {
-  // const hasUser = false; verificar quando fizer a autenticação
-
-  // const [isShowMenu, setIsShowMenu] = useState<boolean>(false);
-  // const { user } = useContext(UserContext);
-  // const token = localStorage.getItem('token');
-  // const hasUser = token || user.email;
-
-  // const { disconnectLogin } = useAuth();
-  // const navigate = useNavigate();
-  // const { setUser } = useContext(UserContext);
-
   return (
     <S.PrimaryHeader>
       <div className="container-main">

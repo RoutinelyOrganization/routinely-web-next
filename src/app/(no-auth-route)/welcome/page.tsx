@@ -7,20 +7,6 @@ import Image from 'next/image';
 import * as S from './styles';
 
 export default function WelcomePage() {
-  // const navigate = useNavigate();
-
-  // const { authorization } = useAuth();
-
-  // useEffect(() => {
-  //   const fetchAuthorization = async () => {
-  //     const { valid } = await authorization();
-  //     if (valid) {
-  //       navigate('/dashboardpage');
-  //     }
-  //   };
-  //   fetchAuthorization();
-  // }, [authorization, navigate]);
-
   return (
     <>
       <Header header="secondary" hrefBackPage="/" />

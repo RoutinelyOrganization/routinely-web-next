@@ -118,7 +118,6 @@ export default function TaskForm() {
           errorMessage={errors.date?.message}
           register={register('date', {
             required: 'campo data é obrigatório',
-            // validate: value => pastDate(value!) || 'Data anterior a atual',
           })}
         ></Input>
         <Input
