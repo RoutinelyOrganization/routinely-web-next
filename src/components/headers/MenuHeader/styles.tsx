@@ -18,7 +18,7 @@ export const ContainerIcons = styled.div`
 
 export const Wrapper = styled.div`
   position: absolute;
-  top: 225%;
+  top: 220%;
   right: 6%;
   z-index: 999;
   width: 160px;

@@ -28,7 +28,7 @@ export const tasks: Task[] = [
     weekDays: ['Monday', 'Friday'],
   },
   {
-    type: 'project',
+    type: 'habit',
     id: 3,
     name: 'Tarefa 3',
     checked: true,
@@ -67,7 +67,7 @@ export const tasks: Task[] = [
     weekDays: ['Monday', 'Friday'],
   },
   {
-    type: 'project',
+    type: 'task',
     id: 6,
     name: 'Tarefa 6',
     checked: true,
@@ -106,7 +106,7 @@ export const tasks: Task[] = [
     weekDays: ['Monday', 'Friday'],
   },
   {
-    type: 'project',
+    type: 'habit',
     id: 9,
     name: 'Tarefa 9',
     checked: true,
@@ -145,7 +145,7 @@ export const tasks: Task[] = [
     weekDays: ['Monday', 'Friday'],
   },
   {
-    type: 'project',
+    type: 'habit',
     id: 12,
     name: 'Tarefa 12',
     checked: false,

@@ -2,9 +2,7 @@ import type { Criptography } from '@/types/contracts/criptography/criptography';
 import CryptoJS from 'crypto-js';
 
 export class CryptoJsAdapter implements Criptography {
-  private readonly secretKey: string;
-
-  constructor(secretKey: string) {
+  constructor(private readonly secretKey: string) {
     this.secretKey = secretKey;
   }
 

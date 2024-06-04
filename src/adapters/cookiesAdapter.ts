@@ -3,8 +3,7 @@ import type { Criptography } from '@/types/contracts/criptography/criptography';
 import { destroyCookie, parseCookies, setCookie } from 'nookies';
 
 export class CookiesAdapter implements Cookies {
-  private hash: Criptography;
-  constructor(hash: Criptography) {
+  constructor(private hash: Criptography) {
     this.hash = hash;
   }
   getCookies(keys: string[]) {
