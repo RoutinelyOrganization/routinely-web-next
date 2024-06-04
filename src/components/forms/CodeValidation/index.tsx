@@ -1,13 +1,13 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import ErrorApiContainer from '@/components/containers/ErrorApiContainer';
 import { makeCookies } from '@/factories/cookies/makeCookies';
 import { makeValidateCode } from '@/factories/services/makeValidateCode';
 import type { ErrorApi } from '@/services/errors/errorApi';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
 
@@ -17,7 +17,7 @@ export interface ICodeValidation {
 
 export default function CodeValidationForm() {
   const router = useRouter();
-  const [errorApi, setErrorApi] = useState<string>('');
+  const [errorsApi, setErrorsApi] = useState<string[] | null>(null);
   const {
     register,
     handleSubmit,
@@ -36,7 +36,7 @@ export default function CodeValidationForm() {
       router.push('/new-password');
     } catch (error) {
       const errorApi = error as ErrorApi;
-      setErrorApi(errorApi.body[0].message);
+      setErrorsApi(errorApi.body);
     }
   };
   return (
@@ -68,7 +68,7 @@ export default function CodeValidationForm() {
       <S.Span>
         Não recebeu? <S.LinkNext href="#">Enviar novamente</S.LinkNext>
       </S.Span>
-      {errorApi && <ErrorMessage>{errorApi}</ErrorMessage>}
+      {errorsApi && <ErrorApiContainer errorMessages={errorsApi} />}
       <ButtonPrimary>Enviar</ButtonPrimary>
     </S.Form>
   );

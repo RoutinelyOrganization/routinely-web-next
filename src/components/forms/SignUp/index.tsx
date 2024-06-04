@@ -1,9 +1,13 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import ErrorApiContainer from '@/components/containers/ErrorApiContainer';
+import { makeSignUp } from '@/factories/services/makeSignUp';
+import type { ErrorApi } from '@/services/errors/errorApi';
 import type { SignUp } from '@/types/signUp';
 import infoError from '@public/icons/infoErro.svg';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ErrorMessage from '../fields/ErrorMessage';
@@ -15,11 +19,12 @@ export interface ISignUpProps extends SignUp {
 }
 
 export default function SignUpForm() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading] = useState(false);
   const [labelConfirmPassword, setLabelConfirmPassword] = useState('Repetir senha');
-  const [errorApi] = useState('');
+  const [errorsApi, setErrorsApi] = useState<string[] | null>(null);
 
   const {
     register,
@@ -36,21 +41,14 @@ export default function SignUpForm() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSignUp = async (data: ISignUpProps) => {
-    //   try {
-    //     setLoading(true);
-    //     await signUp(body);
-    //     setShowError(false);
-    //     navigate('/signinpage');
-    //   } catch (err) {
-    //     const { response } = err as AxiosError<{ errors: { message: string }[] }>;
-    //     if (response?.data.errors[0].message) {
-    //       setShowError(true);
-    //       setErroEmail(true);
-    //       setLoading(false);
-    //     }
-    //   } finally {
-    //     setLoading(false);
-    //   }
+    try {
+      await makeSignUp(data);
+
+      router.push('/login');
+    } catch (error) {
+      const errorApi = error as ErrorApi;
+      setErrorsApi(errorApi.body);
+    }
   };
 
   useEffect(() => {
@@ -194,7 +192,7 @@ export default function SignUpForm() {
       {errors.acceptedTerms && (
         <ErrorMessage>{errors.acceptedTerms.message as string}</ErrorMessage>
       )}
-      {errorApi && <ErrorMessage>{errorApi}</ErrorMessage>}
+      {errorsApi && <ErrorApiContainer errorMessages={errorsApi} />}
       <S.ContainerButtons>
         {loading ? (
           <ButtonPrimary disabled>Carregando...</ButtonPrimary>

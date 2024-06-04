@@ -1,6 +1,7 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import ErrorApiContainer from '@/components/containers/ErrorApiContainer';
 import type { Login } from '@/types/login';
 import infoError from '@public/icons/infoErro.svg';
 import { signIn } from 'next-auth/react';
@@ -9,7 +10,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
 
@@ -17,7 +17,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading] = useState<boolean>(false);
   const router = useRouter();
-  const [showError] = useState(false);
+  const [errosApi, setErrosApi] = useState<string[] | null>(null);
 
   const {
     register,
@@ -28,10 +28,15 @@ export default function LoginForm() {
   });
 
   const handleSubmitSignIn: SubmitHandler<Login> = async (data: Login) => {
-    await signIn('credentials', {
+    const response = await signIn('credentials', {
       ...data,
       redirect: false,
     });
+
+    if (!response?.ok) {
+      setErrosApi(['Credenciais inválidas']);
+      return;
+    }
     router.replace('/dashboard');
   };
 
@@ -91,7 +96,7 @@ export default function LoginForm() {
         <S.LinkNext href="/forgot-password">Esqueci minha senha</S.LinkNext>
       </S.CheckboxAndForgetPasswordWrapper>
 
-      {showError && <ErrorMessage>email ou senha inválidos</ErrorMessage>}
+      {errosApi && <ErrorApiContainer errorMessages={errosApi} />}
 
       <S.ButtonWrapper>
         {loading ? (
