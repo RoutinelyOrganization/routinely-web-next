@@ -13,6 +13,11 @@ export const colors = {
   lightgray: '#ebeaed',
   gray: '#d8d6dc',
   darkgray: '#767676',
+  lightPurple: '#E0DFFF',
+  purple: '#CDCCE5',
+  lightBlue: '#D1EAFF',
+  blue: '#C2D6E6',
+  darkBlue: '#115D9E',
 };
 
 export const fonts = {

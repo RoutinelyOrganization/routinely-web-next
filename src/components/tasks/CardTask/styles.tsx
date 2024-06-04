@@ -6,32 +6,23 @@ import styled from 'styled-components';
 
 interface ICardTaskStyles {
   checked: boolean;
-  category: 'habit' | 'project' | 'task';
+  category: 'habit' | 'task';
 }
 
-interface IItemOptionsStyles {
-  color: string;
-  bgcolor: string;
-}
+type IItemOptionsStyles = {
+  [key in ICardTaskStyles['category']]: { color: string; bgcolor: string; checkBgColor?: string };
+};
 
-interface IOptionsStyles {
-  habit: IItemOptionsStyles;
-  project: IItemOptionsStyles;
-  task: IItemOptionsStyles;
-}
-
-const options: IOptionsStyles = {
+const options: IItemOptionsStyles = {
   habit: {
-    color: '#5450BC',
-    bgcolor: '#E0DFFF',
-  },
-  project: {
-    color: '#747400',
-    bgcolor: '#FFFFC9',
+    color: colors.primary,
+    bgcolor: colors.lightPurple,
+    checkBgColor: colors.purple,
   },
   task: {
-    color: '#115D9E',
-    bgcolor: '#D1EAFF',
+    color: colors.darkBlue,
+    bgcolor: colors.lightBlue,
+    checkBgColor: colors.blue,
   },
 };
 
@@ -89,20 +80,11 @@ export const Container = styled.div<ICardTaskStyles>`
       text-decoration: ${({ checked }) => (checked ? 'line-through' : 'none')};
     }
   }
-  ${({ checked }) =>
+  ${({ checked, category }) =>
     checked &&
     `
-  ::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.03);  
-  }`}
+   background-color: ${options[category].checkBgColor};  
+  `}
 
   ${media.mobile} {
     max-width: 100%;
@@ -117,7 +99,7 @@ export const ContainerBtnIcon = styled.div`
 
 export const Button = styled.button`
   padding: 4px 8px;
-  background-color: #115d9e; //vai ser a cor do titulo de tarefas
+  background-color: ${colors.darkBlue};
   border-radius: 8px;
   border: none;
   font-size: 14px;
