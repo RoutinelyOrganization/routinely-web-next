@@ -22,5 +22,8 @@ export const ContainerCustonCheckedBox = styled.div<ICustonCheckedBox>`
       cursor: pointer;
       background-color: ${({ checked }) => (checked ? colors.primary : colors.white)};
     }
+    > input:checked ~ span {
+      color: ${colors.white};
+    }
   }
 `;
