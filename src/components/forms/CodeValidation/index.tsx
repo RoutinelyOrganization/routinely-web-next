@@ -1,28 +1,44 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import { makeCookies } from '@/factories/cookies/makeCookies';
+import { makeValidateCode } from '@/factories/services/makeValidateCode';
+import type { ErrorApi } from '@/services/errors/errorApi';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
 
-export interface IRedefinePassword {
+export interface ICodeValidation {
   code: string;
 }
 
-export default function RedefinePasswordForm() {
+export default function CodeValidationForm() {
+  const router = useRouter();
+  const [errorApi, setErrorApi] = useState<string>('');
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRedefinePassword>({
+  } = useForm<ICodeValidation>({
     mode: 'onChange',
   });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const submitForm = async (data: IRedefinePassword) => {
-    // const { data } = await instance.post('/auth/resetpassword', dataForm);
-    // window.localStorage.setItem('accountId', data.accountId);
-    // console.log(data);
-    // navigate('/redefinePasswordPage');
+  const submitForm = async ({ code }: ICodeValidation) => {
+    const cookies = makeCookies();
+    const { accountId } = cookies.getCookies(['accountId']);
+    try {
+      await makeValidateCode({ code, accountId });
+
+      const cookie = makeCookies();
+      cookie.setCookies({ code });
+
+      router.push('/new-password');
+    } catch (error) {
+      const errorApi = error as ErrorApi;
+      setErrorApi(errorApi.body[0].message);
+    }
   };
   return (
     <S.Form onSubmit={handleSubmit(submitForm)}>
@@ -53,6 +69,7 @@ export default function RedefinePasswordForm() {
       <S.Span>
         Não recebeu? <S.LinkNext href="#">Enviar novamente</S.LinkNext>
       </S.Span>
+      {errorApi && <ErrorMessage>{errorApi}</ErrorMessage>}
       <ButtonPrimary>Enviar</ButtonPrimary>
     </S.Form>
   );

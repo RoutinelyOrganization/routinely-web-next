@@ -9,7 +9,7 @@ export interface ChangePassword {
 export const changePassword = (httpClient: HttpClient, body: ChangePassword, token: string) => {
   try {
     const response = httpClient.request('/auth/changepassword', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
       },

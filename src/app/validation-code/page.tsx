@@ -1,8 +1,8 @@
 import PasswordsPagesContainer from '@/components/containers/PasswordsPagesContainer';
-import RedefinePasswordForm from '@/components/forms/RedefinePassword';
+import RedefinePasswordForm from '@/components/forms/CodeValidation';
 import forgotPasswordImage from '@public/imagens/forgotPasswordImage.svg';
 
-export default function RedefinePasswordPage() {
+export default function ValidationCodePage() {
   return (
     <PasswordsPagesContainer
       image={{ src: forgotPasswordImage, alt: 'Personagem pensando em uma nova senha' }}

@@ -5,4 +5,5 @@ export type ObjCookies = {
 export interface Cookies {
   getCookies: (keys: string[]) => ObjCookies;
   setCookies: (obj: ObjCookies) => void;
+  deleteCookies: (keys: string[]) => void;
 }

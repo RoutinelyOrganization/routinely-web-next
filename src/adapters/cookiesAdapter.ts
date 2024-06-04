@@ -1,6 +1,6 @@
 import type { Cookies, ObjCookies } from '@/types/contracts/cookies/cookies';
 import type { Criptography } from '@/types/contracts/criptography/criptography';
-import { parseCookies, setCookie } from 'nookies';
+import { destroyCookie, parseCookies, setCookie } from 'nookies';
 
 export class CookiesAdapter implements Cookies {
   private hash: Criptography;
@@ -23,6 +23,11 @@ export class CookiesAdapter implements Cookies {
       setCookie(null, key, hashValue, {
         maxAge: 60 * 60 * 1, // 1 hour
       });
+    });
+  }
+  deleteCookies(keys: string[]) {
+    keys.forEach(key => {
+      destroyCookie(null, key);
     });
   }
 }

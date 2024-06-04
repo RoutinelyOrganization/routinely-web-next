@@ -7,4 +7,14 @@ export class ErrorApi extends Error {
     this.status = status;
     this.body = body;
   }
+
+  private cleanErrormessages(body: any) {
+    const { errors } = body;
+    const newErrors: string[] = errors.map((error: { message: string }) => {
+      const { message } = error;
+      return message;
+    });
+    this.body = newErrors;
+    return;
+  }
 }

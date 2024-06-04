@@ -16,8 +16,8 @@ export class FetchAdapter implements HttpClient {
       });
 
       if (!response.ok) {
-        const { errors } = await response.json();
-        throw new ErrorApi(errors, response.status, response.statusText);
+        const body = await response.json();
+        throw new ErrorApi(body, response.status, response.statusText);
       }
       return {
         status: response.status,

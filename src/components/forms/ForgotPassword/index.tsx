@@ -3,6 +3,7 @@
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import { makeCookies } from '@/factories/cookies/makeCookies';
 import { makeResetPassword } from '@/factories/services/makeResetPassword';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import Input from '../fields/Input';
 import * as S from './styles';
@@ -12,6 +13,7 @@ export interface IForgotPassword {
 }
 
 export default function ForgotPasswordForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,6 +25,7 @@ export default function ForgotPasswordForm() {
     const { body } = await makeResetPassword(data.email);
     const cookie = makeCookies();
     cookie.setCookies(body);
+    router.push('/validation-code');
   };
   return (
     <S.Form onSubmit={handleSubmit(submitForm)}>

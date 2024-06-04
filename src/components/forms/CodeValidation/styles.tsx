@@ -4,6 +4,7 @@ import { Button } from '@/components/buttons/ButtonPrimary/styles';
 import { colors, fonts } from '@/styles/variables';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { ErrorMessage } from '../fields/ErrorMessage/styles';
 
 export const Form = styled.form`
   max-width: 500px;
@@ -11,6 +12,11 @@ export const Form = styled.form`
 
   ${Button} {
     max-width: 192px;
+  }
+
+  > ${ErrorMessage} {
+    display: inline-block;
+    margin-bottom: 16px;
   }
 `;
 

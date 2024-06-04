@@ -1,8 +1,13 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import ErrorApiContainer from '@/components/containers/ErrorApiContainer';
+import { makeCookies } from '@/factories/cookies/makeCookies';
+import { makeChangePassword } from '@/factories/services/makeChangePassword';
+import type { ErrorApi } from '@/services/errors/errorApi';
 import infoError from '@public/icons/infoErro.svg';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../fields/Input';
@@ -13,9 +18,11 @@ export interface INewPassword {
   confirmPassword: string;
 }
 export default function CreateNewPassword() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [labelConfirmPassword, setLabelConfirmPassword] = useState('Repetir senha');
+  const [errorsApi, setErrorsApi] = useState<string[] | null>(null);
 
   const {
     register,
@@ -32,6 +39,22 @@ export default function CreateNewPassword() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handlePasswords = async (data: INewPassword) => {
+    try {
+      const cookies = makeCookies();
+      const { accountId, code } = cookies.getCookies(['accountId', 'code']);
+      const body = {
+        password: data.password,
+        code,
+        accountId,
+      };
+
+      await makeChangePassword(body);
+      cookies.deleteCookies(['accountId', 'code']);
+      router.replace('/login');
+    } catch (error) {
+      const errorApi = error as ErrorApi;
+      setErrorsApi(errorApi.body);
+    }
     //   try {
     //     setLoading(true);
     //     await signUp(body);
@@ -132,6 +155,7 @@ export default function CreateNewPassword() {
           </S.ShowPasswordSpand>
         </Input>
 
+        {errorsApi && <ErrorApiContainer errorMessages={errorsApi} />}
         <ButtonPrimary>Atualizar senha</ButtonPrimary>
       </S.ContainerPasswords>
     </S.Form>
