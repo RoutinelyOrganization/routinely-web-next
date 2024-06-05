@@ -5,7 +5,7 @@ export class ErrorApi extends Error {
     super();
     this.name = name || 'ErrorApi';
     this.status = status;
-    this.body = this.cleanErrormessages(body);
+    this.body = body ? this.cleanErrormessages(body) : undefined;
   }
 
   private cleanErrormessages(body: any) {

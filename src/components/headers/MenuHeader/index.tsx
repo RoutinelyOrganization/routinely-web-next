@@ -10,8 +10,9 @@ import * as S from './styles';
 
 export interface IMenuItem {
   name: string;
-  url: string;
   id: number;
+  url?: string;
+  onClick?: () => void;
 }
 
 export interface IMenuHeader {
@@ -45,7 +46,10 @@ export default function MenuHeader({ menuItems }: IMenuHeader) {
           <S.List>
             {menuItems.map(menuItem => (
               <S.Item key={menuItem.id}>
-                <Link href={menuItem.url}>{menuItem.name}</Link>
+                {!menuItem.onClick && menuItem.url && (
+                  <Link href={menuItem.url}>{menuItem.name}</Link>
+                )}
+                {menuItem.onClick && <p onClick={menuItem.onClick}>{menuItem.name}</p>}
               </S.Item>
             ))}
           </S.List>

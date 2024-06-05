@@ -1,6 +1,7 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { makeLogout } from '@/factories/services/makeLogout';
+import { signOut, useSession } from 'next-auth/react';
 import type { IMenuItem } from './MenuHeader';
 import PrimaryHeader from './Primary';
 import SecondaryHeader from './Secondary';
@@ -31,8 +32,11 @@ export default function Header({ header = 'primary', hrefBackPage = '/' }: IHead
     },
     {
       name: 'Sair da conta',
-      url: '#',
       id: 4,
+      onClick: async () => {
+        await makeLogout(session?.user?.token!);
+        await signOut({ callbackUrl: '/' });
+      },
     },
   ];
 

@@ -51,9 +51,11 @@ export const Item = styled.li`
   font-size: ${fonts.sizes.xxsmall};
   line-height: 20px;
   cursor: pointer;
+  color: ${colors.primary};
 
   > a {
     color: ${colors.primary};
+
     display: block;
     text-decoration: none;
     width: 100%;

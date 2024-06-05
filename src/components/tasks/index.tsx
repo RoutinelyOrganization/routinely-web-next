@@ -34,7 +34,6 @@ export default function Task({ tasks }: ITask) {
     <S.Conteiner>
       <S.Select onChange={e => setSelected(e.target.value)} value={selected}>
         <option value="all tasks">Todas as atividades</option>
-        <option value="project">Projetos</option>
         <option value="habit">Hábitos</option>
         <option value="task">Tarefas</option>
         <option value="completed">Concluidas</option>
