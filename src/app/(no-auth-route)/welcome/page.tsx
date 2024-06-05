@@ -5,8 +5,10 @@ import LogoShared from '@/components/logos/LogoShared';
 import welcomePageImage from '@public/imagens/welcomePageImage.svg';
 import Image from 'next/image';
 import * as S from './styles';
+import { metadata } from '@/app/layout';
 
 export default function WelcomePage() {
+  metadata.title = 'Routinely - Boas-vindas';
   return (
     <>
       <Header header="secondary" hrefBackPage="/" />

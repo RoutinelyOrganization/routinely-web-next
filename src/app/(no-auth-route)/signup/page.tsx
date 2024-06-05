@@ -1,3 +1,4 @@
+import { metadata } from '@/app/layout';
 import ButtonSocialGoogle from '@/components/buttons/ButtonSocialGoogle';
 import SignUpForm from '@/components/forms/SignUp';
 import Header from '@/components/headers';
@@ -7,6 +8,7 @@ import Image from 'next/image';
 import * as S from './styles';
 
 export default function SignUpPage() {
+  metadata.title = 'Routinely - Crie sua conta';
   return (
     <>
       <Header header="secondary" hrefBackPage="/welcome" />
