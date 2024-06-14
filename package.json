@@ -10,7 +10,7 @@
     "prepare": "husky",
     "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watchAll",
     "test:cov": "jest --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
