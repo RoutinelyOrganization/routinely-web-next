@@ -1,8 +1,8 @@
-import backPageIcon from '@public/icons/buttonBackPage.svg';
 import Image from 'next/image';
 import * as S from './styles';
+import backPageIcon from '@public/icons/buttonBackPage.svg';
 
-interface IButtonBackPage extends React.HTMLAttributes<HTMLButtonElement> {
+export interface IButtonBackPage extends React.HTMLAttributes<HTMLButtonElement> {
   href?: string;
 }
 
