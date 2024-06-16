@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 
-type IButton = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type IButton = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
 };
 
