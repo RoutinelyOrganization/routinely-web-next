@@ -1,12 +1,7 @@
 import React, { ImgHTMLAttributes, act } from 'react';
 import { render, screen } from '@testing-library/react';
-import ButtonDownloadApp from '.';
+import ButtonEdit from '.';
 
-jest.mock('@public/icons/download.svg', () => ({
-  src: 'mocked-icon.svg',
-  height: 24,
-  width: 24,
-}));
 
 jest.mock('next/image', () => ({
   ...jest.requireActual('next/image'),
@@ -17,14 +12,14 @@ jest.mock('next/image', () => ({
   },
 }));
 
-describe('ButtonDownloadApp Component', () => {
+describe('ButtonEdit Component', () => {
   window.innerWidth = 500;
 
   it('should show the button if the window width is less than 500px', () => {
-    render(<ButtonDownloadApp />);
-    const button = screen.getByRole('button', { hidden: true });
+    render(<ButtonEdit />);
+    const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent('Baixe o aplicativo do Routinely');
+    // expect(button).toHaveTextContent('Baixe o aplicativo do Routinely');
   });
 
 });
