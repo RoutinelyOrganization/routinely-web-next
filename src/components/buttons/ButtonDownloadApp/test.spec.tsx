@@ -8,15 +8,6 @@ jest.mock('@public/icons/download.svg', () => ({
   width: 24,
 }));
 
-jest.mock('next/image', () => ({
-  ...jest.requireActual('next/image'),
-  __esModule: true,
-  default: (props: ImgHTMLAttributes<HTMLImageElement>) => {
-    const { src, alt, ...rest } = props;
-    return <img src={typeof src === 'string' ? src : ''} alt={alt || ''} {...rest} />;
-  },
-}));
-
 describe('ButtonDownloadApp Component', () => {
   window.innerWidth = 500;
 
@@ -26,5 +17,4 @@ describe('ButtonDownloadApp Component', () => {
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent('Baixe o aplicativo do Routinely');
   });
-
 });

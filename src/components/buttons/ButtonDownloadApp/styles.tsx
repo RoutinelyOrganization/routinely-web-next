@@ -18,7 +18,7 @@ export const ButtonApp = styled.button`
 
   ${media.mobile} {
     display: flex;
-		justify-content: center;
+    justify-content: center;
     align-items: center;
   }
 `;
