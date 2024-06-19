@@ -1,18 +1,13 @@
-import ButtonDanger, { IButton } from ".";
-
+import ButtonDanger, { IButton } from '.';
 
 export default {
-    title:'ButtonDanger',
+  title: 'ButtonDanger',
 
-    argTypes: {
-        children: { type: 'string' },
-    },
-
-
-}
+  argTypes: {
+    children: { type: 'string' },
+  },
+};
 
 export const Template = (args: IButton) => {
-    return (
-        <ButtonDanger {...args}>Testando</ButtonDanger>
-    )
-}
+  return <ButtonDanger {...args}>Testando</ButtonDanger>;
+};
