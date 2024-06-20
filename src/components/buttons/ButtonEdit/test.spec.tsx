@@ -1,4 +1,3 @@
-import React, { ImgHTMLAttributes, act } from 'react';
 import { render, screen } from '@testing-library/react';
 import ButtonEdit from '.';
 

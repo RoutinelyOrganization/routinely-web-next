@@ -1,12 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import ButtonBackPage from '.';
-import { ImgHTMLAttributes } from 'react';
-// Mock do ícone
-jest.mock('@public/icons/buttonBackPage.svg', () => ({
-  src: 'mocked-icon.svg',
-  height: 24,
-  width: 24,
-}));
 
 describe('Test ButtonBackPage', () => {
   it('should render ButtonBackPage with link', () => {

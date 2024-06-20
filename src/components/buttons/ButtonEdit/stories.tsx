@@ -3,16 +3,6 @@ import ButtonEdit from '../ButtonEdit';
 export default {
   title: 'ButtonEdit',
   component: ButtonEdit,
-  parameters: {
-    backgrounds: {
-      values: [
-        {
-          name: 'primary',
-          value: '#FFFFFF',
-        },
-      ],
-    },
-  },
 };
 
 export const Template = () => (
@@ -20,3 +10,9 @@ export const Template = () => (
     <ButtonEdit />
   </div>
 );
+
+Template.parameters = {
+  backgrounds: {
+    default: 'white',
+  },
+};
