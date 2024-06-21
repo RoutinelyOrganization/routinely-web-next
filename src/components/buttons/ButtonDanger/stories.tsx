@@ -11,3 +11,7 @@ export default {
 export const Template = (args: IButton) => {
   return <ButtonDanger {...args}>Testando</ButtonDanger>;
 };
+
+Template.parameters = {
+  backgrounds: { default: 'white' },
+};

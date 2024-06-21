@@ -1,3 +1,4 @@
+import { colors } from './../src/styles/variables';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -8,15 +9,23 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    backgrounds: {
-      default:'primary',
+		backgrounds: {
+      default: 'primary',
       values: [
         {
-          name:'primary',
-          value:'#FFF'
+          name: 'primary',
+          value: colors.primary,
         },
-      ]
-    }
+        {
+          name: 'secondary',
+          value: colors.secondary,
+        },
+        {
+          name: 'white',
+          value: colors.white,
+        },
+      ],
+    },
   },
 };
 
