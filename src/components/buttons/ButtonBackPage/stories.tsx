@@ -7,19 +7,12 @@ export default {
   argTypes: {
     children: { type: 'string' },
   },
-
-  parameters: {
-    backgrounds: {
-      values: [
-        {
-          name: 'primary',
-          value: '#000',
-        },
-      ],
-    },
-  },
 };
 
 export const Template = (args: IButtonBackPage) => {
   return <ButtonBackPage {...args} />;
+};
+
+Template.parameters = {
+  backgrounds: { default: 'primary' },
 };
