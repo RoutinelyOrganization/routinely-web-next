@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react';
+import { colors } from '../src/styles/variables';
 
 const preview: Preview = {
   parameters: {
@@ -9,15 +10,23 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default:'primary',
+      default: 'primary',
       values: [
         {
-          name:'primary',
-          value:'#FFF'
+          name: 'primary',
+          value: colors.primary,
         },
-      ]
-    }
-  },
+        {
+          name: 'secondary',
+          value: colors.secondary,
+        },
+        {
+          name: 'white',
+          value: colors.white,
+        },
+      ],
+    },
+  }
 };
 
 export default preview;
