@@ -1,12 +1,5 @@
-import React, { ImgHTMLAttributes, act } from 'react';
 import { render, screen } from '@testing-library/react';
 import ButtonDownloadApp from '.';
-
-jest.mock('@public/icons/download.svg', () => ({
-  src: 'mocked-icon.svg',
-  height: 24,
-  width: 24,
-}));
 
 describe('ButtonDownloadApp Component', () => {
   window.innerWidth = 500;

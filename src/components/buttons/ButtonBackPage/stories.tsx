@@ -1,4 +1,5 @@
-import ButtonBackPage, { IButtonBackPage } from '.';
+import type { IButtonBackPage } from '.';
+import ButtonBackPage from '.';
 
 export default {
   title: 'ButtonBackPage',
