@@ -19,7 +19,9 @@ const config = {
     '!src/**/stories.tsx',
     '!src/**/styles.tsx',
     '!src/app/layout.tsx',
+    '!node_modules/**',
   ],
+
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 };
