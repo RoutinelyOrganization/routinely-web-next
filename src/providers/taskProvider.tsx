@@ -1,7 +1,7 @@
 'use client';
 
+import { typeTaskOptions } from '@/constants/typeTask';
 import { TaskContext } from '@/contexts/TaskContext';
-import { typeTaskOptions } from '@/mocks/typeTask';
 import type { Task } from '@/types/task';
 import type { TypeTask } from '@/types/typeTasks';
 import { useEffect, useState } from 'react';

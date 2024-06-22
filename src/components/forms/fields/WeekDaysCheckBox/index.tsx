@@ -1,8 +1,8 @@
-import type { IWeekDayMock } from '@/mocks/weekDaysOptions';
-import { weekDaysOptions } from '@/mocks/weekDaysOptions';
+import CustonCheckedBox from '@/components/forms/fields/CustonCheckedBox';
+import type { IWeekDayMock } from '@/constants/weekDaysOptions';
+import { weekDaysOptions } from '@/constants/weekDaysOptions';
 import type { DaysOfWeek } from '@/types/weekDays';
 import React, { useState } from 'react';
-import CustonCheckedBox from '../CustonCheckedBox';
 import * as S from './styles';
 
 interface IWeekDayProps {
