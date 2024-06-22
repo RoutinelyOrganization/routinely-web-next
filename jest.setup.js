@@ -58,6 +58,6 @@ jest.mock('next-auth', () => ({
 
 jest.mock('next/image', () => {
   return function MockedImage(props) {
-    return <img {...props} alt="Mocked Image" />;
+    return <img src={props.src} alt={props.alt} {...props} />;
   };
 });
