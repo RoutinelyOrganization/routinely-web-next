@@ -1,7 +1,12 @@
-import ButtonDanger, { IButton } from '.';
+import type { IButton } from '.';
+import ButtonDanger from '.';
 
 export default {
   title: 'ButtonDanger',
+  component: ButtonDanger,
+  args: {
+    children: 'Storybook',
+  },
 
   argTypes: {
     children: { type: 'string' },
@@ -9,5 +14,5 @@ export default {
 };
 
 export const Template = (args: IButton) => {
-  return <ButtonDanger {...args}>Testando</ButtonDanger>;
+  return <ButtonDanger {...args} />;
 };
