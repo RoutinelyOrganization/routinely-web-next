@@ -18,9 +18,18 @@ const config = {
     '!src/**/*.d.ts',
     '!src/**/stories.tsx',
     '!src/**/styles.tsx',
+    '!src/styles/**/*',
+    '!src/types/**/*',
+    '!src/hooks/**/*',
+    '!src/mocks/**/*',
     '!src/app/layout.tsx',
     '!node_modules/**',
   ],
+
+  moduleNameMapper: {
+    '^@public/(.*)$': '<rootDir>/public/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
 
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
