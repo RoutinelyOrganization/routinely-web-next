@@ -1,4 +1,5 @@
-import ButtonDanger, { IButton } from '.';
+import type { IButton } from '.';
+import ButtonDanger from '.';
 
 export default {
   title: 'ButtonDanger',
