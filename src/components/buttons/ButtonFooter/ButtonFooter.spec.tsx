@@ -2,17 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ButtonFooter from '.';
 
-jest.unmock('next/image');
-jest.mock('@public/imagens/início.svg', () => ({
-  src: 'mocked-início.svg',
-  height: 24,
-  width: 24,
-}));
-
-
 describe('ButtonFooter Component', () => {
+	window.innerWidth = 500;
+
   it('should show the button if the window width is less than 500px', () => {
-		window.innerWidth = 500;
     render(<ButtonFooter />);
     const button = screen.getByRole('button', { hidden: true });
     expect(button).toBeInTheDocument();
@@ -20,3 +13,6 @@ describe('ButtonFooter Component', () => {
     expect(img).toBeInTheDocument();
   });
 });
+
+
+

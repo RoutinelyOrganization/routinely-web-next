@@ -12,7 +12,3 @@ export default {
 export const Template = (args: IButtonBackPage) => {
   return <ButtonBackPage {...args} />;
 };
-
-Template.parameters = {
-  backgrounds: { default: 'primary' },
-};
