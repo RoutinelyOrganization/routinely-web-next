@@ -57,7 +57,6 @@ export const LabelInput = styled.div`
 export const InputStyle = styled.input<InputProps>`
   border: 1px solid ${({ $hasErro }) => ($hasErro ? colors.danger : colors.shadow)};
   border-radius: 8px;
-  width: 100%;
   height: 56px;
   outline: none;
   padding: 8px 0 8px 16px;
