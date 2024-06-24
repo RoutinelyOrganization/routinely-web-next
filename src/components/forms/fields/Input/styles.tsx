@@ -25,7 +25,7 @@ export const InputContainer = styled.div<InputProps>`
 
 export const Children = styled.div`
   position: absolute;
-  top: 33%;
+  top: 38%;
   right: 3%;
 `;
 
@@ -49,7 +49,7 @@ export const LabelInput = styled.div`
   line-height: 24px;
   letter-spacing: 0.5px;
   position: absolute;
-  top: 16px;
+  top: 33%;
   left: 16px;
   pointer-events: none;
 `;

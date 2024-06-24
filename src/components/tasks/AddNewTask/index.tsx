@@ -1,7 +1,7 @@
 'use client';
 
+import { typeTaskOptions } from '@/constants/typeTask';
 import { useTask } from '@/hooks/useTask';
-import { typeTaskOptions } from '@/mocks/typeTask';
 import type { TypeTask } from '@/types/typeTasks';
 import addIcon from '@public/icons/addIcon.svg';
 import Image from 'next/image';
