@@ -1,4 +1,4 @@
-import ButtonDownloadApp from '@/components/buttons/ButtonDowloadApp';
+import ButtonDownloadApp from '@/components/buttons/ButtonDownloadApp';
 import ButtonPrincipal from '@/components/buttons/ButtonPrimary';
 import type { IMenuItem } from '@/components/headers/MenuHeader';
 import MenuHeader from '@/components/headers/MenuHeader';
