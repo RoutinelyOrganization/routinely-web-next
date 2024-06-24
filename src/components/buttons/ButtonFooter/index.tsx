@@ -7,7 +7,7 @@ export default function ButtonFooter({
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <S.ButtonFooter {...props}>
+    <S.ButtonFooter {...props} role="button" data-testid="button-footer">
       {children || <Image src={Start} alt="Botão de inicio" />}
     </S.ButtonFooter>
   );

@@ -28,6 +28,7 @@ const config = {
 
   moduleNameMapper: {
     '^@public/(.*)$': '<rootDir>/public/$1',
+    '^@mocks/(.*)$': '<rootDir>/mocks/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
 

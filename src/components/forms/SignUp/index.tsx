@@ -67,15 +67,20 @@ export default function SignUpForm() {
     <S.Form onSubmit={handleSubmit(handleSignUp)}>
       <Input
         label="Nome"
+        name="name"
         hasError={!!errors.name}
         type="text"
         id="name"
         placeholder="nome"
         register={register('name', {
-          required: 'Este campo é obrigatório.',
+          required: 'O campo nome é obrigatório.',
           minLength: {
             value: 3,
-            message: 'Este campo precisa ter no mínimo 3 letras.',
+            message: 'O campo nome deve conter pelo menos 3 caracteres.',
+          },
+          maxLength: {
+            value: 100,
+            message: 'O campo nome deve conter no maximo 100 caracteres.',
           },
           pattern: {
             value: /^[a-zA-ZÀ-ÿ\s~]+$/,
@@ -89,16 +94,17 @@ export default function SignUpForm() {
 
       <Input
         label="Email"
+        name="email"
         hasError={!!errors.email}
         errorMessage={errors.email?.message}
         type="text"
         id="Email"
         placeholder="email"
         register={register('email', {
-          required: 'Este campo é obrigatório.',
+          required: 'O campo email é obrigatório.',
           pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: 'Este campo precisa ser um email válido.',
+            message: 'E-mail inválido.',
           },
         })}
       >
@@ -107,12 +113,13 @@ export default function SignUpForm() {
       <S.ContainerPasswords>
         <Input
           label="Senha"
+          name="password"
           hasError={!!errors.password}
           type={showPassword ? 'text' : 'password'}
           id="password"
           placeholder="senha"
           register={register('password', {
-            required: 'Este campo é obrigatório.',
+            required: 'O campo senha é obrigatório.',
             pattern: {
               value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*=])[a-zA-Z\d!@#$%&*=]{6,}$/,
               message:
@@ -148,12 +155,13 @@ export default function SignUpForm() {
 
         <Input
           label={labelConfirmPassword}
+          name="confirmPassword"
           hasError={!!errors.confirmPassword?.message}
           type={showConfirmPassword ? 'text' : 'password'}
           id="confirmPassword"
           placeholder="confirmar senha"
           register={register('confirmPassword', {
-            required: 'Este campo é obrigatório.',
+            required: 'O campo repetir senha é obrigatório.',
             validate: value => value === password || 'As senhas devem ser iguais',
           })}
           errorMessage={errors.confirmPassword?.message}
@@ -176,6 +184,7 @@ export default function SignUpForm() {
       <S.TermsOfUseContainer>
         <S.Checkbox
           type="checkbox"
+          role="textbox"
           {...register('acceptedTerms', {
             required: {
               value: true,
@@ -193,11 +202,9 @@ export default function SignUpForm() {
       )}
       {errorsApi && <ErrorApiContainer errorMessages={errorsApi} />}
       <S.ContainerButtons>
-        {loading ? (
-          <ButtonPrimary disabled>Carregando...</ButtonPrimary>
-        ) : (
-          <ButtonPrimary>Criar Conta</ButtonPrimary>
-        )}
+        <ButtonPrimary disabled={loading}>
+          {!loading ? 'Criar Conta' : 'Carregando...'}
+        </ButtonPrimary>
       </S.ContainerButtons>
     </S.Form>
   );
