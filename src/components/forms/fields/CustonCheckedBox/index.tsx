@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import * as S from './styles';
 
-interface ICheckBox extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface ICheckBox extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
 }
 export default function CustonCheckedBox({ id, checked, ...props }: ICheckBox) {
@@ -13,8 +13,15 @@ export default function CustonCheckedBox({ id, checked, ...props }: ICheckBox) {
 
   return (
     <S.CustonCheckedBox htmlFor={`checkbox-${id}`}>
-      <input id={`checkbox-${id}`} type="checkbox" checked={isChecked} {...props} />
-      <span onClick={() => setChecked(!isChecked)}>
+      <input
+        id={`checkbox-${id}`}
+        type="checkbox"
+        defaultChecked={isChecked}
+        role="textbox"
+        {...props}
+        data-testid="checkbox"
+      />
+      <span onClick={() => setChecked(!isChecked)} aria-label="checkbox">
         {props.value || <Image src={image} alt="check marcado" />}
       </span>
     </S.CustonCheckedBox>
