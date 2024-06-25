@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import '@testing-library/jest-dom';
+import 'jest-styled-components';
 
 export const useRouter = jest.fn();
 

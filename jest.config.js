@@ -22,6 +22,12 @@ const config = {
     '!node_modules/**',
   ],
 
+  moduleNameMapper: {
+    '^@public/(.*)$': '<rootDir>/public/$1',
+    '^@mocks/(.*)$': '<rootDir>/mocks/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 };

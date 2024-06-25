@@ -5,7 +5,7 @@ import * as S from './styles';
 export default function Logo() {
   return (
     <S.LinkNext href="/">
-      <Image src={logo} alt="logo Routnely" />
+      <Image src={logo} alt="logo Routinely" />
     </S.LinkNext>
   );
 }

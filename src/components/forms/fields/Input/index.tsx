@@ -25,7 +25,7 @@ export default function Input({
   return (
     <S.Div>
       <S.InputContainer $hasErro={hasError}>
-        <S.InputStyle as={as} $hasErro={hasError} id={id} {...register} {...props} />
+        <S.InputStyle as={as} $hasErro={hasError} id={id} role="textbox" {...register} {...props} />
         <S.LabelInput>
           <S.BorderWhite></S.BorderWhite>
           <S.Label htmlFor={id}>{label}</S.Label>
