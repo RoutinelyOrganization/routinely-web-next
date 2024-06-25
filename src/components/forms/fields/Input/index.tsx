@@ -2,7 +2,7 @@ import type { UseFormRegisterReturn } from 'react-hook-form';
 import ErrorMessage from '../ErrorMessage';
 import * as S from './styles';
 
-interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
   children?: React.ReactNode;
   label?: string;
   id: string;
