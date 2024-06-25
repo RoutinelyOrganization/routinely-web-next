@@ -1,13 +1,13 @@
-import ButtonEdit from '../ButtonEdit';
+import ButtonFooter from '../ButtonFooter';
 
 export default {
-  title: 'ButtonEdit',
-  component: ButtonEdit,
+  title: 'ButtonFooter',
+  component: ButtonFooter,
 };
 
 export const Template = () => (
   <div>
-    <ButtonEdit />
+    <ButtonFooter />
   </div>
 );
 

@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import '@testing-library/jest-dom';
 import { useTaskMock } from './mocks/useTaskContextMock';
+import 'jest-styled-components';
+
 export const useRouter = jest.fn();
 
 jest.mock('next/navigation', () => ({
