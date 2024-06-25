@@ -39,7 +39,7 @@ export default function WeekDaysCheckBox({ weekDays, setWeekDays }: IWeekDayProp
   };
 
   return (
-    <S.ContainerSelectWeekDays>
+    <S.ContainerSelectWeekDays data-testid="weekDays">
       {weekDaysDefault.map(day => (
         <S.ContainerCustonCheckedBox key={day.id} checked={weekDaysChecked?.includes(day.name)}>
           <CustonCheckedBox

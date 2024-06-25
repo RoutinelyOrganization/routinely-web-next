@@ -6,11 +6,12 @@ import { colors, fonts } from '@/styles/variables';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { ErrorMessage } from '../fields/ErrorMessage/styles';
-import { InputContainer, InputStyle } from '../fields/Input/styles';
+import { Div as InputContainer } from '../fields/Input/styles';
 
 export const Form = styled.form`
   position: relative;
-  width: 463px;
+  max-width: 463px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
@@ -19,16 +20,18 @@ export const Form = styled.form`
     max-height: calc(100vh - 107px);
     min-height: 82vh;
     border-radius: 0px;
-    width: calc(100vw - 48px);
     overflow-y: auto;
     padding-bottom: 60px;
   }
 `;
 
+export const ContainerTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const ImageNext = styled(Image)`
-  position: absolute;
-  top: 1px;
-  right: 0;
   cursor: pointer;
 `;
 
@@ -38,19 +41,19 @@ export const Description = styled.span`
   padding: 8px;
   border-radius: 8px;
   position: absolute;
-  top: 6%;
+  top: 44px;
   left: 0;
   z-index: 5;
-  width: 100%;
+  width: 96%;
   display: none;
   color: ${colors.black};
   font-weight: normal;
 `;
 
 export const ContainerDateTime = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 16px;
 `;
 
 export const Title = styled.h1`
@@ -87,14 +90,17 @@ export const ContainerOpenWeekFrequency = styled.div`
   }
 `;
 
-export const QuantityPerWeekParagraph = styled.p`
+export const QuantityPerWeekParagraph = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
 
   & ${InputContainer} {
     width: 55px;
-    > ${InputStyle} {
+    > div {
+      height: 55px;
+    }
+    & input {
       padding: 8px;
       text-align: center;
       &::placeholder {
@@ -108,8 +114,9 @@ export const QuantityPerWeekParagraph = styled.p`
 `;
 
 export const ContainerCalendar = styled.div`
+  padding-right: 6px;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
 `;
 
 export const ContainerSelectWeekDays = styled.div`

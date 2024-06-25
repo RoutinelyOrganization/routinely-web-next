@@ -15,10 +15,10 @@ import infoIcon from '@public/icons/informacao.svg';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import CategoryInputSelect from '../fields/CategoryInputSelect';
+import CategorySelect from '../fields/CategorySelect';
 import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import WeekDaysCheckBox from '../fields/WeekDaysCheckBox';
@@ -26,17 +26,12 @@ import * as S from './styles';
 
 type IFormData = Partial<Task>;
 
-interface CustomFormEvent extends React.FormEvent {
-  submitter: {
-    name: string;
-  };
-}
-
 export default function TaskForm() {
   const { selectedTask, setFormIsOpen, selectedTypeTask, setActionForm } = useTask();
   const [isWeekFrequencyOpen, setIWeekFrequencyOpen] = useState(false);
   const [weekDays, setWeekDays] = useState<DaysOfWeek[]>([]);
   const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
+  const buttonSubmitRef = useRef<string>('');
   // const { formTypeTask, setFormTaskOpen, formTypeAndDescTask, tempTask } = useContext(TasksContext);
   // const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -52,9 +47,10 @@ export default function TaskForm() {
       date: dateFormat(selectedTask?.date as Date) as unknown as Date,
       hour: TimeFormat(selectedTask?.date as Date),
     },
+    mode: 'onChange',
   });
 
-  const handleSubmitFormTask: SubmitHandler<IFormData> = async (data, event) => {
+  const handleSubmitFormTask: SubmitHandler<IFormData> = async data => {
     const pastDateValidate = pastDate(`${data.date} ${data.hour}`);
     if (!pastDateValidate) {
       setError('date', { message: 'Data menor que a data atual' });
@@ -64,9 +60,7 @@ export default function TaskForm() {
     data.weekDays = weekDays;
     data.finallyDate = finallyDate ? new Date(finallyDate.format('YYYY-MM-DD')) : undefined;
 
-    const buttonSubmited = (event!.nativeEvent as CustomFormEvent).submitter.name;
-
-    switch (buttonSubmited) {
+    switch (buttonSubmitRef.current) {
       case 'saveTask':
         selectedTask ? setActionForm('update') : setActionForm('create');
         break;
@@ -81,26 +75,28 @@ export default function TaskForm() {
 
   return (
     <S.Form onSubmit={handleSubmit(handleSubmitFormTask)}>
-      <S.ImageNext
-        src={closeFormIcon}
-        alt="fechar formulario"
-        onClick={() => setFormIsOpen(false)}
-      />
-      <S.Title>
-        {selectedTask ? 'Editar' : 'Adicionar'} {selectedTypeTask?.name}
-        <span>
-          <Image src={infoIcon} alt="icone de exclamação" />
-          <S.Description>{selectedTypeTask?.description}</S.Description>
-        </span>
-      </S.Title>
+      <S.ContainerTitle>
+        <S.Title>
+          {selectedTask ? 'Editar' : 'Adicionar'} {selectedTypeTask?.name}
+          <span>
+            <Image src={infoIcon} alt="icone de exclamação" />
+            <S.Description>{selectedTypeTask?.description}</S.Description>
+          </span>
+        </S.Title>
+        <S.ImageNext
+          src={closeFormIcon}
+          alt="fechar formulario"
+          onClick={() => setFormIsOpen(false)}
+        />
+      </S.ContainerTitle>
 
       <Input
         label="Titulo"
-        placeholder="Nome do Hábito"
+        placeholder={`Titulo do(a) ${selectedTypeTask?.name}`}
         id="name"
         hasError={!!errors.name}
         register={register('name', {
-          required: 'campo obrigatório',
+          required: 'O campo titulo é obrigatório',
           maxLength: {
             value: 50,
             message: 'Quantidade de caracteres máximo, 50!',
@@ -117,7 +113,7 @@ export default function TaskForm() {
           hasError={!!errors.date}
           errorMessage={errors.date?.message}
           register={register('date', {
-            required: 'campo data é obrigatório',
+            required: 'O campo data é obrigatório',
           })}
         ></Input>
         <Input
@@ -126,22 +122,18 @@ export default function TaskForm() {
           id="hour"
           errorMessage={errors.hour?.message}
           hasError={!!errors.hour}
-          register={register('hour', { required: 'Campo Hora é obrigatório' })}
+          register={register('hour', { required: 'O campo Hora é obrigatório' })}
         />
       </S.ContainerDateTime>
 
-      <CategoryInputSelect
+      <CategorySelect
         initailValue={selectedTask?.category}
         register={register('category', {
-          required: 'Campo categoria é obrigatório',
-          maxLength: {
-            value: 10,
-            message: 'Quantidade de caracteres máximo, 10!',
-          },
+          required: 'O campo categoria é obrigatório',
         })}
-        error={!!errors.category}
         messageError={errors.category?.message}
       />
+
       <Input
         label="Descrição"
         placeholder="Descrição"
@@ -150,7 +142,7 @@ export default function TaskForm() {
         id="description"
         hasError={!!errors.description}
         register={register('description', {
-          required: 'campo obrigatório',
+          required: 'O campo descricão é obrigatório',
           maxLength: {
             value: 1000,
             message: 'Quantidade máxima de caracteres, 1000!',
@@ -163,14 +155,14 @@ export default function TaskForm() {
         <p>Frequencia semanal</p>
         <Image
           src={arrow}
-          alt="Seta para baixo"
+          alt="Abir campos de frequencia semanal"
           onClick={() => setIWeekFrequencyOpen(!isWeekFrequencyOpen)}
         />
       </S.ContainerOpenWeekFrequency>
 
       {isWeekFrequencyOpen && (
         <>
-          <S.QuantityPerWeekParagraph>
+          <S.QuantityPerWeekParagraph data-testid="quantityPerWeek" role="paragraph">
             Quantidade{' '}
             <Input
               hasError={!!errors.quantityPerWeek}
@@ -178,12 +170,7 @@ export default function TaskForm() {
               id="quantityPerWeek"
               type="text"
               register={register('quantityPerWeek', {
-                validate: value => {
-                  if (value) {
-                    return typeof Number(value) === 'number' && Number(value) > 0;
-                  }
-                  return true;
-                },
+                validate: value => (value ? Number(value) > 0 : true),
               })}
             />
             Semana
@@ -209,13 +196,26 @@ export default function TaskForm() {
       <S.ContainerButtons>
         {selectedTask && (
           <>
-            <ButtonDanger name="deleteTask">Excluir</ButtonDanger>
-            <ButtonSecondary name="duplicateTask" hover={false}>
+            <ButtonDanger
+              name="deleteTask"
+              onClick={() => (buttonSubmitRef.current = 'deleteTask')}
+            >
+              Excluir
+            </ButtonDanger>
+            <ButtonSecondary
+              name="duplicateTask"
+              hover={false}
+              onClick={() => (buttonSubmitRef.current = 'duplicateTask')}
+            >
               Duplicar
             </ButtonSecondary>
           </>
         )}
-        <ButtonPrimary name="saveTask" className="mobile">
+        <ButtonPrimary
+          className="mobile"
+          type="submit"
+          onClick={() => (buttonSubmitRef.current = 'saveTask')}
+        >
           Salvar Alterações
         </ButtonPrimary>
       </S.ContainerButtons>

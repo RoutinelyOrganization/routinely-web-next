@@ -4,7 +4,7 @@ import type { Task } from '@/types/task';
 import type { TypeTask } from '@/types/typeTasks';
 import { createContext } from 'react';
 
-interface ITaskContext {
+export interface ITaskContext {
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   selectedTask: Task | null;

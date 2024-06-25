@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import '@testing-library/jest-dom';
-
+import { useTaskMock } from './mocks/useTaskContextMock';
 export const useRouter = jest.fn();
 
 jest.mock('next/navigation', () => ({
@@ -61,3 +61,16 @@ jest.mock('next/image', () => {
     return <img src={props.src} alt={props.alt} {...props} />;
   };
 });
+
+jest.mock('@/components/calendar', () => ({
+  __esModule: true,
+  default: () => <div />,
+}));
+
+jest.mock('@/hooks/useTask', () => ({
+  useTask: () => useTaskMock(),
+}));
+
+// beforeEach(() => {
+//   useTaskMock.mockClear();
+// });

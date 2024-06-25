@@ -13,7 +13,13 @@ export default function CustonCheckedBox({ id, checked, ...props }: ICheckBox) {
 
   return (
     <S.CustonCheckedBox htmlFor={`checkbox-${id}`}>
-      <input id={`checkbox-${id}`} type="checkbox" checked={isChecked} {...props} />
+      <input
+        id={`checkbox-${id}`}
+        type="checkbox"
+        defaultChecked={isChecked}
+        role="textbox"
+        {...props}
+      />
       <span onClick={() => setChecked(!isChecked)}>
         {props.value || <Image src={image} alt="check marcado" />}
       </span>
