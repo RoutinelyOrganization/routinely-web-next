@@ -25,9 +25,11 @@ export default function CodeValidationForm() {
   } = useForm<ICodeValidation>({
     mode: 'onChange',
   });
+
   const submitForm = async ({ code }: ICodeValidation) => {
     const cookies = makeCookies();
     const { accountId } = cookies.getCookies(['accountId']);
+
     try {
       await makeValidateCode({ code, accountId });
 
@@ -36,6 +38,7 @@ export default function CodeValidationForm() {
       router.push('/new-password');
     } catch (error) {
       const errorApi = error as ErrorApi;
+
       setErrorsApi(errorApi.body);
     }
   };
@@ -48,7 +51,7 @@ export default function CodeValidationForm() {
         hasError={!!errors.code}
         errorMessage={errors.code?.message}
         type="text"
-        placeholder=""
+        placeholder="Código de verificação"
         register={register('code', {
           required: 'Este campo é obrigatório.',
           pattern: {
@@ -66,7 +69,7 @@ export default function CodeValidationForm() {
         })}
       />
       <S.Span>
-        Não recebeu? <S.LinkNext href="#">Enviar novamente</S.LinkNext>
+        Não recebeu? <S.LinkNext href="/forgot-password">Enviar novamente</S.LinkNext>
       </S.Span>
       {errorsApi && <ErrorApiContainer errorMessages={errorsApi} />}
       <ButtonPrimary>Enviar</ButtonPrimary>
