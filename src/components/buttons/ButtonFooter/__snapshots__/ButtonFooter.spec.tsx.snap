@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonFooter Component should render according to the snapshot 1`] = `
+.c0 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #5C59BB;
+  border: none;
+  padding: 8px;
+  display: none;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.c0 >img {
+  width: 59px;
+  height: 38px;
+  display: block;
+  margin: auto;
+}
+
+@media (max-width: 500px) {
+  .c0 {
+    display: block;
+  }
+}
+
+<div>
+  <button
+    class="c0"
+    data-testid="button-footer"
+    role="button"
+  >
+    <img
+      alt="Botão de inicio"
+      src="[object Object]"
+    />
+  </button>
+</div>
+`;
