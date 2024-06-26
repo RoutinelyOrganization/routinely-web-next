@@ -1,7 +1,6 @@
 'use client';
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
-import ErrorApiContainer from '@/components/containers/ErrorApiContainer';
 import type { Login } from '@/types/login';
 import infoError from '@public/icons/infoErro.svg';
 import { signIn } from 'next-auth/react';
@@ -10,14 +9,15 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import * as S from './styles';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [loading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  const [errosApi, setErrosApi] = useState<string[] | null>(null);
+  const [errosApi, setErrosApi] = useState<string>('');
 
   const {
     register,
@@ -28,16 +28,22 @@ export default function LoginForm() {
   });
 
   const handleSubmitSignIn: SubmitHandler<Login> = async (data: Login) => {
-    const response = await signIn('credentials', {
-      ...data,
-      redirect: false,
-    });
+    try {
+      setLoading(true);
+      const response = await signIn('credentials', {
+        ...data,
+        redirect: false,
+      });
 
-    if (!response?.ok) {
-      setErrosApi(['Credenciais inválidas']);
-      return;
+      if (!response?.ok) {
+        setErrosApi('Credenciais inválidas');
+        return;
+      }
+
+      router.replace('/dashboard');
+    } finally {
+      setLoading(false);
     }
-    router.replace('/dashboard');
   };
 
   return (
@@ -51,7 +57,7 @@ export default function LoginForm() {
           placeholder="e-mail"
           errorMessage={errors.email?.message}
           register={register('email', {
-            required: 'Campo de preenchimento obrigatório',
+            required: 'O campo e-mail é obrigatório',
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
               message: 'preencha um e-mail válido',
@@ -67,7 +73,7 @@ export default function LoginForm() {
           placeholder="senha"
           errorMessage={errors.password?.message}
           register={register('password', {
-            required: 'campo de preenchimento obrigatório',
+            required: 'O campo senha é obrigatório',
             pattern: {
               value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*=])[a-zA-Z\d!@#$%&*=]{6,}$/,
               message:
@@ -91,19 +97,22 @@ export default function LoginForm() {
       <S.CheckboxAndForgetPasswordWrapper>
         <S.CheckboxWrapper>
           <label htmlFor="checkboxSignIn">Lembrar meu acesso</label>
-          <S.Checkbox type="checkbox" id="checkboxSignIn" {...register('remember')} />
+          <S.Checkbox
+            type="checkbox"
+            id="checkboxSignIn"
+            {...register('remember')}
+            role="textbox"
+          />
         </S.CheckboxWrapper>
         <S.LinkNext href="/forgot-password">Esqueci minha senha</S.LinkNext>
       </S.CheckboxAndForgetPasswordWrapper>
 
-      {errosApi && <ErrorApiContainer errorMessages={errosApi} />}
+      {errosApi && <ErrorMessage>{errosApi}</ErrorMessage>}
 
       <S.ButtonWrapper>
-        {loading ? (
-          <ButtonPrimary disabled>Carregando...</ButtonPrimary>
-        ) : (
-          <ButtonPrimary>Fazer login</ButtonPrimary>
-        )}
+        <ButtonPrimary disabled={loading}>
+          {!loading ? 'Fazer login' : 'Carregando...'}
+        </ButtonPrimary>
       </S.ButtonWrapper>
     </S.Form>
   );
