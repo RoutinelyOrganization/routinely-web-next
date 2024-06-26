@@ -2,6 +2,7 @@
 
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import ErrorApiContainer from '@/components/containers/ErrorApiContainer';
+import Input from '@/components/forms/fields/Input';
 import { makeCookies } from '@/factories/cookies/makeCookies';
 import { makeChangePassword } from '@/factories/services/makeChangePassword';
 import type { ErrorApi } from '@/services/errors/errorApi';
@@ -10,7 +11,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Input from '../fields/Input';
 import * as S from './styles';
 
 export interface INewPassword {
@@ -41,6 +41,7 @@ export default function CreateNewPassword() {
     try {
       const cookies = makeCookies();
       const { accountId, code } = cookies.getCookies(['accountId', 'code']);
+
       const body = {
         password: data.password,
         code,
@@ -79,7 +80,7 @@ export default function CreateNewPassword() {
           id="password"
           placeholder="senha"
           register={register('password', {
-            required: 'Este campo é obrigatório.',
+            required: 'O campo senha é obrigatório.',
             pattern: {
               value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*=])[a-zA-Z\d!@#$%&*=]{6,}$/,
               message:
@@ -118,9 +119,9 @@ export default function CreateNewPassword() {
           hasError={!!errors.confirmPassword?.message}
           type={showConfirmPassword ? 'text' : 'password'}
           id="confirmPassword"
-          placeholder="confirmar senha"
+          placeholder="repetir senha"
           register={register('confirmPassword', {
-            required: 'Este campo é obrigatório.',
+            required: 'O campo repetir senha é obrigatório.',
             validate: value => value === password || 'As senhas devem ser iguais',
           })}
           errorMessage={errors.confirmPassword?.message}

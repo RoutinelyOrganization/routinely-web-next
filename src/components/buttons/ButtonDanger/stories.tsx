@@ -1,4 +1,5 @@
-import ButtonDanger, { IButton } from '.';
+import type { IButton } from '.';
+import ButtonDanger from '.';
 
 export default {
   title: 'ButtonDanger',
@@ -10,4 +11,8 @@ export default {
 
 export const Template = (args: IButton) => {
   return <ButtonDanger {...args}>Testando</ButtonDanger>;
+};
+
+Template.parameters = {
+  backgrounds: { default: 'white' },
 };
