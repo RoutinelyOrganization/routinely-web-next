@@ -13,9 +13,13 @@ export const Modal = styled.div`
   max-height: calc(100vh - 48px);
   overflow-y: auto;
   box-shadow: 0px 0px 24px ${colors.shadow};
+  font-family: 'Roboto', sans-serif;
+  color: ${colors.black};
+  font-size: 20px;
 
   ${media.mobile} {
     max-width: 288px;
+    font-size: 16px;
   }
 `;
 
