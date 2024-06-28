@@ -6,7 +6,7 @@ import PopUp from '@/components/popUp';
 import { useTask } from '@/hooks/useTask';
 import * as S from './styles';
 
-interface IConfirmAction {
+export interface IConfirmAction {
   children: string;
 }
 
