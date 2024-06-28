@@ -8,6 +8,5 @@ describe('ButtonSocialGoogle Component', () => {
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent('ButtonSocialGoogle');
     expect(button.querySelector('svg')).toBeInTheDocument();
-    screen.debug();
   });
 });
