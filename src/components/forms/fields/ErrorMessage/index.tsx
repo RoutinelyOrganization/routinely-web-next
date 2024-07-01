@@ -1,6 +1,6 @@
 import * as S from './styles';
 
-interface IErrorMessage {
+export interface IErrorMessage {
   children: string;
 }
 
