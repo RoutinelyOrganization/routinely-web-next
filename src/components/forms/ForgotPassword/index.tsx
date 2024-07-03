@@ -22,10 +22,12 @@ export default function ForgotPasswordForm() {
     mode: 'onChange',
   });
   const submitForm = async (data: IForgotPassword) => {
-    const { body } = await makeResetPassword(data.email);
-    const cookie = makeCookies();
-    cookie.setCookies(body);
-    router.push('/validation-code');
+    try {
+      const cookie = makeCookies();
+      const { body } = await makeResetPassword(data.email);
+      cookie.setCookies(body);
+      router.push('/validation-code');
+    } catch (error) {}
   };
   return (
     <S.Form onSubmit={handleSubmit(submitForm)}>
@@ -37,7 +39,7 @@ export default function ForgotPasswordForm() {
         type="text"
         placeholder="Email"
         register={register('email', {
-          required: 'Este campo é obrigatório.',
+          required: 'O campo email é obrigatório.',
           pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
             message: 'Este campo precisa ser um email válido.',

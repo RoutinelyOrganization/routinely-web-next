@@ -3,7 +3,7 @@
 import { colors, fonts } from '@/styles/variables';
 import styled from 'styled-components';
 
-export const ErrorMessage = styled.span`
+export const ErrorMessage = styled.p`
   color: ${colors.danger};
   font-size: ${fonts.sizes.xxxsmall};
   max-width: 368px;
