@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
+.c2 >input {
+  display: none;
+}
+
+.c2 >span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid #5C59BB;
+  cursor: pointer;
+}
+
+.c2 >span >img {
+  display: none;
+}
+
+.c2 >input:checked~span >img {
+  display: block;
+}
+
+.c0 {
+  margin: 8px 0;
+  display: flex;
+  gap: 8px;
+}
+
+.c0 .c1 >span {
+  border: 1px solid #5C59BB;
+  text-align: center;
+  cursor: pointer;
+  background-color: #F6F7F8;
+}
+
+.c0 .c1 >input:checked~span {
+  background-color: #5C59BB;
+  color: #F6F7F8;
+}
+
+<div>
+  <div
+    class="c0"
+    data-testid="weekDaysCheckBox"
+  >
+    <label
+      class="c1 c2"
+      for="checkbox-Sunday"
+    >
+      <input
+        id="checkbox-Sunday"
+        name="Sunday"
+        type="checkbox"
+        value="D"
+      />
+      <span>
+        D
+      </span>
+    </label>
+    <label
+      class="c1 c2"
+      for="checkbox-Monday"
+    >
+      <input
+        id="checkbox-Monday"
+        name="Monday"
+        type="checkbox"
+        value="S"
+      />
+      <span>
+        S
+      </span>
+    </label>
+    <label
+      class="c1 c2"
+      for="checkbox-Tuesday"
+    >
+      <input
+        id="checkbox-Tuesday"
+        name="Tuesday"
+        type="checkbox"
+        value="T"
+      />
+      <span>
+        T
+      </span>
+    </label>
+    <label
+      class="c1 c2"
+      for="checkbox-Wednesday"
+    >
+      <input
+        id="checkbox-Wednesday"
+        name="Wednesday"
+        type="checkbox"
+        value="Q"
+      />
+      <span>
+        Q
+      </span>
+    </label>
+    <label
+      class="c1 c2"
+      for="checkbox-Thursday"
+    >
+      <input
+        id="checkbox-Thursday"
+        name="Thursday"
+        type="checkbox"
+        value="Q"
+      />
+      <span>
+        Q
+      </span>
+    </label>
+    <label
+      class="c1 c2"
+      for="checkbox-Friday"
+    >
+      <input
+        id="checkbox-Friday"
+        name="Friday"
+        type="checkbox"
+        value="S"
+      />
+      <span>
+        S
+      </span>
+    </label>
+    <label
+      class="c1 c2"
+      for="checkbox-Saturday"
+    >
+      <input
+        id="checkbox-Saturday"
+        name="Saturday"
+        type="checkbox"
+        value="S"
+      />
+      <span>
+        S
+      </span>
+    </label>
+  </div>
+</div>
+`;
