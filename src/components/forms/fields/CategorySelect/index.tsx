@@ -4,8 +4,8 @@ import type { UseFormRegisterReturn } from 'react-hook-form';
 import ErrorMessage from '../ErrorMessage';
 import * as S from './styles';
 
-interface ICategorySelectProps extends React.HTMLAttributes<HTMLSelectElement> {
-  register: UseFormRegisterReturn<string>;
+export interface ICategorySelectProps extends React.HTMLAttributes<HTMLSelectElement> {
+  register?: UseFormRegisterReturn<string>;
   messageError?: string;
   initailValue?: string;
 }
