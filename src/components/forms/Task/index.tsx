@@ -155,7 +155,7 @@ export default function TaskForm() {
         <p>Frequencia semanal</p>
         <Image
           src={arrow}
-          alt="Abir campos de frequencia semanal"
+          alt="Abrir campos de frequencia semanal"
           onClick={() => setIWeekFrequencyOpen(!isWeekFrequencyOpen)}
         />
       </S.ContainerOpenWeekFrequency>

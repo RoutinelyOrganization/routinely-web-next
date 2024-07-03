@@ -24,7 +24,7 @@ describe('<TaskForm/>', () => {
     const select = screen.getByRole('combobox');
     const paragraphOpenOptinalFields = screen.getByText('Frequencia semanal');
     const iconeOpenOptinalFields = screen.getByRole('img', {
-      name: 'Abir campos de frequencia semanal',
+      name: 'Abrir campos de frequencia semanal',
     });
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });
 
@@ -41,7 +41,7 @@ describe('<TaskForm/>', () => {
   it('should render fields optional', async () => {
     render(<TaskForm />);
     const iconeOpenOptinalFields = screen.getByRole('img', {
-      name: 'Abir campos de frequencia semanal',
+      name: 'Abrir campos de frequencia semanal',
     });
 
     // dispara o evento de click no icone para abrir os campos opcionais
@@ -115,7 +115,7 @@ describe('<TaskForm/>', () => {
     render(<TaskForm />);
 
     const iconeOpenOptinalFields = screen.getByRole('img', {
-      name: 'Abir campos de frequencia semanal',
+      name: 'Abrir campos de frequencia semanal',
     });
     fireEvent.click(iconeOpenOptinalFields);
     const input = screen.getByPlaceholderText('0');
@@ -130,7 +130,7 @@ describe('<TaskForm/>', () => {
 
     // dispara o evento de click no icone para abrir os campos opcionais
     const iconeOpenOptinalFields = screen.getByRole('img', {
-      name: 'Abir campos de frequencia semanal',
+      name: 'Abrir campos de frequencia semanal',
     });
     fireEvent.click(iconeOpenOptinalFields);
 
@@ -161,7 +161,7 @@ describe('<TaskForm/>', () => {
 
     // dispara o evento de click no icone para abrir os campos opcionais
     const iconeOpenOptinalFields = screen.getByRole('img', {
-      name: 'Abir campos de frequencia semanal',
+      name: 'Abrir campos de frequencia semanal',
     });
     fireEvent.click(iconeOpenOptinalFields);
 
