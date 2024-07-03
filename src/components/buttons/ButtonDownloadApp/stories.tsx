@@ -12,6 +12,7 @@ export const Template = () => (
 );
 
 Template.parameters = {
+  backgrounds: { default: 'secondary' },
   docs: {
     description: {
       component: 'so é reinderizado em telas menores que 500px',
