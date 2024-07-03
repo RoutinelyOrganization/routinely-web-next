@@ -10,8 +10,8 @@ type InputProps = {
 };
 
 export const Div = styled.div`
-  /* max-width: 100%; */
-  /* width: 100%; */
+  max-width: 100%;
+  width: 100%;
 `;
 
 export const InputContainer = styled.div<InputProps>`
