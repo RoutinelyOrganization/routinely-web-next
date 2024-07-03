@@ -2,6 +2,10 @@
 
 import styled from 'styled-components';
 
+export const ContainerText = styled.p`
+  margin: 0;
+`;
+
 export const ContainerButton = styled.div`
   margin-top: 24px;
   display: grid;

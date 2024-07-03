@@ -28,7 +28,7 @@ export default function ConfirmAction({ children }: IConfirmAction) {
 
   return (
     <PopUp>
-      <p>{children}</p>
+      <S.ContainerText>{children}</S.ContainerText>
       <S.ContainerButton>
         <ButtonPrimary onClick={() => handleClick('yes')}>Sim</ButtonPrimary>
         <ButtonDanger onClick={() => handleClick('not')}>Não</ButtonDanger>
