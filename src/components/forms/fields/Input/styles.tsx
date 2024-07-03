@@ -18,7 +18,7 @@ export const InputContainer = styled.div<InputProps>`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* max-width: 100%; */
   color: ${({ $hasErro }) => ($hasErro ? colors.danger : colors.black)};
 
   ~ ${ErrorMessage} {
@@ -28,7 +28,7 @@ export const InputContainer = styled.div<InputProps>`
 
 export const Children = styled.div`
   position: absolute;
-  top: 38%;
+  top: 35%;
   right: 3%;
 `;
 
@@ -52,7 +52,7 @@ export const LabelInput = styled.div`
   line-height: 24px;
   letter-spacing: 0.5px;
   position: absolute;
-  top: 33%;
+  top: 31%;
   left: 16px;
   pointer-events: none;
 `;
@@ -67,6 +67,7 @@ export const InputStyle = styled.input<InputProps>`
   line-height: 24px;
   letter-spacing: 0.5px;
   resize: none;
+  /* max-width: 100%; */
 
   &:focus ~ ${LabelInput} {
     top: -15px;
