@@ -52,12 +52,16 @@ exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
       for="checkbox-Sunday"
     >
       <input
+        data-testid="checkbox"
         id="checkbox-Sunday"
         name="Sunday"
+        role="textbox"
         type="checkbox"
         value="D"
       />
-      <span>
+      <span
+        aria-label="checkbox"
+      >
         D
       </span>
     </label>
@@ -66,12 +70,16 @@ exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
       for="checkbox-Monday"
     >
       <input
+        data-testid="checkbox"
         id="checkbox-Monday"
         name="Monday"
+        role="textbox"
         type="checkbox"
         value="S"
       />
-      <span>
+      <span
+        aria-label="checkbox"
+      >
         S
       </span>
     </label>
@@ -80,12 +88,16 @@ exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
       for="checkbox-Tuesday"
     >
       <input
+        data-testid="checkbox"
         id="checkbox-Tuesday"
         name="Tuesday"
+        role="textbox"
         type="checkbox"
         value="T"
       />
-      <span>
+      <span
+        aria-label="checkbox"
+      >
         T
       </span>
     </label>
@@ -94,12 +106,16 @@ exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
       for="checkbox-Wednesday"
     >
       <input
+        data-testid="checkbox"
         id="checkbox-Wednesday"
         name="Wednesday"
+        role="textbox"
         type="checkbox"
         value="Q"
       />
-      <span>
+      <span
+        aria-label="checkbox"
+      >
         Q
       </span>
     </label>
@@ -108,12 +124,16 @@ exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
       for="checkbox-Thursday"
     >
       <input
+        data-testid="checkbox"
         id="checkbox-Thursday"
         name="Thursday"
+        role="textbox"
         type="checkbox"
         value="Q"
       />
-      <span>
+      <span
+        aria-label="checkbox"
+      >
         Q
       </span>
     </label>
@@ -122,12 +142,16 @@ exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
       for="checkbox-Friday"
     >
       <input
+        data-testid="checkbox"
         id="checkbox-Friday"
         name="Friday"
+        role="textbox"
         type="checkbox"
         value="S"
       />
-      <span>
+      <span
+        aria-label="checkbox"
+      >
         S
       </span>
     </label>
@@ -136,12 +160,16 @@ exports[`<WeekDaysChekbox/> should macth snapshot 1`] = `
       for="checkbox-Saturday"
     >
       <input
+        data-testid="checkbox"
         id="checkbox-Saturday"
         name="Saturday"
+        role="textbox"
         type="checkbox"
         value="S"
       />
-      <span>
+      <span
+        aria-label="checkbox"
+      >
         S
       </span>
     </label>

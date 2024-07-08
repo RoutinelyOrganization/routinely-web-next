@@ -55,7 +55,7 @@ describe('<TaskForm/>', () => {
     expect(input).toBeInTheDocument();
 
     //verifica se todos os checkboxes de dias da semana aparecem
-    const weekDaysContainer = screen.getByTestId('weekDays');
+    const weekDaysContainer = screen.getByTestId('weekDaysCheckBox');
     const checkboxes = weekDaysContainer.querySelectorAll('input[type="checkbox"]');
 
     expect(checkboxes).toHaveLength(7);
@@ -135,7 +135,7 @@ describe('<TaskForm/>', () => {
     fireEvent.click(iconeOpenOptinalFields);
 
     // busca todos os checkboxes de dias da semana e dispara os eventos de click
-    const weekDaysContainer = screen.getByTestId('weekDays');
+    const weekDaysContainer = screen.getByTestId('weekDaysCheckBox');
     const checkboxes = weekDaysContainer.querySelectorAll('input[type="checkbox"]');
 
     fireEvent.click(checkboxes[0]);
@@ -169,7 +169,7 @@ describe('<TaskForm/>', () => {
     const select = screen.getByRole('combobox');
 
     // busca todos os checkboxes de dias da semana e dispara os eventos de click
-    const weekDaysContainer = screen.getByTestId('weekDays');
+    const weekDaysContainer = screen.getByTestId('weekDaysCheckBox');
     const checkboxes = weekDaysContainer.querySelectorAll('input[type="checkbox"]');
 
     expect(heading).toHaveTextContent(`Editar ${typeTaskOptions[0].name}`);
