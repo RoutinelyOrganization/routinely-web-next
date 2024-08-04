@@ -8,17 +8,17 @@ import * as S from './styles';
 
 export interface IAction {
   children: string;
-  options?: boolean;
-  button?: 'primary' | 'danger';
+  textButtonDanger?: string;
+  textButtonPrimary?: string;
 }
 
-export default function Action({ children, options = false, button = 'danger' }: IAction) {
+export default function Action({ children, textButtonDanger, textButtonPrimary }: IAction) {
   const { executeServiceTask, setActionForm, setFormIsOpen } = useTask();
 
   const handleOptions = async (operation: 'yes' | 'not') => {
     switch (operation) {
       case 'yes':
-        await executeServiceTask();
+        executeServiceTask && (await executeServiceTask());
         setActionForm(null);
         setFormIsOpen(false);
         break;
@@ -28,27 +28,17 @@ export default function Action({ children, options = false, button = 'danger' }:
     }
   };
 
-  const handleConfirm = () => {
-    return setActionForm(null);
-  };
-
   return (
     <PopUp>
       <S.ContainerText>{children}</S.ContainerText>
-      {options ? (
-        <S.ContainerDoubleButton>
-          <ButtonPrimary onClick={() => handleOptions('yes')}>Sim</ButtonPrimary>
-          <ButtonDanger onClick={() => handleOptions('not')}>Não</ButtonDanger>
-        </S.ContainerDoubleButton>
-      ) : (
-        <S.ContainerOneButton>
-          {button === 'primary' ? (
-            <ButtonPrimary onClick={() => handleConfirm()}>Ok</ButtonPrimary>
-          ) : (
-            <ButtonDanger onClick={() => handleConfirm()}>Voltar</ButtonDanger>
-          )}
-        </S.ContainerOneButton>
-      )}
+      <S.ContainerDoubleButton>
+        {textButtonPrimary && (
+          <ButtonPrimary onClick={() => handleOptions('yes')}>{textButtonPrimary}</ButtonPrimary>
+        )}
+        {textButtonDanger && (
+          <ButtonDanger onClick={() => handleOptions('not')}>{textButtonDanger}</ButtonDanger>
+        )}
+      </S.ContainerDoubleButton>
     </PopUp>
   );
 }
