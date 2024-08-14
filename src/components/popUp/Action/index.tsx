@@ -33,10 +33,14 @@ export default function Action({ children, textButtonDanger, textButtonPrimary }
       <S.ContainerText>{children}</S.ContainerText>
       <S.ContainerDoubleButton>
         {textButtonPrimary && (
-          <ButtonPrimary onClick={() => handleOptions('yes')}>{textButtonPrimary}</ButtonPrimary>
+          <ButtonPrimary name={textButtonPrimary} onClick={() => handleOptions('yes')}>
+            {textButtonPrimary}
+          </ButtonPrimary>
         )}
         {textButtonDanger && (
-          <ButtonDanger onClick={() => handleOptions('not')}>{textButtonDanger}</ButtonDanger>
+          <ButtonDanger name={textButtonDanger} onClick={() => handleOptions('not')}>
+            {textButtonDanger}
+          </ButtonDanger>
         )}
       </S.ContainerDoubleButton>
     </PopUp>
