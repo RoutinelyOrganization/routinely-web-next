@@ -10,9 +10,10 @@ import * as S from './styles';
 
 interface ICardTask {
   task: Task;
+  onChangeCheck: (id: number) => void;
 }
 
-export default function CardTask({ task }: ICardTask) {
+export default function CardTask({ task, onChangeCheck }: ICardTask) {
   const { setFormIsOpen, setSelectedTask, setSelectedTypeTask } = useTask();
   const { id, name, type, checked, category } = task;
   const [isChecked, setChecked] = useState<boolean>(checked);
@@ -25,6 +26,11 @@ export default function CardTask({ task }: ICardTask) {
     setFormIsOpen(true);
     setSelectedTypeTask(type);
   };
+
+  const handleChecked = (id: number) => {
+    setChecked(!isChecked);
+    onChangeCheck(id);
+  };
   return (
     <S.Container category={type} checked={isChecked}>
       <S.Title>
@@ -36,7 +42,7 @@ export default function CardTask({ task }: ICardTask) {
         <CustonCheckedBox
           checked={isChecked}
           id={id.toString()}
-          onClick={() => setChecked(!isChecked)}
+          onClick={() => handleChecked(id)}
         />
       </S.ContainerDescription>
       <S.ContainerBtnIcon>

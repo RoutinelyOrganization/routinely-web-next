@@ -39,7 +39,7 @@ export const Title = styled.h2`
 
 export const ContainerDescription = styled.div`
   max-width: 100%;
-  width: 100%;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,7 +63,6 @@ export const ContainerDescription = styled.div`
 
 export const Container = styled.div<ICardTaskStyles>`
   max-width: 300px;
-  width: 100%;
   background-color: ${({ category }) => options[category].bgcolor};
   border-radius: 8px;
   padding: 8px;
@@ -77,6 +76,7 @@ export const Container = styled.div<ICardTaskStyles>`
 
   ${ContainerDescription} {
     > p {
+      margin: 0;
       text-decoration: ${({ checked }) => (checked ? 'line-through' : 'none')};
     }
   }
@@ -92,9 +92,13 @@ export const Container = styled.div<ICardTaskStyles>`
 `;
 
 export const ContainerBtnIcon = styled.div`
-  width: 100%;
+  width: calc(100% - 15px);
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 8px;
 `;
 
 export const Button = styled.button`

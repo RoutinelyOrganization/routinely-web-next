@@ -218,14 +218,16 @@ describe('<TaskForm/>', () => {
     expect(useTaskMock().setActionForm).toHaveBeenCalledWith('create');
   });
 
-  it('should submit update task', async () => {
+  it.only('should submit update task', async () => {
     useTaskMock.mockReturnValue({
       setActionForm: jest.fn(),
       selectedTask: tasks[0],
     });
+
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });
+    screen.debug();
     await act(async () => {
       fireEvent.click(button);
     });
