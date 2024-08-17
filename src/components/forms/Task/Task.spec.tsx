@@ -6,6 +6,10 @@ import { useTaskMock } from '@mocks/useTaskContextMock';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import TaskForm from '.';
 
+jest.mock('@/hooks/useTask', () => ({
+  useTask: useTaskMock,
+}));
+
 beforeEach(() => {
   useTaskMock.mockClear();
 });
@@ -218,7 +222,7 @@ describe('<TaskForm/>', () => {
     expect(useTaskMock().setActionForm).toHaveBeenCalledWith('create');
   });
 
-  it.only('should submit update task', async () => {
+  it('should submit update task', async () => {
     useTaskMock.mockReturnValue({
       setActionForm: jest.fn(),
       selectedTask: tasks[0],
@@ -227,7 +231,6 @@ describe('<TaskForm/>', () => {
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });
-    screen.debug();
     await act(async () => {
       fireEvent.click(button);
     });

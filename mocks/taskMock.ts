@@ -4,7 +4,7 @@ export const tasks: Task[] = [
   {
     type: 'task',
     id: 1,
-    name: 'Tarefa 1'.repeat(100),
+    name: 'Tarefa 1',
     checked: false,
     category: 'Casa',
     date: new Date(),

@@ -20,16 +20,16 @@ export default function Task({ tasks: tasksReceived }: ITask) {
   useEffect(() => {
     setTasks(tasksReceived);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setTasks, tasksReceived]);
 
   useEffect(() => {
     let newCurrentTasks: Task[] = [];
     switch (selected) {
       case 'all tasks':
-        newCurrentTasks = tasks.filter(task => !task.checked);
+        newCurrentTasks = tasks && tasks.filter(task => !task.checked);
         break;
       case 'completed':
-        newCurrentTasks = tasks.filter(task => task.checked);
+        newCurrentTasks = tasks && tasks.filter(task => task.checked);
         break;
       default:
         newCurrentTasks = tasks.filter(task => task.type === selected && !task.checked);
@@ -56,9 +56,10 @@ export default function Task({ tasks: tasksReceived }: ITask) {
       </S.Select>
       {tasks.length ? (
         <S.ContainerTask>
-          {currentTasks.map(task => (
-            <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />
-          ))}
+          {currentTasks.length &&
+            currentTasks.map(task => (
+              <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />
+            ))}
         </S.ContainerTask>
       ) : (
         // <ContainerTask tasks={isTask} />
