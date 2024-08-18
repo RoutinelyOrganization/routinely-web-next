@@ -35,9 +35,13 @@ export default function CalendarContainer() {
           </h1>
         )}
         <S.ContainerIcons>
-          <Image src={iconCalendar} alt="" onClick={() => setOpenCalendar(!openCalendar)} />
+          <Image
+            src={iconCalendar}
+            alt="Calendário"
+            onClick={() => setOpenCalendar(!openCalendar)}
+          />
           <ContainerPrevNext setChangePage={setChangePage} />
-          <S.ContainerCalendar openCalendar={openCalendar}>
+          <S.ContainerCalendar $openCalendar={openCalendar}>
             <DateCalendar />
           </S.ContainerCalendar>
         </S.ContainerIcons>
