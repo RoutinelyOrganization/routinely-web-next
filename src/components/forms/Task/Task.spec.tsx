@@ -227,6 +227,7 @@ describe('<TaskForm/>', () => {
       setActionForm: jest.fn(),
       selectedTask: tasks[0],
     });
+
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });

@@ -9,22 +9,26 @@ import { useEffect, useState } from 'react';
 import * as S from './styles';
 export default function CalendarContainer() {
   const [openCalendar, setOpenCalendar] = useState(false);
-  const [changePage, setChangePage] = useState<'prev' | 'next' | null>(null);
+  const [changeDate, setChangeDate] = useState<'prev' | 'next' | null>(null);
   const { day, nameMonth, weekDay, year, setDate, date } = useCalendar();
 
   useEffect(() => {
-    if (changePage === 'next') {
+    if (changeDate === 'next') {
       setDate(date.add(1, 'day'));
-      setChangePage(null);
+      setChangeDate(null);
       return;
     }
-    if (changePage === 'prev') {
+    if (changeDate === 'prev') {
       setDate(date.subtract(1, 'day'));
-      setChangePage(null);
+      setChangeDate(null);
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changePage]);
+  }, [changeDate]);
+
+  const onChangeDate = (value: 'prev' | 'next') => {
+    setChangeDate(value);
+  };
 
   return (
     <>
@@ -40,7 +44,7 @@ export default function CalendarContainer() {
             alt="Calendário"
             onClick={() => setOpenCalendar(!openCalendar)}
           />
-          <ContainerPrevNext setChangePage={setChangePage} />
+          <ContainerPrevNext onChange={onChangeDate} />
           <S.ContainerCalendar $openCalendar={openCalendar}>
             <DateCalendar />
           </S.ContainerCalendar>
