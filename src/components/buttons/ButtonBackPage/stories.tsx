@@ -2,7 +2,7 @@ import type { IButtonBackPage } from '.';
 import ButtonBackPage from '.';
 
 export default {
-  title: 'ButtonBackPage',
+  title: 'buttons/ButtonBackPage',
 
   argTypes: {
     children: { type: 'string' },

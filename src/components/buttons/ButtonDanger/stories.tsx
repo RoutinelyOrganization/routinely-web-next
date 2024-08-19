@@ -2,7 +2,7 @@ import type { IButton } from '.';
 import ButtonDanger from '.';
 
 export default {
-  title: 'ButtonDanger',
+  title: 'buttons/ButtonDanger',
 
   argTypes: {
     children: { type: 'string' },

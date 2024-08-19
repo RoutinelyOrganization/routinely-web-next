@@ -1,9 +1,9 @@
+import { SessionProvider } from 'next-auth/react';
 import Header from '.';
 import type { IMenuItem } from './MenuHeader';
-import { SessionProvider } from 'next-auth/react';
 
 export default {
-  title: 'Header',
+  title: 'headers/Header',
   component: Header,
   argTypes: {
     children: { type: 'string' },

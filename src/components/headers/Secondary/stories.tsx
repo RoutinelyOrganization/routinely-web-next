@@ -2,7 +2,7 @@ import SecondaryHeader from '.';
 import type { IMenuItem } from '../MenuHeader';
 
 export default {
-  title: 'SecondaryHeader',
+  title: 'headers/SecondaryHeader',
   component: SecondaryHeader,
   argTypes: {
     children: { type: 'string' },

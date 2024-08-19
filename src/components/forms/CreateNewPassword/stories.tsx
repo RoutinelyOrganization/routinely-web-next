@@ -1,7 +1,7 @@
 import CreateNewPasswordForm from '.';
 
 export default {
-  title: 'CreateNewPasswordForm',
+  title: 'forms/CreateNewPasswordForm',
   component: CreateNewPasswordForm,
 };
 

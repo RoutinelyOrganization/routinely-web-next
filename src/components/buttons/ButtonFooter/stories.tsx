@@ -1,7 +1,7 @@
 import ButtonFooter from '../ButtonFooter';
 
 export default {
-  title: 'ButtonFooter',
+  title: 'buttons/ButtonFooter',
   component: ButtonFooter,
 };
 

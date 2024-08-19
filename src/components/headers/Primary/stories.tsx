@@ -2,7 +2,7 @@ import PrimaryHeader from '.';
 import type { IMenuItem } from '../MenuHeader';
 
 export default {
-  title: 'PrimaryHeader',
+  title: 'headers/PrimaryHeader',
   component: PrimaryHeader,
   argTypes: {
     children: { type: 'string' },

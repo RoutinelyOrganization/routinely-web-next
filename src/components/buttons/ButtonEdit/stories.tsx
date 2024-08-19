@@ -1,7 +1,7 @@
 import ButtonEdit from '../ButtonEdit';
 
 export default {
-  title: 'ButtonEdit',
+  title: 'buttons/ButtonEdit',
   component: ButtonEdit,
 };
 

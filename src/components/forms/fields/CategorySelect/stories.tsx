@@ -2,7 +2,7 @@ import type { ICategorySelectProps } from '.';
 import CategorySelect from '.';
 
 export default {
-  title: 'CategorySelect',
+  title: 'forms/fields/CategorySelect',
   component: CategorySelect,
   argTypes: {
     initailValue: { type: 'string' },

@@ -2,7 +2,7 @@ import type { IMenuItem } from '.';
 import MenuHeader from '.';
 
 export default {
-  title: 'MenuHeader',
+  title: 'headers/MenuHeader',
   component: MenuHeader,
   argTypes: {
     children: { type: 'string' },

@@ -1,7 +1,7 @@
 import TaskForm from '.';
 
 export default {
-  title: 'TaskForm',
+  title: 'forms/TaskForm',
   component: TaskForm,
 };
 

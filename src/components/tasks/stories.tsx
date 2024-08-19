@@ -4,7 +4,7 @@ import type { ITask } from '.';
 import Tasks from '.';
 
 export default {
-  title: 'Tasks',
+  title: 'Tasks/Tasks',
   component: Tasks,
   args: {
     tasks: tasksMock,

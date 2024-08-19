@@ -2,7 +2,7 @@ import type { IAction } from '.';
 import Action from '.';
 
 export default {
-  title: 'Action',
+  title: 'popup/Action',
   component: Action,
 };
 

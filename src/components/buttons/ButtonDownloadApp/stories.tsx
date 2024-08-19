@@ -1,7 +1,7 @@
 import ButtonDownloadApp from '.';
 
 export default {
-  title: 'ButtonDownloadApp',
+  title: 'buttons/ButtonDownloadApp',
   component: ButtonDownloadApp,
 };
 

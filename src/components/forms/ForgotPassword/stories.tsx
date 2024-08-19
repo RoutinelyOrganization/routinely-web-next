@@ -1,7 +1,7 @@
 import ForgotPassword from '.';
 
 export default {
-  title: 'ForgotPassword',
+  title: 'forms/ForgotPassword',
   component: ForgotPassword,
 };
 

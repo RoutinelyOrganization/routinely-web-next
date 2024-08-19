@@ -2,7 +2,7 @@ import type { ICheckBox } from '.';
 import Checkbox from '.';
 
 export default {
-  title: 'Checkbox',
+  title: 'forms/fields/Checkbox',
   component: Checkbox,
 };
 
