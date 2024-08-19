@@ -6,3 +6,4 @@ export const useTaskMock: jest.Mock<Partial<ITaskContext>> = jest.fn().mockRetur
   setSelectedTask: jest.fn(),
   setSelectedTypeTask: jest.fn(),
 });
+

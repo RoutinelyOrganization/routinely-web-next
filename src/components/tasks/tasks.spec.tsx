@@ -1,3 +1,4 @@
+import { tasks } from '@mocks/taskMock';
 import { TaskProvider } from '@/providers/taskProvider';
 import { tasks } from '@mocks/taskMock';
 import { useTaskMock } from '@mocks/useTaskContextMock';
@@ -23,7 +24,7 @@ beforeEach(() => {
 describe('Task component', () => {
   it('should render correctly with tasks', () => {
     render(<TaskWithProvider />);
-
+    
     expect(screen.getByText('Todas as atividades')).toBeInTheDocument();
     expectedTasks.forEach(task => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
