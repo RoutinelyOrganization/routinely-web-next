@@ -8,8 +8,7 @@ import { colors, fonts } from '@/styles/variables';
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding: 14px 24px;
   background-color: ${colors.primary};
   > div {
     display: flex;
