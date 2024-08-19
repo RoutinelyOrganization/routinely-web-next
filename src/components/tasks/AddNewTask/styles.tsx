@@ -33,12 +33,12 @@ export const ContainerTypeTask = styled.div`
   background-color: ${colors.white};
   position: absolute;
   right: 23px;
-  top: 23px;
+  top: 22px;
   z-index: 20;
 
   ${media.desktop} {
     border-radius: 0 8px 0 8px;
-    top: -64px;
+    top: -84px;
   }
 `;
 
