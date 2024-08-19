@@ -22,7 +22,7 @@ afterAll(() => {
   jest.clearAllMocks();
 });
 
-describe('Authorization', () => {
+describe('Delete Task', () => {
   it('Should return correct response', async () => {
     const response = await deleteTask(httpClient, id, token);
 

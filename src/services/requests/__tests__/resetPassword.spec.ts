@@ -22,7 +22,7 @@ afterAll(() => {
   jest.clearAllMocks();
 });
 
-describe('Authorization', () => {
+describe('Reset Password', () => {
   it('Should return correct response', async () => {
     const mockResponse: HttpResponse = {
       status: 200,

@@ -29,7 +29,7 @@ afterAll(() => {
   jest.clearAllMocks();
 });
 
-describe('Login', () => {
+describe('Sign Up', () => {
   it('Should return correct response', async () => {
     const mockResponse: HttpResponse = {
       status: 200,

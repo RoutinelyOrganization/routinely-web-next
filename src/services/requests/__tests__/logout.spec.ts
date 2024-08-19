@@ -21,7 +21,7 @@ afterAll(() => {
   jest.clearAllMocks();
 });
 
-describe('Authorization', () => {
+describe('Logout', () => {
   it('Should return correct response', async () => {
     const response = await logout(httpClient, token);
 

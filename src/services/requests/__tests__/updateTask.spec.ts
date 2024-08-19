@@ -26,7 +26,7 @@ afterAll(() => {
   jest.clearAllMocks();
 });
 
-describe('Authorization', () => {
+describe('Update Task', () => {
   it('Should return correct response', async () => {
     const mockResponse: HttpResponse = {
       status: 200,
