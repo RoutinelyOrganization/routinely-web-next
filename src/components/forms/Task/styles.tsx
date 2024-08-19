@@ -8,21 +8,31 @@ import styled from 'styled-components';
 import { ErrorMessage } from '../fields/ErrorMessage/styles';
 import { Div as InputContainer } from '../fields/Input/styles';
 
+export const ResponsiveContainer = styled.div`
+  > form {
+    display: none;
+  }
+
+  ${media.mobile} {
+    > form {
+      display: flex;
+      z-index: 10;
+    }
+
+    > div {
+      display: none;
+    }
+  }
+`;
+
 export const Form = styled.form`
+  background-color: ${colors.white};
   position: relative;
   max-width: 463px;
   width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-
-  ${media.mobile} {
-    max-height: calc(100vh - 107px);
-    min-height: 82vh;
-    border-radius: 0px;
-    overflow-y: auto;
-    padding-bottom: 60px;
-  }
 `;
 
 export const ContainerTitle = styled.div`
@@ -144,6 +154,7 @@ export const ContainerButtons = styled.div`
   ${media.mobile} {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-bottom: 24px;
 
     gap: 20px;
     > button {

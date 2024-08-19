@@ -9,8 +9,8 @@ export const Modal = styled.div`
   background-color: ${colors.white};
   border-radius: 8px;
   padding: 24px;
-  max-width: 324px;
-  max-height: calc(100vh - 48px);
+  width: 500px;
+  max-height: calc(100vh - 64px);
   overflow-y: auto;
   box-shadow: 0px 0px 24px ${colors.shadow};
   font-family: 'Roboto', sans-serif;
@@ -18,7 +18,7 @@ export const Modal = styled.div`
   font-size: 20px;
 
   ${media.mobile} {
-    max-width: 288px;
+    max-width: 100%;
     font-size: 16px;
   }
 `;
@@ -36,7 +36,6 @@ export const Container = styled.div`
   align-items: center;
 
   ${media.mobile} {
-    flex-direction: column;
     padding: 0;
 
     ${ButtonFooter} {

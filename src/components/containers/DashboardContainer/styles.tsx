@@ -4,6 +4,14 @@ import media from '@/styles/mediaQueries';
 import { colors } from '@/styles/variables';
 import { styled } from 'styled-components';
 
+interface IDashboardContainerStyles {
+  $isVisible: boolean;
+}
+
+export const ContainerPrincipal = styled.div<IDashboardContainerStyles>`
+  display: ${({ $isVisible }) => ($isVisible ? 'block' : 'none')};
+`;
+
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
