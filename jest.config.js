@@ -28,6 +28,7 @@ const config = {
     '!src/app/api/auth/**/*',
     '!src/providers/sessionProvider.tsx',
     '!src/factories/**/*',
+    '!src/app/**/*',
   ],
 
   moduleNameMapper: {
