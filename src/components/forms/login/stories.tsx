@@ -1,7 +1,7 @@
 import LoginForm from '.';
 
 export default {
-  title: 'LoginForm',
+  title: 'forms/LoginForm',
   component: LoginForm,
 };
 

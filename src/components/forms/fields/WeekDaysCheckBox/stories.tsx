@@ -2,7 +2,7 @@ import type { IWeekDayProps } from '.';
 import WeekDaysCheckboxs from '.';
 
 export default {
-  title: 'WeekDaysCheckboxs',
+  title: 'forms/fields/WeekDaysCheckboxs',
   component: WeekDaysCheckboxs,
 };
 

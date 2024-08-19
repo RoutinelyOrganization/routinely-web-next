@@ -1,7 +1,7 @@
 import LogoShared from '.';
 
 export default {
-  title: 'LogoShared',
+  title: 'logos/LogoShared',
   component: LogoShared,
 };
 

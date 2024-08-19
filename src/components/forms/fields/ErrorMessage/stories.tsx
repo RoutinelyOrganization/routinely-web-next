@@ -2,7 +2,7 @@ import type { IErrorMessage } from '.';
 import ErrorMessage from '.';
 
 export default {
-  title: 'ErrorMessage',
+  title: 'forms/fields/ErrorMessage',
   component: ErrorMessage,
   args: {
     children: 'Storybook',

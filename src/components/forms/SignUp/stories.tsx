@@ -1,7 +1,7 @@
 import SingUpForm from '.';
 
 export default {
-  title: 'SingUpForm',
+  title: 'forms/SingUpForm',
   component: SingUpForm,
 };
 

@@ -2,7 +2,7 @@ import type { IPopUpProps } from '.';
 import PopUp from '.';
 
 export default {
-  title: 'PopUp',
+  title: 'popup/PopUp',
   component: PopUp,
 };
 

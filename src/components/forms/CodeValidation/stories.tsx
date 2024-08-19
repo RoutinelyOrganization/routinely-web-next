@@ -1,7 +1,7 @@
 import CodeValidateForm from '.';
 
 export default {
-  title: 'CodeValidateForm',
+  title: 'forms/CodeValidateForm',
   component: CodeValidateForm,
 };
 

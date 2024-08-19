@@ -12,7 +12,7 @@ export interface IAction {
   textButtonPrimary?: string;
 }
 
-export default function Action({ children, textButtonDanger, textButtonPrimary }: IAction) {
+export default function ConfirmAction({ children, textButtonDanger, textButtonPrimary }: IAction) {
   const { executeServiceTask, setActionForm, setFormIsOpen } = useTask();
 
   const handleOptions = async (operation: 'yes' | 'not') => {

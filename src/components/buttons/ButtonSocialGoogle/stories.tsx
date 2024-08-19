@@ -1,7 +1,7 @@
 import ButtonSocialGoogle from '../ButtonSocialGoogle';
 
 export default {
-  title: 'ButtonSocialGoogle',
+  title: 'buttons/ButtonSocialGoogle',
   component: ButtonSocialGoogle,
 };
 

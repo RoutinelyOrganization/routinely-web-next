@@ -1,7 +1,7 @@
 import ButtonSecondary from '../ButtonSecondary';
 
 export default {
-  title: 'ButtonSecondary',
+  title: 'buttons/ButtonSecondary',
   component: ButtonSecondary,
 };
 

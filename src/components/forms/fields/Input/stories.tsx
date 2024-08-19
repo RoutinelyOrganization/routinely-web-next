@@ -2,7 +2,7 @@ import type { IInput } from '.';
 import Input from '.';
 
 export default {
-  title: 'Input',
+  title: 'forms/fields/Input',
   component: Input,
 };
 
