@@ -21,7 +21,7 @@ export default function AddNewTask() {
   return (
     <S.ContainerNewTask>
       <S.ButtonAddTask onClick={() => setIsOpenTypeTask(!isOpenTypeTask)}>
-        <Image src={addIcon} alt="close icon" />
+        <Image src={addIcon} alt="Adicionar atividade" />
       </S.ButtonAddTask>
       {isOpenTypeTask && (
         <S.ContainerTypeTask>

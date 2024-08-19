@@ -5,4 +5,5 @@ export const useTaskMock: jest.Mock<Partial<ITaskContext>> = jest.fn(() => ({
   setFormIsOpen: jest.fn(),
   selectedTypeTask: null,
   setActionForm: jest.fn(),
+  setSelectedTypeTask: jest.fn(),
 }));
