@@ -5,12 +5,14 @@ export default {
   component: ButtonPrimary,
 };
 
-export const Template = () => (
+export const TemplateButton = () => (
   <div>
     <ButtonPrimary>ButtonPrimary</ButtonPrimary>
   </div>
 );
 
-Template.parameters = {
-  backgrounds: { default: 'white' },
-};
+export const TemplateLink = () => (
+  <div>
+    <ButtonPrimary href="/home">ButtonPrimary</ButtonPrimary>
+  </div>
+);

@@ -54,6 +54,8 @@ describe('<ForgotPassword/>', () => {
       fireEvent.click(button);
     });
 
+    expect(screen.queryByLabelText('message-error')).not.toBeInTheDocument();
+
     expect(makeCookiesMock.setCookies).toHaveBeenCalled();
   });
 });

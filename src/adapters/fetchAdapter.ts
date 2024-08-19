@@ -17,17 +17,17 @@ export class FetchAdapter implements HttpClient {
 
       if (!response.ok) {
         const body = await response.json();
-        throw new ErrorApi(body, response.status, response.statusText);
+        const errorApi = new ErrorApi(response.status, body, response.statusText);
+        return {
+          status: errorApi.status,
+          body: errorApi.body,
+        };
       }
       return {
         status: response.status,
         body: await response.json(),
       };
     } catch (error) {
-      if (error instanceof ErrorApi) {
-        throw error;
-      }
-
       const _error = error as Error;
       throw new Error(_error?.message);
     }

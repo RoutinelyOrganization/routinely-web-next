@@ -1,6 +1,7 @@
 import { CalendarProvider } from '@/providers/calendarProvider';
 import { fireEvent, render, screen } from '@testing-library/react';
 import dayjs from 'dayjs';
+import React from 'react';
 import CalendarContainer from '.';
 
 const today = dayjs();
@@ -113,5 +114,21 @@ describe('<CalendarContainer/>', () => {
     expect(heading.textContent).toBe(
       `${weekDay(nextMonth.day())}, ${nextMonth.date()} de ${monthName(nextMonth.month())} de ${today.year()}`,
     );
+  });
+
+  it('should change visible calendar', async () => {
+    const setOpenCalendar = jest.fn();
+    jest.spyOn(React, 'useState').mockImplementation((init?: boolean) => [init, setOpenCalendar]);
+
+    render(
+      <CalendarProvider>
+        <CalendarContainer />
+      </CalendarProvider>,
+    );
+
+    const icon = screen.getByAltText('Calendário');
+    fireEvent.click(icon);
+
+    expect(setOpenCalendar).toHaveBeenCalledWith(true);
   });
 });
