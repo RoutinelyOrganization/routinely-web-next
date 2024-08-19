@@ -31,3 +31,5 @@ export const NoTask = styled.p`
   font-size: ${fonts.sizes.xxsmall};
   color: ${colors.darkgray};
 `;
+
+export const ContainerTask = styled.div``;
