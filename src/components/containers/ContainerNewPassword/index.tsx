@@ -1,11 +1,9 @@
 import PasswordsPagesContainer from '@/components/containers/PasswordsPagesContainer';
 import CreateNewPassword from '@/components/forms/CreateNewPassword';
 import newPasswordPageImage from '@public/imagens/NewPasswordPageImage.svg';
-import { metadata } from '../layout';
-import * as S from '../../components/containers/ContainerNewPassword/styles';
+import * as S from './styles';
 
-export default function NewPasswordPage() {
-  metadata.title = 'Routinely - Criar nova senha';
+export default function ContainerNewPassword() {
   return (
     <S.Container>
       <PasswordsPagesContainer
