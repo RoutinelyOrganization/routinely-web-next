@@ -1,5 +1,5 @@
-import Task from '.';
 import { tasks } from '@mocks/taskMock';
+import Task from '.';
 
 export default {
   title: 'Task',
