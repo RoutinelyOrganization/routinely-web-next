@@ -74,7 +74,7 @@ export default function TaskForm() {
   };
 
   return (
-    <S.Form onSubmit={handleSubmit(handleSubmitFormTask)}>
+    <S.Form onSubmit={handleSubmit(handleSubmitFormTask)} role="form">
       <S.ContainerTitle>
         <S.Title>
           {selectedTask ? 'Editar' : 'Adicionar'} {selectedTypeTask?.name}
@@ -152,7 +152,7 @@ export default function TaskForm() {
       />
 
       <S.ContainerOpenWeekFrequency>
-        <p>Frequencia semanal</p>
+        <p>Frequência semanal</p>
         <Image
           src={arrow}
           alt="Abrir campos de frequencia semanal"

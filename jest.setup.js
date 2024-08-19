@@ -65,5 +65,6 @@ jest.mock('next/image', () => {
 
 jest.mock('@/components/calendar', () => ({
   __esModule: true,
-  default: () => <div />,
+
+  default: () => <div data-testid="mock-calendario"></div>,
 }));

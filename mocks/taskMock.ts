@@ -5,7 +5,7 @@ export const tasks: Task[] = [
     type: 'task',
     id: 1,
     name: 'Tarefa 1',
-    checked: true,
+    checked: false,
     category: 'Casa',
     date: new Date(),
     description: 'teste',

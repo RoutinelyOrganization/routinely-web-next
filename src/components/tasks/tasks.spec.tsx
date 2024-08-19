@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { TaskProvider } from '@/providers/taskProvider';
 import { tasks } from '@mocks/taskMock';
+import { useTaskMock } from '@mocks/useTaskContextMock';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Task from '.';
 
 const mockTasks = tasks;
@@ -8,10 +10,20 @@ const expectedTasksHabit = mockTasks.filter(task => task.type === 'habit' && !ta
 const expectedTasksTask = mockTasks.filter(task => task.type === 'task' && !task.checked);
 const expectedTasksCompleted = mockTasks.filter(task => task.checked);
 
+const TaskWithProvider = () => (
+  <TaskProvider>
+    <Task tasks={mockTasks} />
+  </TaskProvider>
+);
+
+beforeEach(() => {
+  useTaskMock.mockClear();
+});
+
 describe('Task component', () => {
   it('should render correctly with tasks', () => {
-    render(<Task tasks={mockTasks} />);
-    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'all tasks' } });
+    render(<TaskWithProvider />);
+
     expect(screen.getByText('Todas as atividades')).toBeInTheDocument();
     expectedTasks.forEach(task => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
@@ -22,7 +34,7 @@ describe('Task component', () => {
   });
 
   it('should filter and display only incomplete tasks when "Hábitos" is selected', () => {
-    render(<Task tasks={mockTasks} />);
+    render(<TaskWithProvider />);
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'habit' } });
     expect(screen.getByText('Hábitos')).toBeInTheDocument();
@@ -38,24 +50,30 @@ describe('Task component', () => {
   });
 
   it('should filter and display only incomplete tasks when "Tarefas" is selected', () => {
-    render(<Task tasks={mockTasks} />);
+    render(<TaskWithProvider />);
+
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'task' } });
+
     expect(screen.getByText('Tarefas')).toBeInTheDocument();
     expectedTasksTask.forEach(task => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
     });
+
     expectedTasksCompleted.forEach(task => {
       expect(screen.queryByText(task.name)).not.toBeInTheDocument();
     });
+
     expectedTasksHabit.forEach(task => {
       expect(screen.queryByText(task.name)).not.toBeInTheDocument();
     });
   });
 
-  it('should filter and display only incomplete tasks when "Concluidas" is selected', () => {
-    render(<Task tasks={mockTasks} />);
+  it('should render completed tasks when "Concluidas" is selected', () => {
+    render(<TaskWithProvider />);
+
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'completed' } });
-    expect(screen.getByText('Concluidas')).toBeInTheDocument();
+
+    expect(screen.getByText('Concluídas')).toBeInTheDocument();
     expectedTasksCompleted.forEach(task => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
     });

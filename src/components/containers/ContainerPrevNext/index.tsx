@@ -3,15 +3,15 @@ import next from '@public/icons/navigação_próximo.svg';
 import Image from 'next/image';
 import * as S from './styles';
 
-interface IContainerPrevNextProps {
-  setChangePage: React.Dispatch<React.SetStateAction<'prev' | 'next' | null>>;
+export interface IContainerPrevNextProps {
+  onChange: (value: 'prev' | 'next') => void;
 }
-export default function ContainerPrevNext({ setChangePage }: IContainerPrevNextProps) {
+export default function ContainerPrevNext({ onChange }: IContainerPrevNextProps) {
   return (
     <S.Container>
-      <Image src={prev} alt="Icone para voltar" onClick={() => setChangePage('prev')} />
+      <Image src={prev} alt="Icone para voltar" onClick={() => onChange('prev')} />
       <span></span>
-      <Image src={next} alt="Icone para avançar" onClick={() => setChangePage('next')} />
+      <Image src={next} alt="Icone para avançar" onClick={() => onChange('next')} />
     </S.Container>
   );
 }

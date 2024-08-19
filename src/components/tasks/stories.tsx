@@ -1,20 +1,25 @@
-import { tasks } from '@mocks/taskMock';
-import Task from '.';
+import { TaskProvider } from '@/providers/taskProvider';
+import { tasks as tasksMock } from '@mocks/taskMock';
+import type { ITask } from '.';
+import Tasks from '.';
 
 export default {
-  title: 'Task',
-  component: Task,
+  title: 'Tasks',
+  component: Tasks,
+  args: {
+    tasks: tasksMock,
+  },
   argTypes: {
-    tasks: { control: 'object' }, // Permite que o Storybook controle a prop `tasks`
+    tasks: { type: 'array' },
   },
 };
 
-const mockTasks = tasks;
-
-export const Template = () => {
-  return <Task tasks={mockTasks} />;
-};
-
-Template.parameters = {
-  backgrounds: { default: 'white' },
+export const Template = (args: ITask) => {
+  return (
+    <div>
+      <TaskProvider>
+        <Tasks {...args} />
+      </TaskProvider>
+    </div>
+  );
 };

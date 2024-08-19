@@ -10,7 +10,6 @@ export interface ITask {
   tasks: Task[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Task({ tasks: tasksReceived }: ITask) {
   const { setTasks, tasks } = useTask();
 
@@ -20,7 +19,7 @@ export default function Task({ tasks: tasksReceived }: ITask) {
   useEffect(() => {
     setTasks(tasksReceived);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setTasks, tasksReceived]);
+  }, []);
 
   useEffect(() => {
     let newCurrentTasks: Task[] = [];
@@ -39,12 +38,12 @@ export default function Task({ tasks: tasksReceived }: ITask) {
     setCurrentTasks(newCurrentTasks);
   }, [selected, tasks]);
 
-  // const handleTasks = (id: number) => {
-  //   const newTasks = tasks.map(task =>
-  //     task.id === id ? { ...task, checked: !task.checked } : task,
-  //   );
-  //   setTasks(newTasks);
-  // };
+  const handleTasks = (id: number) => {
+    const newTasks = tasks.map(task =>
+      task.id === id ? { ...task, checked: !task.checked } : task,
+    );
+    setTasks(newTasks);
+  };
 
   return (
     <S.Conteiner>
@@ -52,11 +51,14 @@ export default function Task({ tasks: tasksReceived }: ITask) {
         <option value="all tasks">Todas as atividades</option>
         <option value="habit">Hábitos</option>
         <option value="task">Tarefas</option>
-        <option value="completed">Concluidas</option>
+        <option value="completed">Concluídas</option>
       </S.Select>
       {tasks.length ? (
         <S.ContainerTask>
-          {currentTasks.length && currentTasks.map(task => <CardTask key={task.id} task={task} />)}
+          {currentTasks.length &&
+            currentTasks.map(task => (
+              <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />
+            ))}
         </S.ContainerTask>
       ) : (
         // <ContainerTask tasks={isTask} />
