@@ -68,3 +68,5 @@ jest.mock('@/components/calendar', () => ({
 
   default: () => <div data-testid="mock-calendario"></div>,
 }));
+
+global.fetch = jest.fn();

@@ -5,6 +5,7 @@ import CustonCheckedBox from '@/components/forms/fields/CustonCheckedBox';
 import { typeTaskOptions } from '@/constants/typeTask';
 import { useTask } from '@/hooks/useTask';
 import type { Task } from '@/types/task';
+import type { TypeTask } from '@/types/typeTasks';
 import { useState } from 'react';
 import * as S from './styles';
 
@@ -19,7 +20,7 @@ export default function CardTask({ task, onChangeCheck }: ICardTask) {
   const [isChecked, setChecked] = useState<boolean>(checked);
   const descrptionFormated = name.length > 91 ? name.slice(0, 90) + '...' : name;
   const typeTaskOption = typeTaskOptions.find(item => item.type === type);
-  const { name: title, icon } = typeTaskOption || {};
+  const { name: title, icon } = typeTaskOption as TypeTask;
 
   const handleEditTask = () => {
     setSelectedTask(task);

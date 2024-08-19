@@ -1,18 +1,22 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import LoginForm from '.';
 
 jest.mock('next-auth/react', () => ({
   ...jest.requireActual('next-auth/react'),
-  signIn: jest
-    .fn()
-    .mockResolvedValueOnce(() => Promise.resolve({ ok: true }))
-    .mockResolvedValueOnce(() => Promise.reject({ ok: false })),
+  signIn: jest.fn(),
+}));
+
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  useRouter: jest.fn().mockReturnValue({ replace: jest.fn() }),
 }));
 
 describe('<LoginForm/>', () => {
-  it('should render', () => {
+  it('should render', async () => {
     render(<LoginForm />);
+
     const [inputEmail, inputPassword, checkbox] = screen.getAllByRole('textbox');
     const link = screen.getByRole('link');
     const button = screen.getByRole('button', { name: /fazer login/i });
@@ -80,6 +84,12 @@ describe('<LoginForm/>', () => {
   });
 
   it('should execute function on submit', async () => {
+    const mockReplace = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({
+      replace: mockReplace,
+    });
+    (signIn as jest.Mock).mockImplementation(() => Promise.resolve({ ok: true }));
+
     render(<LoginForm />);
     const [inputEmail, inputPassword] = screen.getAllByRole('textbox');
     const button = screen.getByRole('button', { name: /fazer login/i });
@@ -90,10 +100,21 @@ describe('<LoginForm/>', () => {
       fireEvent.click(button);
     });
 
-    expect(signIn).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(signIn).toHaveBeenCalled();
+      expect(signIn).toHaveBeenCalledWith('credentials', {
+        email: 'teste@teste.com',
+        password: 'Test@123',
+        remember: false,
+        redirect: false,
+      });
+
+      expect(mockReplace).toHaveBeenCalledWith('/dashboard');
+    });
   });
 
   it('should not execute function on submit with error', async () => {
+    (signIn as jest.Mock).mockImplementation(() => Promise.resolve({ ok: false }));
     render(<LoginForm />);
     const [inputEmail, inputPassword] = screen.getAllByRole('textbox');
     const button = screen.getByRole('button', { name: /fazer login/i });

@@ -1,5 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { useTaskMock } from '@mocks/useTaskContextMock';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Action from '.';
+
+jest.mock('@/hooks/useTask', () => ({
+  useTask: useTaskMock,
+}));
 
 const textParagraph = 'Jest test';
 const textButtonPrimary = 'Yes';
@@ -40,5 +45,24 @@ describe('Test Action', () => {
     expect(Danger).toBeInTheDocument();
     expect(Primary).not.toBeInTheDocument();
     expect(Danger).toHaveTextContent(textButtonDanger);
+  });
+
+  it('should call function on click button "Yes"', () => {
+    render(<Action textButtonPrimary={textButtonPrimary}>{textParagraph}</Action>);
+    const Primary = screen.getByRole('button', { name: textButtonPrimary });
+
+    fireEvent.click(Primary);
+
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith(null);
+    expect(useTaskMock().setFormIsOpen).toHaveBeenCalledWith(false);
+  });
+
+  it('should call function on click button "No"', () => {
+    render(<Action textButtonDanger={textButtonDanger}>{textParagraph}</Action>);
+    const danger = screen.getByRole('button', { name: textButtonDanger });
+
+    fireEvent.click(danger);
+
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith(null);
   });
 });

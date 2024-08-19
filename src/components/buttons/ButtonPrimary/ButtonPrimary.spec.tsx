@@ -4,10 +4,10 @@ import ButtonPrimary from '.';
 describe('ButtonPrimary Component', () => {
   it('should show the ButtonPrimary with the href', () => {
     render(<ButtonPrimary href="/home">ButtonPrimary</ButtonPrimary>);
-    const button = screen.getByRole('button');
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent('ButtonPrimary');
-    expect(button.closest('a')).toHaveAttribute('href', '/home');
+    const link = screen.getByRole('link');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/home');
+    expect(link).toHaveTextContent('ButtonPrimary');
   });
 
   it('should show the ButtonPrimary without href', () => {
@@ -15,6 +15,6 @@ describe('ButtonPrimary Component', () => {
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent('ButtonPrimary');
-    expect(button.closest('a')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 });
