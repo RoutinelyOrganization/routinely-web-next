@@ -69,6 +69,3 @@ jest.mock('@/components/calendar', () => ({
   default: () => <div data-testid="mock-calendario"></div>,
 }));
 
-jest.mock('@/hooks/useTask', () => ({
-  useTask: () => useTaskMock(),
-}));

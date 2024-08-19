@@ -1,34 +1,50 @@
 'use client';
 
+import { useTask } from '@/hooks/useTask';
 import { useEffect, useState } from 'react';
 import { type Task } from '../../types/task';
-import ContainerTask from '../containers/ContainerTask';
+import CardTask from './CardTask';
 import * as S from './styles';
 
-interface ITask {
+export interface ITask {
   tasks: Task[];
 }
 
-export default function Task({ tasks }: ITask) {
-  const [isTask, setIsTask] = useState<Task[]>([]);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function Task({ tasks: tasksReceived }: ITask) {
+  const { setTasks, tasks } = useTask();
+
+  const [currentTasks, setCurrentTasks] = useState<Task[]>([]);
   const [selected, setSelected] = useState('all tasks');
 
   useEffect(() => {
-    if (selected === 'all tasks') {
-      const tasksToDo = tasks.filter(task => task.checked === false);
-      setIsTask(tasksToDo);
-      return;
+    setTasks(tasksReceived);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setTasks, tasksReceived]);
+
+  useEffect(() => {
+    let newCurrentTasks: Task[] = [];
+    switch (selected) {
+      case 'all tasks':
+        newCurrentTasks = tasks && tasks.filter(task => !task.checked);
+        break;
+      case 'completed':
+        newCurrentTasks = tasks && tasks.filter(task => task.checked);
+        break;
+      default:
+        newCurrentTasks = tasks.filter(task => task.type === selected && !task.checked);
+        break;
     }
 
-    if (selected === 'completed') {
-      const completedTasks = tasks.filter(task => task.checked === true);
-      setIsTask(completedTasks);
-      return;
-    }
-
-    const tasksForCategory = tasks.filter(task => task.type === selected && task.checked === false);
-    setIsTask(tasksForCategory);
+    setCurrentTasks(newCurrentTasks);
   }, [selected, tasks]);
+
+  const handleTasks = (id: number) => {
+    const newTasks = tasks.map(task =>
+      task.id === id ? { ...task, checked: !task.checked } : task,
+    );
+    setTasks(newTasks);
+  };
 
   return (
     <S.Conteiner>
@@ -39,8 +55,14 @@ export default function Task({ tasks }: ITask) {
         <option value="completed">Concluidas</option>
       </S.Select>
       {tasks.length ? (
-        <ContainerTask tasks={isTask} />
+        <S.ContainerTask>
+          {currentTasks.length &&
+            currentTasks.map(task => (
+              <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />
+            ))}
+        </S.ContainerTask>
       ) : (
+        // <ContainerTask tasks={isTask} />
         <S.NoTask>Você ainda não tem atividades para hoje.</S.NoTask>
       )}
     </S.Conteiner>
