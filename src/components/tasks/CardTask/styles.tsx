@@ -101,7 +101,9 @@ export const ContainerBtnIcon = styled.div`
   padding: 8px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.span`
+  display: flex;
+  align-items: center;
   padding: 4px 8px;
   background-color: ${colors.darkBlue};
   border-radius: 8px;

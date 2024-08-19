@@ -8,7 +8,7 @@ import type { Task } from '@/types/task';
 import { useState } from 'react';
 import * as S from './styles';
 
-interface ICardTask {
+export interface ICardTask {
   task: Task;
   onChangeCheck: (id: number) => void;
 }
