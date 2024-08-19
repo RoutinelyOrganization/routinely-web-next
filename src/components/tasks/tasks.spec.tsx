@@ -73,7 +73,7 @@ describe('Task component', () => {
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'completed' } });
 
-    expect(screen.getByText('Concluidas')).toBeInTheDocument();
+    expect(screen.getByText('Concluídas')).toBeInTheDocument();
     expectedTasksCompleted.forEach(task => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
     });

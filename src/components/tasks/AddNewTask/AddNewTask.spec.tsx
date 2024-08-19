@@ -18,7 +18,7 @@ describe('AddNewTask Component', () => {
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
 
-    const iconAdd = button.querySelector('img[alt="Adicionar atividade"]');
+    const iconAdd = button.querySelector('img[alt="icone para adicionar nova tarefa ou hábito"]');
     expect(iconAdd).toBeInTheDocument();
 
     const options = screen.queryAllByRole('paragraph');
