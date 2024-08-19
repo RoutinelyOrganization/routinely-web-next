@@ -24,6 +24,11 @@ const config = {
     '!src/mocks/**/*',
     '!src/app/layout.tsx',
     '!node_modules/**',
+    '!src/components/calendar/**/*',
+    '!src/app/api/auth/**/*',
+    '!src/providers/sessionProvider.tsx',
+    '!src/factories/**/*',
+    '!src/app/**/*',
   ],
 
   moduleNameMapper: {

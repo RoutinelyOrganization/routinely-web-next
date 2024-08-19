@@ -1,3 +1,4 @@
+import ButtonBackPage from '@/components/buttons/ButtonBackPage';
 import Logo from '@/components/logos/Logo';
 import type { IMenuItem } from '../MenuHeader';
 import MenuHeader from '../MenuHeader';
@@ -12,7 +13,10 @@ export default function PrimaryHeader({ menuItems, hasUser = false }: IPrimaryHe
   return (
     <S.PrimaryHeader>
       <div className="container-main">
-        <Logo />
+        <S.ContainerLogoBackPage>
+          <ButtonBackPage />
+          <Logo />
+        </S.ContainerLogoBackPage>
         {hasUser && <MenuHeader menuItems={menuItems} />}
       </div>
     </S.PrimaryHeader>

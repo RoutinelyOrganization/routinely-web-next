@@ -17,3 +17,14 @@ export const PrimaryHeader = styled(Header)`
     }
   }
 `;
+
+export const ContainerLogoBackPage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+
+  ${media.desktop} {
+    width: 65%;
+  }
+`;

@@ -23,7 +23,11 @@ const menuItems: IMenuItem[] = [
 ];
 
 export const Template = (args: { menuItems: IMenuItem[] }) => {
-  return <MenuHeader {...args} />;
+  return (
+    <div style={{ marginLeft: '150px' }}>
+      <MenuHeader {...args} />
+    </div>
+  );
 };
 
 Template.args = {

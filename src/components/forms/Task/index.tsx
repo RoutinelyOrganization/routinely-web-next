@@ -4,6 +4,7 @@ import ButtonDanger from '@/components/buttons/ButtonDanger';
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import ButtonSecondary from '@/components/buttons/ButtonSecondary';
 import DateCalendar from '@/components/calendar';
+import PopUp from '@/components/popUp';
 import { useTask } from '@/hooks/useTask';
 import type { Task } from '@/types/task';
 import type { DaysOfWeek } from '@/types/weekDays';
@@ -15,7 +16,7 @@ import infoIcon from '@public/icons/informacao.svg';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import CategorySelect from '../fields/CategorySelect';
@@ -27,14 +28,36 @@ import * as S from './styles';
 type IFormData = Partial<Task>;
 
 export default function TaskForm() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      window.innerWidth <= 500 ? setIsMobile(true) : setIsMobile(false);
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  return (
+    <>
+      {!isMobile ? (
+        <PopUp>
+          <Form />
+        </PopUp>
+      ) : (
+        <Form />
+      )}
+    </>
+  );
+}
+
+function Form() {
   const { selectedTask, setFormIsOpen, selectedTypeTask, setActionForm } = useTask();
   const [isWeekFrequencyOpen, setIWeekFrequencyOpen] = useState(false);
   const [weekDays, setWeekDays] = useState<DaysOfWeek[]>([]);
   const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
   const buttonSubmitRef = useRef<string>('');
-  // const { formTypeTask, setFormTaskOpen, formTypeAndDescTask, tempTask } = useContext(TasksContext);
-  // const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   const {
     register,
