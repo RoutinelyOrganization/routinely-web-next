@@ -6,7 +6,7 @@ import welcomePageImage from '@public/imagens/welcomePageImage.svg';
 import Image from 'next/image';
 import * as S from './styles';
 
-export default function WelcomePage() {
+export default function ContainerWelcome() {
   return (
     <>
       <Header header="secondary" hrefBackPage="/" />
