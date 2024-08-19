@@ -19,7 +19,6 @@ export const Container = styled.div`
 
   > img {
     width: 40px;
-    height: 48px;
     padding: 8px;
     &:hover {
       cursor: pointer;
@@ -30,7 +29,6 @@ export const Container = styled.div`
     max-width: 200px;
     > img {
       width: 36px;
-      height: 36px;
       padding: 5px;
     }
   }

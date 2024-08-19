@@ -6,6 +6,10 @@ import { useTaskMock } from '@mocks/useTaskContextMock';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import TaskForm from '.';
 
+jest.mock('@/hooks/useTask', () => ({
+  useTask: useTaskMock,
+}));
+
 beforeEach(() => {
   useTaskMock.mockClear();
 });
@@ -223,6 +227,7 @@ describe('<TaskForm/>', () => {
       setActionForm: jest.fn(),
       selectedTask: tasks[0],
     });
+
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });
