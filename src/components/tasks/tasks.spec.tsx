@@ -54,7 +54,7 @@ describe('Task component', () => {
     render(<TaskWithProvider />);
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'task' } });
-
+    
     expect(screen.getByText('Tarefas')).toBeInTheDocument();
     expectedTasksTask.forEach(task => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
@@ -69,7 +69,7 @@ describe('Task component', () => {
     });
   });
 
-  it('should filter and display only incomplete tasks when "Concluidas" is selected', () => {
+  it('should render completed tasks when "Concluidas" is selected', () => {
     render(<TaskWithProvider />);
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'completed' } });
@@ -111,5 +111,6 @@ describe('Task component', () => {
     expectedTasksCompleted.forEach(task => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
     });
+
   });
 });

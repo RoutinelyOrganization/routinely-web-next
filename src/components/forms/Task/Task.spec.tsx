@@ -26,7 +26,7 @@ describe('<TaskForm/>', () => {
     const iconClose = screen.getByRole('img', { name: 'fechar formulario' });
     const inputs = screen.getAllByRole('textbox');
     const select = screen.getByRole('combobox');
-    const paragraphOpenOptinalFields = screen.getByText('Frequencia semanal');
+    const paragraphOpenOptinalFields = screen.getByText('Frequência semanal');
     const iconeOpenOptinalFields = screen.getByRole('img', {
       name: 'Abrir campos de frequencia semanal',
     });

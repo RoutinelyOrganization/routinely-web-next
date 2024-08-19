@@ -52,7 +52,7 @@ export default function Task({ tasks: tasksReceived }: ITask) {
         <option value="all tasks">Todas as atividades</option>
         <option value="habit">Hábitos</option>
         <option value="task">Tarefas</option>
-        <option value="completed">Concluidas</option>
+        <option value="completed">Concluídas</option>
       </S.Select>
       {tasks.length ? (
         <S.ContainerTask>
