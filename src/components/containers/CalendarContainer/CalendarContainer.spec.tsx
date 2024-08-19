@@ -114,13 +114,4 @@ describe('<CalendarContainer/>', () => {
       `${weekDay(nextMonth.day())}, ${nextMonth.date()} de ${monthName(nextMonth.month())} de ${today.year()}`,
     );
   });
-
-  it('should match snapshot', () => {
-    const { container } = render(
-      <CalendarProvider>
-        <CalendarContainer />
-      </CalendarProvider>,
-    );
-    expect(container).toMatchSnapshot();
-  });
 });

@@ -154,8 +154,7 @@ describe('<DashboardContainer/>', () => {
     });
   });
 
-  // esse teste passará quando for feito o merge com a implementação da branch feat/create-tests-stories-to-containerTask
-  it.skip('should change display when task is checked', () => {
+  it('should change display when task is checked', () => {
     render(<DashboardContainerMock />);
 
     const [checkbox] = screen.getAllByTestId('checkbox');

@@ -10,7 +10,6 @@ export interface ITask {
   tasks: Task[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Task({ tasks: tasksReceived }: ITask) {
   const { setTasks, tasks } = useTask();
 
@@ -20,7 +19,7 @@ export default function Task({ tasks: tasksReceived }: ITask) {
   useEffect(() => {
     setTasks(tasksReceived);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setTasks, tasksReceived]);
+  }, []);
 
   useEffect(() => {
     let newCurrentTasks: Task[] = [];

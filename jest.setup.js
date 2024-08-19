@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import { useTaskMock } from './mocks/useTaskContextMock';
 
 export const useRouter = jest.fn();
 
@@ -69,4 +68,3 @@ jest.mock('@/components/calendar', () => ({
 
   default: () => <div data-testid="mock-calendario"></div>,
 }));
-
