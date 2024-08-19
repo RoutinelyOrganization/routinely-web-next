@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CalendarContainer/> should match snapshot 1`] = `
+.c2 {
+  max-width: 140px;
+  width: 100%;
+  background-color: #ebeaed;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 4px;
+}
+
+.c2 >span {
+  width: 2px;
+  height: 16px;
+  background-color: #d8d6dc;
+}
+
+.c2 >img {
+  width: 40px;
+  padding: 8px;
+}
+
+.c2 >img:hover {
+  cursor: pointer;
+}
+
+.c0 {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c0 >h1 {
+  font-size: 2.5rem;
+}
+
+.c1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 20%;
+  width: 100%;
+  justify-content: space-around;
+  gap: 8px;
+}
+
+.c1 >img {
+  display: inline-block;
+  background-color: #ebeaed;
+  border-radius: 2px;
+  width: 50px;
+}
+
+.c1 >img:hover {
+  cursor: pointer;
+}
+
+.c3 {
+  position: absolute;
+  top: 100%;
+  left: -30%;
+  z-index: 10;
+  display: none;
+}
+
+.c4 {
+  display: none;
+  width: 100%;
+}
+
+@media (max-width: 904px) {
+  .c2 {
+    max-width: 200px;
+  }
+
+  .c2 >img {
+    width: 36px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 680px) {
+  .c2 {
+    max-width: 200px;
+  }
+
+  .c2 >img {
+    width: 36px;
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width:890px) {
+  .c0 >h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 680px) {
+  .c0 >h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .c0 {
+    display: none;
+  }
+}
+
+@media (max-width: 904px) {
+  .c1 {
+    position: absolute;
+    flex-direction: column;
+    right: 0;
+    top: 0;
+  }
+
+  .c1 >img {
+    margin-bottom: 27px;
+  }
+}
+
+@media (max-width: 680px) {
+  .c1 >img {
+    width: 40px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 904px) {
+  .c3 {
+    left: -145px;
+    top: 40%;
+  }
+}
+
+@media (max-width: 680px) {
+  .c3 {
+    left: -180px;
+  }
+}
+
+@media (max-width: 500px) {
+  .c4 {
+    display: block;
+  }
+}
+
+<div>
+  <section
+    class="c0"
+  >
+    <h1>
+      Quarta-feira
+      , 
+      14
+       de 
+      Agosto
+       de 
+      2024
+    </h1>
+    <div
+      class="c1"
+    >
+      <img
+        alt="Calendário"
+        src="[object Object]"
+      />
+      <div
+        class="c2"
+      >
+        <img
+          alt="Icone para voltar"
+          src="[object Object]"
+        />
+        <span />
+        <img
+          alt="Icone para avançar"
+          src="[object Object]"
+        />
+      </div>
+      <div
+        class="c3"
+      >
+        <div
+          data-testid="mock-calendario"
+        />
+      </div>
+    </div>
+  </section>
+  <div
+    class="c4"
+  >
+    <div
+      data-testid="mock-calendario"
+    />
+  </div>
+</div>
+`;

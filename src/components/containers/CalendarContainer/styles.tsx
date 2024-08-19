@@ -5,7 +5,7 @@ import { colors, fonts } from '@/styles/variables';
 import styled from 'styled-components';
 
 interface IChangeDisplayCalendar {
-  openCalendar: boolean;
+  $openCalendar: boolean;
 }
 
 export const Container = styled.section`
@@ -81,7 +81,7 @@ export const ContainerCalendar = styled.div<IChangeDisplayCalendar>`
   top: 100%;
   left: -30%;
   z-index: 10;
-  display: ${props => (props.openCalendar ? 'block' : 'none')};
+  display: ${({ $openCalendar }) => ($openCalendar ? 'block' : 'none')};
 
   ${media.desktop} {
     left: -145px;

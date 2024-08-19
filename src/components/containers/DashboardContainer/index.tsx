@@ -5,7 +5,7 @@ import CalendarContainer from '@/components/containers/CalendarContainer';
 import TaskForm from '@/components/forms/Task';
 import Header from '@/components/headers';
 import PopUp from '@/components/popUp';
-import ConfirmAction from '@/components/popUp/ConfirmAction';
+import ConfirmAction from '@/components/popUp/Action';
 import Task from '@/components/tasks';
 import AddNewTask from '@/components/tasks/AddNewTask';
 import { useTask } from '@/hooks/useTask';
@@ -20,7 +20,6 @@ export interface IDashboardContainer {
 }
 export default function DashboardContainer({ tasks }: IDashboardContainer) {
   const { formIsOpen, selectedActionForm } = useTask();
-
   return (
     <>
       {formIsOpen && (

@@ -6,6 +6,10 @@ import { useTaskMock } from '@mocks/useTaskContextMock';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import TaskForm from '.';
 
+jest.mock('@/hooks/useTask', () => ({
+  useTask: useTaskMock,
+}));
+
 beforeEach(() => {
   useTaskMock.mockClear();
 });
@@ -22,7 +26,7 @@ describe('<TaskForm/>', () => {
     const iconClose = screen.getByRole('img', { name: 'fechar formulario' });
     const inputs = screen.getAllByRole('textbox');
     const select = screen.getByRole('combobox');
-    const paragraphOpenOptinalFields = screen.getByText('Frequencia semanal');
+    const paragraphOpenOptinalFields = screen.getByText('Frequência semanal');
     const iconeOpenOptinalFields = screen.getByRole('img', {
       name: 'Abrir campos de frequencia semanal',
     });
@@ -223,6 +227,7 @@ describe('<TaskForm/>', () => {
       setActionForm: jest.fn(),
       selectedTask: tasks[0],
     });
+
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });

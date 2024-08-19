@@ -21,10 +21,10 @@ export default function AddNewTask() {
   return (
     <S.ContainerNewTask>
       <S.ButtonAddTask onClick={() => setIsOpenTypeTask(!isOpenTypeTask)}>
-        <Image src={addIcon} alt="close icon" />
+        <Image src={addIcon} alt="icone para adicionar nova tarefa ou hábito" />
       </S.ButtonAddTask>
       {isOpenTypeTask && (
-        <S.ContainerTypeTask>
+        <S.ContainerTypeTask data-testid="container-type-task">
           {typeTaskOptions.map(option => (
             <S.Option key={option.type} onClick={() => handleTypeTask(option.type)}>
               {option.name}
