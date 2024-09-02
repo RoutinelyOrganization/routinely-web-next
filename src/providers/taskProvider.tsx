@@ -1,7 +1,9 @@
 'use client';
 
 import { typeTaskOptions } from '@/constants/typeTask';
+import type { ExecuteServiceType } from '@/contexts/TaskContext';
 import { TaskContext } from '@/contexts/TaskContext';
+import { makeCreateTask } from '@/factories/services/makeCreateTask';
 import type { Task } from '@/types/task';
 import type { TypeTask } from '@/types/typeTasks';
 import { useEffect, useState } from 'react';
@@ -17,33 +19,34 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
   const [selectedTypeTaskCtx, setSelectedTypeTask] = useState<TypeTask['type'] | null>(null);
   const [selectedTypeTask, setSelectedTypeTaskCtx] = useState<TypeTask | null>(null);
   const [selectedActionForm, setActionForm] = useState<'create' | 'update' | 'delete' | null>(null);
-  const [executeServiceTask, setExecuteServiceTask] = useState<() => Promise<void>>(() =>
-    Promise.resolve(),
-  );
+  const [executeServiceTask, setExecuteServiceTask] = useState<ExecuteServiceType>({
+    execute: async () => {},
+  });
 
   useEffect(() => {
     switch (selectedActionForm) {
       case 'create':
-        setExecuteServiceTask(() => {
-          return () => {
-            return Promise.resolve();
-          };
+        setExecuteServiceTask({
+          execute: async () => {
+            await makeCreateTask(selectedTask!);
+            setSelectedTask(null);
+          },
         });
         break;
-      case 'update':
-        setExecuteServiceTask(() => {
-          return () => {
-            return Promise.resolve();
-          };
-        });
-        break;
-      case 'delete':
-        setExecuteServiceTask(() => {
-          return () => {
-            return Promise.resolve();
-          };
-        });
-        break;
+      //   case 'update':
+      //     setExecuteServiceTask(() => {
+      //       return () => {
+      //         return Promise.resolve();
+      //       };
+      //     });
+      //     break;
+      //   case 'delete':
+      //     setExecuteServiceTask(() => {
+      //       return () => {
+      //         return Promise.resolve();
+      //       };
+      //     });
+      //     break;
     }
   }, [selectedActionForm]);
 

@@ -18,7 +18,7 @@ export default function ConfirmAction({ children, textButtonDanger, textButtonPr
   const handleOptions = async (operation: 'yes' | 'not') => {
     switch (operation) {
       case 'yes':
-        executeServiceTask && (await executeServiceTask());
+        executeServiceTask && (await executeServiceTask.execute());
         setActionForm(null);
         setFormIsOpen(false);
         break;

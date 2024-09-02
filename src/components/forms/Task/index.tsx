@@ -53,7 +53,8 @@ export default function TaskForm() {
 }
 
 function Form() {
-  const { selectedTask, setFormIsOpen, selectedTypeTask, setActionForm } = useTask();
+  const { selectedTask, setFormIsOpen, selectedTypeTask, setActionForm, setSelectedTask } =
+    useTask();
   const [isWeekFrequencyOpen, setIWeekFrequencyOpen] = useState(false);
   const [weekDays, setWeekDays] = useState<DaysOfWeek[]>([]);
   const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
@@ -82,6 +83,8 @@ function Form() {
 
     data.weekDays = weekDays;
     data.finallyDate = finallyDate ? new Date(finallyDate.format('YYYY-MM-DD')) : undefined;
+
+    setSelectedTask(data as Task);
 
     switch (buttonSubmitRef.current) {
       case 'saveTask':

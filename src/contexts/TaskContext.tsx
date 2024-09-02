@@ -4,6 +4,10 @@ import type { Task } from '@/types/task';
 import type { TypeTask } from '@/types/typeTasks';
 import { createContext } from 'react';
 
+export type ExecuteServiceType = {
+  execute: () => Promise<any>;
+};
+
 export interface ITaskContext {
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
@@ -15,7 +19,7 @@ export interface ITaskContext {
   setSelectedTypeTask: React.Dispatch<React.SetStateAction<TypeTask['type'] | null>>;
   selectedActionForm: 'create' | 'update' | 'delete' | null;
   setActionForm: React.Dispatch<React.SetStateAction<'create' | 'update' | 'delete' | null>>;
-  executeServiceTask: () => Promise<void>;
+  executeServiceTask: ExecuteServiceType;
 }
 
 export const TaskContext = createContext<ITaskContext>({} as ITaskContext);
