@@ -22,18 +22,19 @@ const nextAuthOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        try {
-          const { body } = await makeLogin({
-            email: credentials!.email,
-            password: credentials!.password,
-            remember: Boolean(credentials!.remember),
-          });
-          const user: User = { ...body };
+        const { status, body } = await makeLogin({
+          email: credentials!.email,
+          password: credentials!.password,
+          remember: Boolean(credentials!.remember),
+        });
 
-          return user;
-        } catch (error) {
+        if (status !== 200) {
           return null;
         }
+
+        const user: User = { ...body };
+
+        return user;
       },
     }),
   ],

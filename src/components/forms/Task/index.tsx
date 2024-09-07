@@ -6,6 +6,7 @@ import ButtonSecondary from '@/components/buttons/ButtonSecondary';
 import DateCalendar from '@/components/calendar';
 import PopUp from '@/components/popUp';
 import { useTask } from '@/hooks/useTask';
+import { Categories } from '@/types/categories';
 import type { Task } from '@/types/task';
 import type { DaysOfWeek } from '@/types/weekDays';
 import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
@@ -25,7 +26,7 @@ import Input from '../fields/Input';
 import WeekDaysCheckBox from '../fields/WeekDaysCheckBox';
 import * as S from './styles';
 
-type IFormData = Partial<Task>;
+type IFormData = Partial<Task> & { hour: string };
 
 export default function TaskForm() {
   const [isMobile, setIsMobile] = useState(false);
@@ -53,8 +54,14 @@ export default function TaskForm() {
 }
 
 function Form() {
-  const { selectedTask, setFormIsOpen, selectedTypeTask, setActionForm, setSelectedTask } =
-    useTask();
+  const {
+    selectedTask,
+    setFormIsOpen,
+    selectedTypeTask,
+    setActionForm,
+    setSelectedTask,
+    selectedActionForm,
+  } = useTask();
   const [isWeekFrequencyOpen, setIWeekFrequencyOpen] = useState(false);
   const [weekDays, setWeekDays] = useState<DaysOfWeek[]>([]);
   const [finallyDate, setFinallyDate] = useState<Dayjs | null>(null);
@@ -68,8 +75,9 @@ function Form() {
   } = useForm<IFormData>({
     defaultValues: {
       ...selectedTask,
-      date: dateFormat(selectedTask?.date as Date) as unknown as Date,
-      hour: TimeFormat(selectedTask?.date as Date),
+      date: dateFormat(selectedTask?.date!),
+      hour: TimeFormat(selectedTask?.date!),
+      category: Categories[selectedTask?.category as unknown as keyof typeof Categories],
     },
     mode: 'onChange',
   });
@@ -82,28 +90,41 @@ function Form() {
     }
 
     data.weekDays = weekDays;
-    data.finallyDate = finallyDate ? new Date(finallyDate.format('YYYY-MM-DD')) : undefined;
+    data.finallyDate = finallyDate ? finallyDate.format('YYYY-MM-DD HH:mm') : undefined;
 
-    setSelectedTask(data as Task);
+    const formattedTask = {
+      ...data,
+      date: `${data.date} ${data.hour}`,
+      category: Object.keys(Categories).find(
+        key => Categories[key as keyof typeof Categories] === data.category,
+      ),
+      type: selectedTypeTask?.type,
+    } as Task;
 
     switch (buttonSubmitRef.current) {
       case 'saveTask':
-        selectedTask ? setActionForm('update') : setActionForm('create');
+        selectedTask
+          ? setActionForm({ action: 'update', openConfirm: true })
+          : setActionForm({ action: 'create', openConfirm: true });
         break;
       case 'duplicateTask':
-        setActionForm('create');
+        setActionForm({ action: 'create', openConfirm: true });
         break;
       case 'deleteTask':
-        setActionForm('delete');
+        setActionForm({ action: 'delete', openConfirm: true });
         break;
     }
+    setSelectedTask(formattedTask);
   };
 
   return (
     <S.Form onSubmit={handleSubmit(handleSubmitFormTask)} role="form">
       <S.ContainerTitle>
         <S.Title>
-          {selectedTask ? 'Editar' : 'Adicionar'} {selectedTypeTask?.name}
+          {selectedActionForm.action === 'create' || !selectedActionForm.action
+            ? 'Adicionar'
+            : 'Editar'}{' '}
+          {selectedTypeTask?.name}
           <span>
             <Image src={infoIcon} alt="icone de exclamação" />
             <S.Description>{selectedTypeTask?.description}</S.Description>
@@ -112,7 +133,9 @@ function Form() {
         <S.ImageNext
           src={closeFormIcon}
           alt="fechar formulario"
-          onClick={() => setFormIsOpen(false)}
+          onClick={() => {
+            setFormIsOpen(false), setSelectedTask(null);
+          }}
         />
       </S.ContainerTitle>
 
@@ -213,14 +236,15 @@ function Form() {
             <DateCalendar
               version="compact"
               setReturnDateValue={setFinallyDate}
-              initialDate={dayjs(dateFormat(selectedTask?.finallyDate as Date))}
+              initialDate={dayjs(dateFormat(selectedTask?.finallyDate as string))}
             />
           </S.ContainerCalendar>
         </>
       )}
 
       <S.ContainerButtons>
-        {selectedTask && (
+        {(selectedActionForm.action !== 'create' ||
+          buttonSubmitRef.current === 'duplicateTask') && (
           <>
             <ButtonDanger
               name="deleteTask"

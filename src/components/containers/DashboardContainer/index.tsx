@@ -19,7 +19,7 @@ export default function DashboardContainer({ tasks }: IDashboardContainer) {
   return (
     <ContainerHeaderFooterMobileResponsive>
       {formIsOpen && <TaskForm />}
-      {selectedActionForm && (
+      {selectedActionForm.openConfirm && (
         <ConfirmAction textButtonPrimary="Sim" textButtonDanger="Não">
           Tem certeza que deseja salvar?
         </ConfirmAction>

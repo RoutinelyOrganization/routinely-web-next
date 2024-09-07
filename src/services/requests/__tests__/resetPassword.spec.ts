@@ -27,6 +27,7 @@ describe('Reset Password', () => {
     const mockResponse: HttpResponse = {
       status: 200,
       body: { token: 'fake-token' },
+      ok: true,
     };
     const response = await resetPassword(httpClient, email);
 
@@ -37,6 +38,7 @@ describe('Reset Password', () => {
     const mockResponse: HttpResponse = {
       status: 500,
       body: ['Credenciais inválidas'],
+      ok: false,
     };
     const response = await resetPassword(httpClient, email);
 
@@ -50,7 +52,9 @@ describe('Reset Password', () => {
   });
 
   it('Shoul call httpClient with correct params', async () => {
-    jest.spyOn(httpClient, 'request').mockImplementation(() => Promise.resolve({ status: 200 }));
+    jest
+      .spyOn(httpClient, 'request')
+      .mockImplementation(() => Promise.resolve({ status: 200, ok: true }));
     await resetPassword(httpClient, email);
     expect(httpClient.request).toHaveBeenCalledWith('/auth/resetpassword', {
       method: 'POST',
