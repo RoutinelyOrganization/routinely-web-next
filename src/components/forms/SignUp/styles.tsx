@@ -3,13 +3,14 @@
 import media from '@/styles/mediaQueries';
 import { colors, fonts } from '@/styles/variables';
 import styled from 'styled-components';
+import { Div as Input } from '../fields/Input/styles';
 
 export const Form = styled.form`
   display: flex;
   width: 100%;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  gap: 10px;
 `;
 
 export const ShowPasswordSpand = styled.span`
@@ -44,17 +45,28 @@ export const TermsOfUseContainer = styled.div`
 `;
 
 export const ContainerPasswords = styled.div`
+  max-width: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 10px;
 
   ${media.desktop} {
     flex-direction: row;
+    gap: 6%;
+
+    & ${Input} {
+      width: 47%;
+    }
   }
 
   ${media.mobile} {
     flex-direction: column;
+    gap: 10px;
+
+    & ${Input} {
+      width: 100%;
+    }
   }
 `;
 

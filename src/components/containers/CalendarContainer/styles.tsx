@@ -50,7 +50,7 @@ export const ContainerIcons = styled.div`
   > img {
     display: inline-block;
     background-color: ${colors.lightgray};
-    border-radius: 2px;
+    border-radius: 8px;
     width: 50px;
     &:hover {
       cursor: pointer;

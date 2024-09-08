@@ -1,4 +1,5 @@
 import ForgotPasswordForm from '@/components/forms/ForgotPassword';
+import { GlobalStyles } from '@/styles/globalStyles';
 import forgotPasswordImage from '@public/imagens/forgotPasswordImage.svg';
 import { SessionProvider } from 'next-auth/react';
 import type { IPasswordsPagesContainer } from '.';
@@ -23,6 +24,7 @@ export default {
 export const Template = (args: IPasswordsPagesContainer) => {
   return (
     <SessionProvider>
+      <GlobalStyles />
       <PasswordPagesContainer {...args} />
     </SessionProvider>
   );

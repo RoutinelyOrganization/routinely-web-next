@@ -1,3 +1,4 @@
+import { GlobalStyles } from '@/styles/globalStyles';
 import ContainerHomePage from '.';
 
 export default {
@@ -9,8 +10,9 @@ export default {
 
 export const Template = () => {
   return (
-    <div>
+    <>
+      <GlobalStyles />
       <ContainerHomePage />
-    </div>
+    </>
   );
 };

@@ -9,29 +9,34 @@ import { useState } from 'react';
 import * as S from './styles';
 
 export default function AddNewTask() {
-  const { setFormIsOpen, setSelectedTypeTask } = useTask();
   const [isOpenTypeTask, setIsOpenTypeTask] = useState<boolean>(false);
-
-  const handleTypeTask = (type: TypeTask['type']) => {
-    setFormIsOpen(true);
-    setSelectedTypeTask(type);
-    setIsOpenTypeTask(false);
-  };
 
   return (
     <S.ContainerNewTask>
       <S.ButtonAddTask onClick={() => setIsOpenTypeTask(!isOpenTypeTask)}>
         <Image src={addIcon} alt="icone para adicionar nova tarefa ou hábito" />
       </S.ButtonAddTask>
-      {isOpenTypeTask && (
-        <S.ContainerTypeTask data-testid="container-type-task">
-          {typeTaskOptions.map(option => (
-            <S.Option key={option.type} onClick={() => handleTypeTask(option.type)}>
-              {option.name}
-            </S.Option>
-          ))}
-        </S.ContainerTypeTask>
-      )}
+      {isOpenTypeTask && <TypeTask onClick={() => setIsOpenTypeTask(false)} />}
     </S.ContainerNewTask>
+  );
+}
+
+export function TypeTask({ onClick }: { onClick: (value: any) => void }) {
+  const { setFormIsOpen, setSelectedTypeTask } = useTask();
+
+  const handleTypeTask = (type: TypeTask['type']) => {
+    setFormIsOpen(true);
+    setSelectedTypeTask(type);
+    onClick(false);
+  };
+
+  return (
+    <S.ContainerTypeTask data-testid="container-type-task">
+      {typeTaskOptions.map(option => (
+        <S.Option key={option.type} onClick={() => handleTypeTask(option.type)}>
+          {option.name}
+        </S.Option>
+      ))}
+    </S.ContainerTypeTask>
   );
 }

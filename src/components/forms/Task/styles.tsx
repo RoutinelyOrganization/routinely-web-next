@@ -9,19 +9,10 @@ import { ErrorMessage } from '../fields/ErrorMessage/styles';
 import { Div as InputContainer } from '../fields/Input/styles';
 
 export const ResponsiveContainer = styled.div`
-  > form {
-    display: none;
-  }
-
-  ${media.mobile} {
-    > form {
-      display: flex;
-      z-index: 10;
-    }
-
-    > div {
-      display: none;
-    }
+  .center-form {
+    padding: 24px;
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -51,10 +42,10 @@ export const Description = styled.span`
   padding: 8px;
   border-radius: 8px;
   position: absolute;
-  top: 44px;
+  top: 26px;
   left: 0;
   z-index: 5;
-  width: 96%;
+  width: 100%;
   display: none;
   color: ${colors.black};
   font-weight: normal;

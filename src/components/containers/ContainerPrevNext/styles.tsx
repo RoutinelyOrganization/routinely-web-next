@@ -3,13 +3,14 @@ import { colors } from '@/styles/variables';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 140px;
+  max-width: 167px;
+  height: 48px;
   width: 100%;
   background-color: ${colors.lightgray};
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-radius: 4px;
+  border-radius: 8px;
 
   > span {
     width: 2px;
@@ -18,8 +19,8 @@ export const Container = styled.div`
   }
 
   > img {
-    width: 40px;
-    padding: 8px;
+    width: 40%;
+
     &:hover {
       cursor: pointer;
     }
@@ -27,17 +28,5 @@ export const Container = styled.div`
 
   ${media.desktop} {
     max-width: 200px;
-    > img {
-      width: 36px;
-      padding: 5px;
-    }
-  }
-
-  ${media.tablet} {
-    max-width: 200px;
-    > img {
-      width: 36px;
-      padding: 5px;
-    }
   }
 `;

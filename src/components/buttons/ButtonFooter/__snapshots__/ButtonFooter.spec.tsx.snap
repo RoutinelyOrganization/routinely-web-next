@@ -31,11 +31,6 @@ exports[`ButtonFooter Component should render according to the snapshot 1`] = `
     class="c0"
     data-testid="button-footer"
     role="button"
-  >
-    <img
-      alt="Botão de inicio"
-      src="[object Object]"
-    />
-  </button>
+  />
 </div>
 `;

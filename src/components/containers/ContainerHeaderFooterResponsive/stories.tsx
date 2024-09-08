@@ -1,8 +1,7 @@
 import { TaskProvider } from '@/providers/taskProvider';
-import { tasks } from '@mocks/taskMock';
+import { GlobalStyles } from '@/styles/globalStyles';
 import { SessionProvider } from 'next-auth/react';
 import ContainerHeaderFooterMobile from '.';
-import DashboardContainer from '../DashboardContainer';
 
 export default {
   title: 'containers/ContainerHeaderFooterMobile',
@@ -14,11 +13,11 @@ export default {
 export const TemplateWithSession = () => {
   return (
     <SessionProvider session={{ user: { token: 'token', refreshToken: '' }, expires: '' }}>
-      <ContainerHeaderFooterMobile>
-        <TaskProvider>
-          <DashboardContainer tasks={tasks} />
-        </TaskProvider>
-      </ContainerHeaderFooterMobile>
+      <TaskProvider>
+        <ContainerHeaderFooterMobile>
+          <h1>Storybook</h1>
+        </ContainerHeaderFooterMobile>
+      </TaskProvider>
     </SessionProvider>
   );
 };
@@ -26,11 +25,12 @@ export const TemplateWithSession = () => {
 export const TemplateWithoutSession = () => {
   return (
     <SessionProvider>
-      <ContainerHeaderFooterMobile>
-        <TaskProvider>
-          <DashboardContainer tasks={tasks} />
-        </TaskProvider>
-      </ContainerHeaderFooterMobile>
+      <TaskProvider>
+        <GlobalStyles />
+        <ContainerHeaderFooterMobile>
+          <h1>Storybook</h1>
+        </ContainerHeaderFooterMobile>
+      </TaskProvider>
     </SessionProvider>
   );
 };

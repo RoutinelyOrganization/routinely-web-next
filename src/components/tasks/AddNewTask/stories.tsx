@@ -1,3 +1,4 @@
+import { GlobalStyles } from '@/styles/globalStyles';
 import AddNewTask from '.';
 
 export default {
@@ -9,7 +10,8 @@ export default {
 
 export const Template = () => {
   return (
-    <div style={{ marginLeft: '100px' }}>
+    <div>
+      <GlobalStyles />
       <AddNewTask />
     </div>
   );
