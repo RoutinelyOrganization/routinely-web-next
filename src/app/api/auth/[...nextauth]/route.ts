@@ -22,13 +22,23 @@ const nextAuthOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
+        const remember: boolean = credentials!.remember === 'true' ? true : false;
+
         try {
           const { body } = await makeLogin({
             email: credentials!.email,
             password: credentials!.password,
-            remember: Boolean(credentials!.remember),
+            remember,
           });
-          const user: User = { ...body };
+
+          const formattedUser = {
+            token: body.token,
+            refreshToken: body.refreshToken,
+            expires: body.expiresIn,
+            remember,
+          };
+
+          const user: User = { ...formattedUser } as any;
 
           return user;
         } catch (error) {
@@ -41,14 +51,29 @@ const nextAuthOptions: NextAuthOptions = {
     signIn: '/login',
   },
   callbacks: {
-    async jwt({ token, user }) {
-      user && (token.user = user);
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === 'update') {
+        return {
+          ...token,
+          user: session.user,
+        };
+      }
+
+      if (user) {
+        token = {
+          user,
+        };
+      }
+
       return token;
     },
     async session({ session, token }) {
       session.user = token.user as any;
       return session;
     },
+  },
+  session: {
+    updateAge: 60,
   },
 };
 
