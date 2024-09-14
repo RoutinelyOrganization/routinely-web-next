@@ -2,14 +2,13 @@ import type { Categories } from './categories';
 import type { TypeTask } from './typeTasks';
 import type { WeekDays } from './weekDays';
 
-export interface Task extends TypeTask, WeekDays {
-  id: number;
+export interface Task extends Pick<TypeTask, 'type'>, WeekDays {
+  id: string;
   name: string;
-  date: Date;
-  hour: string;
+  date: string;
   category: Categories;
   description: string;
   quantityPerWeek: number;
-  finallyDate: Date;
+  finallyDate: string;
   checked: boolean;
 }

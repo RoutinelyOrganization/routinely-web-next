@@ -27,6 +27,7 @@ describe('Authorization', () => {
   it('Should return correct response', async () => {
     const mockResponse: HttpResponse = {
       status: 200,
+      ok: true,
       body: { token: 'fake-token' },
     };
 
@@ -38,6 +39,7 @@ describe('Authorization', () => {
   it('Should return with errors', async () => {
     const mockResponse: HttpResponse = {
       status: 500,
+      ok: false,
       body: ['Credenciais inválidas'],
     };
 
@@ -53,7 +55,11 @@ describe('Authorization', () => {
   });
 
   it('Shoul call httpClient with correct params', async () => {
-    jest.spyOn(httpClient, 'request').mockImplementation(() => Promise.resolve({ status: 200 }));
+    jest
+      .spyOn(httpClient, 'request')
+      .mockImplementation(() =>
+        Promise.resolve({ status: 200, body: { token: 'fake-token' }, ok: true }),
+      );
     await authorization(httpClient, token, refreshToken);
     expect(httpClient.request).toHaveBeenCalledWith('/auth/refresh', {
       method: 'POST',

@@ -4,13 +4,12 @@ import type { Task } from '@/types/task';
 
 export const updateTask = async (
   httpClient: HttpClient,
-  id: number,
   body: Partial<Task>,
   token: string,
 ): Promise<HttpResponse> => {
   try {
-    const response = await httpClient.request(`/tasks/${id}`, {
-      method: 'PUT',
+    const response = await httpClient.request(`/tasks`, {
+      method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,
       },

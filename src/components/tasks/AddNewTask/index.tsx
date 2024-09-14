@@ -9,7 +9,7 @@ import { useState } from 'react';
 import * as S from './styles';
 
 export default function AddNewTask() {
-  const { setFormIsOpen, setSelectedTypeTask } = useTask();
+  const { setFormIsOpen, setSelectedTypeTask, setActionForm } = useTask();
   const [isOpenTypeTask, setIsOpenTypeTask] = useState<boolean>(false);
 
   const handleTypeTask = (type: TypeTask['type']) => {
@@ -18,9 +18,14 @@ export default function AddNewTask() {
     setIsOpenTypeTask(false);
   };
 
+  const handleOpenTypeTask = () => {
+    setIsOpenTypeTask(!isOpenTypeTask);
+    setActionForm({ action: 'create', openConfirm: false });
+  };
+
   return (
     <S.ContainerNewTask>
-      <S.ButtonAddTask onClick={() => setIsOpenTypeTask(!isOpenTypeTask)}>
+      <S.ButtonAddTask onClick={handleOpenTypeTask}>
         <Image src={addIcon} alt="icone para adicionar nova tarefa ou hábito" />
       </S.ButtonAddTask>
       {isOpenTypeTask && (

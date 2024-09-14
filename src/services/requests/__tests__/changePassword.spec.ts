@@ -34,6 +34,7 @@ describe('Change Password', () => {
     const mockResponse: HttpResponse = {
       status: 200,
       body: { token: 'fake-token' },
+      ok: true,
     };
 
     const response = await changePassword(httpClient, testChangePasswordData, token);
@@ -45,6 +46,7 @@ describe('Change Password', () => {
     const mockResponse: HttpResponse = {
       status: 500,
       body: ['Credenciais inválidas'],
+      ok: false,
     };
 
     const response = await changePassword(httpClient, testChangePasswordData, token);
@@ -61,7 +63,9 @@ describe('Change Password', () => {
   });
 
   it('Shoul call httpClient with correct params', async () => {
-    jest.spyOn(httpClient, 'request').mockImplementation(() => Promise.resolve({ status: 200 }));
+    jest
+      .spyOn(httpClient, 'request')
+      .mockImplementation(() => Promise.resolve({ status: 200, body: {}, ok: true }));
     await changePassword(httpClient, testChangePasswordData, token);
     expect(httpClient.request).toHaveBeenCalledWith('/auth/changepassword', {
       method: 'PUT',
