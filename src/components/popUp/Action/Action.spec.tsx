@@ -1,5 +1,5 @@
 import { useTaskMock } from '@mocks/useTaskContextMock';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Action from '.';
 
 jest.mock('@/hooks/useTask', () => ({
@@ -9,6 +9,10 @@ jest.mock('@/hooks/useTask', () => ({
 const textParagraph = 'Jest test';
 const textButtonPrimary = 'Yes';
 const textButtonDanger = 'No';
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 describe('Test Action', () => {
   it('should render Action with primary button and danger button', () => {
@@ -47,14 +51,44 @@ describe('Test Action', () => {
     expect(Danger).toHaveTextContent(textButtonDanger);
   });
 
-  it('should call function on click button "Yes"', () => {
+  it('should call function on click button "Yes" without executeServiceTask', () => {
+    useTaskMock().executeServiceTask = undefined;
+
     render(<Action textButtonPrimary={textButtonPrimary}>{textParagraph}</Action>);
     const Primary = screen.getByRole('button', { name: textButtonPrimary });
 
     fireEvent.click(Primary);
 
-    expect(useTaskMock().setActionForm).toHaveBeenCalledWith(null);
     expect(useTaskMock().setFormIsOpen).toHaveBeenCalledWith(false);
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith({ openConfirm: false, action: null });
+  });
+
+  it('should call function on click button "Yes" with executeServiceTask = true', async () => {
+    render(<Action textButtonPrimary={textButtonPrimary}>{textParagraph}</Action>);
+    const Primary = screen.getByRole('button', { name: textButtonPrimary });
+
+    fireEvent.click(Primary);
+
+    await waitFor(() => {
+      expect(useTaskMock().setFormIsOpen).toHaveBeenCalled();
+      expect(useTaskMock().setActionForm).toHaveBeenCalled();
+    });
+  });
+
+  it('should call function on click button "Yes" with executeServiceTask = false', async () => {
+    useTaskMock().executeServiceTask = {
+      execute: async () => false,
+    };
+
+    render(<Action textButtonPrimary={textButtonPrimary}>{textParagraph}</Action>);
+    const Primary = screen.getByRole('button', { name: textButtonPrimary });
+
+    fireEvent.click(Primary);
+
+    await waitFor(() => {
+      expect(useTaskMock().setFormIsOpen).not.toHaveBeenCalled();
+      expect(useTaskMock().setActionForm).not.toHaveBeenCalled();
+    });
   });
 
   it('should call function on click button "No"', () => {
@@ -63,6 +97,6 @@ describe('Test Action', () => {
 
     fireEvent.click(danger);
 
-    expect(useTaskMock().setActionForm).toHaveBeenCalledWith(null);
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith({ openConfirm: false, action: null });
   });
 });

@@ -1,9 +1,11 @@
 import { typeTaskOptions } from '@/constants/typeTask';
 import { TaskProvider } from '@/providers/taskProvider';
 import { tasks } from '@mocks/taskMock';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useSession } from 'next-auth/react';
 import DashboardContainer from '.';
+
+global.fetch = jest.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve({}) });
 
 const DashboardContainerMock = () => (
   <TaskProvider>
@@ -154,7 +156,7 @@ describe('<DashboardContainer/>', () => {
     });
   });
 
-  it('should change display when task is checked', () => {
+  it('should change display when task is checked', async () => {
     render(<DashboardContainerMock />);
 
     const [checkbox] = screen.getAllByTestId('checkbox');
@@ -164,12 +166,16 @@ describe('<DashboardContainer/>', () => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
     });
 
-    fireEvent.click(checkbox);
-
-    expectTasksUpdated.forEach(task => {
-      expect(screen.getByText(task.name)).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(checkbox);
     });
-    expect(screen.queryByText(taskChecked.name)).not.toBeInTheDocument();
+
+    await waitFor(() => {
+      expectTasksUpdated.forEach(task => {
+        expect(screen.getByText(task.name)).toBeInTheDocument();
+      });
+      expect(screen.queryByText(taskChecked.name)).not.toBeInTheDocument();
+    });
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'completed' } });
 

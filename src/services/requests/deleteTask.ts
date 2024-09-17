@@ -2,7 +2,7 @@ import type { HttpClient } from '@/types/contracts/services/httpClient';
 
 export const deleteTask = async (
   httpClient: HttpClient,
-  id: number,
+  id: string,
   token: string,
 ): Promise<void> => {
   try {

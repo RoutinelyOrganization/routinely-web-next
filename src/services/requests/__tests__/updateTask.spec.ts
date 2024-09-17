@@ -6,7 +6,6 @@ import { updateTask } from '../updateTasks';
 
 const token = 'test@example.com';
 const body: Task = tasks[0];
-const id = 1;
 const httpClient = makeHttpClient();
 
 global.fetch = jest
@@ -31,9 +30,10 @@ describe('Update Task', () => {
     const mockResponse: HttpResponse = {
       status: 200,
       body: { token: 'fake-token' },
+      ok: true,
     };
 
-    const response = await updateTask(httpClient, id, body, token);
+    const response = await updateTask(httpClient, body, token);
 
     expect(response).toEqual(mockResponse);
   });
@@ -42,9 +42,10 @@ describe('Update Task', () => {
     const mockResponse: HttpResponse = {
       status: 500,
       body: ['Credenciais inválidas'],
+      ok: false,
     };
 
-    const response = await updateTask(httpClient, id, body, token);
+    const response = await updateTask(httpClient, body, token);
 
     expect(response).toEqual(mockResponse);
   });
@@ -52,14 +53,16 @@ describe('Update Task', () => {
   it('Should throw an error', async () => {
     const mockError = new Error('Error');
     jest.spyOn(httpClient, 'request').mockRejectedValue(mockError);
-    await expect(updateTask(httpClient, id, body, token)).rejects.toThrow(mockError);
+    await expect(updateTask(httpClient, body, token)).rejects.toThrow(mockError);
   });
 
   it('Shoul call httpClient with correct params', async () => {
-    jest.spyOn(httpClient, 'request').mockImplementation(() => Promise.resolve({ status: 200 }));
-    await updateTask(httpClient, id, body, token);
-    expect(httpClient.request).toHaveBeenCalledWith('/tasks/1', {
-      method: 'PUT',
+    jest
+      .spyOn(httpClient, 'request')
+      .mockImplementation(() => Promise.resolve({ status: 200, ok: true }));
+    await updateTask(httpClient, body, token);
+    expect(httpClient.request).toHaveBeenCalledWith('/tasks', {
+      method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,
       },

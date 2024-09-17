@@ -41,7 +41,9 @@ describe('Logout', () => {
   });
 
   it('Shoul call httpClient with correct params', async () => {
-    jest.spyOn(httpClient, 'request').mockImplementation(() => Promise.resolve({ status: 200 }));
+    jest
+      .spyOn(httpClient, 'request')
+      .mockImplementation(() => Promise.resolve({ status: 200, ok: true }));
     await logout(httpClient, token);
     expect(httpClient.request).toHaveBeenCalledWith('/auth/disconnect', {
       method: 'POST',

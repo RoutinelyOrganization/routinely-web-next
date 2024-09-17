@@ -1,3 +1,3 @@
-import type { Categories } from '@/types/categories';
+import { Categories } from '@/types/categories';
 
-export const categories: Categories[] = ['Trabalho', 'Estudos', 'Casa', 'Lazer'];
+export const categories: string[] = Object.values(Categories);

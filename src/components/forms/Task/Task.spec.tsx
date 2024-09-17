@@ -3,7 +3,7 @@ import { typeTaskOptions } from '@/constants/typeTask';
 import type { DaysOfWeek } from '@/types/weekDays';
 import { tasks } from '@mocks/taskMock';
 import { useTaskMock } from '@mocks/useTaskContextMock';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import TaskForm from '.';
 
 jest.mock('@/hooks/useTask', () => ({
@@ -12,13 +12,11 @@ jest.mock('@/hooks/useTask', () => ({
 
 beforeEach(() => {
   useTaskMock.mockClear();
+  jest.clearAllMocks();
 });
 
 describe('<TaskForm/>', () => {
   it('should render title and fields required', () => {
-    useTaskMock.mockReturnValue({
-      selectedTypeTask: typeTaskOptions[0],
-    });
     render(<TaskForm />);
 
     const heading = screen.getByRole('heading');
@@ -130,6 +128,11 @@ describe('<TaskForm/>', () => {
   });
 
   it('should update correct chekboxes', async () => {
+    useTaskMock.mockReturnValue({
+      selectedTask: null,
+      selectedActionForm: { openConfirm: false, action: null },
+    });
+
     render(<TaskForm />);
 
     // dispara o evento de click no icone para abrir os campos opcionais
@@ -160,6 +163,7 @@ describe('<TaskForm/>', () => {
     useTaskMock.mockReturnValue({
       selectedTypeTask: typeTaskOptions[0],
       selectedTask: tasks[0],
+      selectedActionForm: { openConfirm: false, action: 'update' },
     });
     render(<TaskForm />);
 
@@ -188,22 +192,30 @@ describe('<TaskForm/>', () => {
     }
   });
 
-  it('should setFormIsOpen on close', () => {
+  it('should setFormIsOpen on close', async () => {
     useTaskMock.mockReturnValue({
       setFormIsOpen: jest.fn(),
+      selectedActionForm: { openConfirm: false, action: null },
+      setSelectedTask: jest.fn(),
     });
     render(<TaskForm />);
     const iconClose = screen.getByRole('img', { name: 'fechar formulario' });
 
     fireEvent.click(iconClose);
 
-    expect(useTaskMock().setFormIsOpen).toHaveBeenCalledWith(false);
+    await waitFor(() => {
+      expect(useTaskMock().setFormIsOpen).toHaveBeenCalled();
+      expect(useTaskMock().setFormIsOpen).toHaveBeenCalledWith(false);
+    });
   });
 
   it('should submit create task', async () => {
     useTaskMock.mockReturnValue({
+      selectedActionForm: { openConfirm: false, action: null },
+      setSelectedTask: jest.fn(),
       setActionForm: jest.fn(),
     });
+
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });
@@ -219,13 +231,18 @@ describe('<TaskForm/>', () => {
       fireEvent.click(button);
     });
 
-    expect(useTaskMock().setActionForm).toHaveBeenCalledWith('create');
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith({
+      openConfirm: true,
+      action: 'create',
+    });
   });
 
   it('should submit update task', async () => {
     useTaskMock.mockReturnValue({
-      setActionForm: jest.fn(),
       selectedTask: tasks[0],
+      selectedActionForm: { openConfirm: false, action: 'update' },
+      setActionForm: jest.fn(),
+      setSelectedTask: jest.fn(),
     });
 
     render(<TaskForm />);
@@ -235,14 +252,14 @@ describe('<TaskForm/>', () => {
       fireEvent.click(button);
     });
 
-    expect(useTaskMock().setActionForm).toHaveBeenCalledWith('update');
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith({
+      openConfirm: true,
+      action: 'update',
+    });
+    expect(useTaskMock().setSelectedTask).toHaveBeenCalled();
   });
 
   it('should submit delete task', async () => {
-    useTaskMock.mockReturnValue({
-      setActionForm: jest.fn(),
-      selectedTask: tasks[0],
-    });
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Excluir' });
@@ -250,14 +267,13 @@ describe('<TaskForm/>', () => {
       fireEvent.click(button);
     });
 
-    expect(useTaskMock().setActionForm).toHaveBeenCalledWith('delete');
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith({
+      openConfirm: true,
+      action: 'delete',
+    });
   });
 
   it('should submit duplicate task', async () => {
-    useTaskMock.mockReturnValue({
-      setActionForm: jest.fn(),
-      selectedTask: tasks[0],
-    });
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Duplicar' });
@@ -265,6 +281,9 @@ describe('<TaskForm/>', () => {
       fireEvent.click(button);
     });
 
-    expect(useTaskMock().setActionForm).toHaveBeenCalledWith('create');
+    expect(useTaskMock().setActionForm).toHaveBeenCalledWith({
+      action: 'create',
+      openConfirm: true,
+    });
   });
 });
