@@ -59,7 +59,7 @@ export default function Task({ tasks: tasksReceived }: ITask) {
         <option value="task">Tarefas</option>
         <option value="completed">Concluídas</option>
       </S.Select>
-      {currentTasks.length ? (
+        {tasks && tasks.length ? (
         <S.ContainerTask>
           {currentTasks.map(task => (
             <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />

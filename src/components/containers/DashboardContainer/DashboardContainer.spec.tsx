@@ -5,13 +5,22 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { useSession } from 'next-auth/react';
 import DashboardContainer from '.';
 
-global.fetch = jest.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve({}) });
+global.fetch = jest.fn().mockResolvedValue({
+  ok: true,
+  status: 200,
+  json: () => Promise.resolve({ tasks }),
+});
 
-const DashboardContainerMock = () => (
-  <TaskProvider>
-    <DashboardContainer tasks={tasks} />
-  </TaskProvider>
-);
+const DashboardContainerMock = async () => {
+  return await act(async () => {
+    render(
+      <TaskProvider>
+        <DashboardContainer />
+      </TaskProvider>,
+    );
+  });
+};
+
 
 const mockTasks = tasks;
 const expectedTasks = mockTasks.filter(task => !task.checked);
@@ -47,7 +56,7 @@ describe('<DashboardContainer/>', () => {
   it('should render without session user', async () => {
     (useSession as jest.Mock).mockReturnValue({ data: null });
 
-    render(<DashboardContainerMock />);
+    await DashboardContainerMock();
 
     const logo = screen.getByRole('img', { name: 'logo Routinely' });
     expect(logo).toBeInTheDocument();
@@ -88,7 +97,7 @@ describe('<DashboardContainer/>', () => {
   it('should render with session user', async () => {
     (useSession as jest.Mock).mockReturnValue({ data: { user: { token: 'mockedToken' } } });
 
-    render(<DashboardContainerMock />);
+    await DashboardContainerMock();
 
     const iconNotification = screen.getByAltText('notificações');
     expect(iconNotification).toBeInTheDocument();
@@ -97,24 +106,29 @@ describe('<DashboardContainer/>', () => {
     expect(iconMenu).toBeInTheDocument();
   });
 
-  it('should render correctly with tasks', () => {
-    render(<DashboardContainerMock />);
+  it('should render correctly with tasks', async () => {
+    await DashboardContainerMock();
 
     const select = screen.getByRole('combobox');
-    fireEvent.change(select, { target: { value: 'all tasks' } });
 
-    expect(screen.getByText('Todas as atividades')).toBeInTheDocument();
-    expectedTasks.forEach(task => {
-      expect(screen.getByText(task.name)).toBeInTheDocument();
+    act(() => {
+      fireEvent.change(select, { target: { value: 'all tasks' } });
     });
 
-    expectedTasksCompleted.forEach(task => {
-      expect(screen.queryByText(task.name)).not.toBeInTheDocument();
+    expect(screen.getByText('Todas as atividades')).toBeInTheDocument();
+    await waitFor(() => {
+      expectedTasks.forEach(task => {
+        expect(screen.getByText(task.name)).toBeInTheDocument();
+      });
+
+      expectedTasksCompleted.forEach(task => {
+        expect(screen.queryByText(task.name)).not.toBeInTheDocument();
+      });
     });
   });
 
-  it('should filter and display only incomplete tasks when "Hábitos" is selected', () => {
-    render(<DashboardContainerMock />);
+  it('should filter and display only incomplete tasks when "Hábitos" is selected', async () => {
+    await DashboardContainerMock();
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'habit' } });
     expect(screen.getByText('Hábitos')).toBeInTheDocument();
@@ -129,8 +143,9 @@ describe('<DashboardContainer/>', () => {
     });
   });
 
-  it('should filter and display only incomplete tasks when "Tarefas" is selected', () => {
-    render(<DashboardContainerMock />);
+  it('should filter and display only incomplete tasks when "Tarefas" is selected', async () => {
+    await DashboardContainerMock();
+
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'task' } });
     expect(screen.getByText('Tarefas')).toBeInTheDocument();
     expectedTasksTask.forEach(task => {
@@ -144,8 +159,8 @@ describe('<DashboardContainer/>', () => {
     });
   });
 
-  it('should render only completed tasks when "Concluidas" is selected', () => {
-    render(<DashboardContainerMock />);
+  it('should render only completed tasks when "Concluidas" is selected', async () => {
+    await DashboardContainerMock();
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'completed' } });
     expect(screen.getByText('Concluídas')).toBeInTheDocument();
     expectedTasksCompleted.forEach(task => {
@@ -157,7 +172,9 @@ describe('<DashboardContainer/>', () => {
   });
 
   it('should change display when task is checked', async () => {
-    render(<DashboardContainerMock />);
+
+    await DashboardContainerMock();
+
 
     const [checkbox] = screen.getAllByTestId('checkbox');
     const [taskChecked, ...expectTasksUpdated] = expectedTasks;
@@ -189,8 +206,8 @@ describe('<DashboardContainer/>', () => {
     });
   });
 
-  it('should change title to prev date on clin in icon prev', () => {
-    render(<DashboardContainerMock />);
+  it('should change title to prev date on clin in icon prev', async () => {
+    await DashboardContainerMock();
     const [heading] = screen.getAllByRole('heading');
     const today = dateMock();
     expect(heading.textContent).toBe(
@@ -219,8 +236,8 @@ describe('<DashboardContainer/>', () => {
     );
   });
 
-  it('should change title to next date on clin in icon next', () => {
-    render(<DashboardContainerMock />);
+  it('should change title to next date on clin in icon next', async () => {
+    await DashboardContainerMock();
     const today = dateMock();
 
     const [heading] = screen.getAllByRole('heading');
@@ -246,8 +263,8 @@ describe('<DashboardContainer/>', () => {
     );
   });
 
-  it(`should open a small modal showing the task types when clicking the "add task" icon`, () => {
-    render(<DashboardContainerMock />);
+  it(`should open a small modal showing the task types when clicking the "add task" icon`, async () => {
+    await DashboardContainerMock();
     const addTaskIcon = screen.getByRole('img', {
       name: 'icone para adicionar nova tarefa ou hábito',
     });
@@ -264,7 +281,7 @@ describe('<DashboardContainer/>', () => {
   });
 
   it(`should open modal form to add new task when clicking the "add task" icon type task`, async () => {
-    render(<DashboardContainerMock />);
+    await DashboardContainerMock();
 
     const addTaskIcon = screen.getByRole('img', {
       name: 'icone para adicionar nova tarefa ou hábito',
@@ -328,8 +345,8 @@ describe('<DashboardContainer/>', () => {
     expect(form).not.toBeInTheDocument();
   });
 
-  it("Should render form to update task when clicking the 'edit task' icon", () => {
-    render(<DashboardContainerMock />);
+  it("Should render form to update task when clicking the 'edit task' icon", async () => {
+    await DashboardContainerMock();
     const [editTaskIcon] = screen.getAllByRole('img', {
       name: 'Icone de editar',
     });
