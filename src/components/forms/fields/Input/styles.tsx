@@ -2,7 +2,6 @@
 
 import { colors, fonts } from '@/styles/variables';
 import styled from 'styled-components';
-import { ErrorMessage } from '../ErrorMessage/styles';
 
 type InputProps = {
   $hasErro?: boolean;
@@ -12,18 +11,14 @@ type InputProps = {
 export const Div = styled.div`
   max-width: 100%;
   width: 100%;
+  height: 72px;
 `;
 
 export const InputContainer = styled.div<InputProps>`
   position: relative;
   display: flex;
   flex-direction: column;
-  /* max-width: 100%; */
   color: ${({ $hasErro }) => ($hasErro ? colors.danger : colors.black)};
-
-  ~ ${ErrorMessage} {
-    margin-top: -24px;
-  }
 `;
 
 export const Children = styled.div`

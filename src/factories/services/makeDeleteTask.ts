@@ -1,7 +1,7 @@
 import { makeClientAndToken } from '@/factories/services/makeClientAndToken';
 import { deleteTask } from '@/services/requests/deleteTask';
 
-export const makeDeleteTask = async (id: number): Promise<void> => {
-  const { httpClient, token } = await makeClientAndToken();
+export const makeDeleteTask = async (id: string, token: string): Promise<void> => {
+  const { httpClient } = await makeClientAndToken();
   return deleteTask(httpClient, id, token);
 };

@@ -2,7 +2,7 @@ import { makeHttpClient } from '@mocks/fetchAdapterStub';
 import { deleteTask } from '../deleteTask';
 
 const token = 'token';
-const id = 1;
+const id = '1';
 const httpClient = makeHttpClient();
 
 global.fetch = jest
@@ -42,7 +42,9 @@ describe('Delete Task', () => {
   });
 
   it('Shoul call httpClient with correct params', async () => {
-    jest.spyOn(httpClient, 'request').mockImplementation(() => Promise.resolve({ status: 200 }));
+    jest
+      .spyOn(httpClient, 'request')
+      .mockImplementation(() => Promise.resolve({ status: 200, ok: true }));
     await deleteTask(httpClient, id, token);
     expect(httpClient.request).toHaveBeenCalledWith('/tasks/1', {
       method: 'DELETE',

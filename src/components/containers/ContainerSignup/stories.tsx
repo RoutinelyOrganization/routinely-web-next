@@ -1,3 +1,4 @@
+import { GlobalStyles } from '@/styles/globalStyles';
 import { SessionProvider } from 'next-auth/react';
 import ContainerSignUp from '.';
 
@@ -11,6 +12,7 @@ export default {
 export const Template = () => {
   return (
     <SessionProvider>
+      <GlobalStyles />
       <ContainerSignUp />
     </SessionProvider>
   );

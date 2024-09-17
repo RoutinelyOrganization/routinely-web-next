@@ -53,7 +53,7 @@ export default function CreateNewPassword() {
       router.replace('/login');
     } catch (error) {
       const errorApi = error as ErrorApi;
-      setErrorsApi(errorApi.body);
+      setErrorsApi(errorApi.body!);
     }
   };
 

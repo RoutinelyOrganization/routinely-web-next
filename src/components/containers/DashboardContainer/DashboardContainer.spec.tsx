@@ -21,6 +21,7 @@ const DashboardContainerMock = async () => {
   });
 };
 
+
 const mockTasks = tasks;
 const expectedTasks = mockTasks.filter(task => !task.checked);
 const expectedTasksHabit = mockTasks.filter(task => task.type === 'habit' && !task.checked);
@@ -171,7 +172,9 @@ describe('<DashboardContainer/>', () => {
   });
 
   it('should change display when task is checked', async () => {
+
     await DashboardContainerMock();
+
 
     const [checkbox] = screen.getAllByTestId('checkbox');
     const [taskChecked, ...expectTasksUpdated] = expectedTasks;
@@ -180,12 +183,16 @@ describe('<DashboardContainer/>', () => {
       expect(screen.getByText(task.name)).toBeInTheDocument();
     });
 
-    fireEvent.click(checkbox);
-
-    expectTasksUpdated.forEach(task => {
-      expect(screen.getByText(task.name)).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(checkbox);
     });
-    expect(screen.queryByText(taskChecked.name)).not.toBeInTheDocument();
+
+    await waitFor(() => {
+      expectTasksUpdated.forEach(task => {
+        expect(screen.getByText(task.name)).toBeInTheDocument();
+      });
+      expect(screen.queryByText(taskChecked.name)).not.toBeInTheDocument();
+    });
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'completed' } });
 

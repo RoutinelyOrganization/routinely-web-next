@@ -25,6 +25,7 @@ describe('FetchAdapter', () => {
     const mockResponse: HttpResponse = {
       status: 200,
       body: { token: 'fake-token' },
+      ok: true,
     };
 
     const response = await httpClient.request('/any_url', {} as any);
@@ -36,6 +37,7 @@ describe('FetchAdapter', () => {
     const mockResponse: HttpResponse = {
       status: 500,
       body: ['Credenciais inválidas'],
+      ok: false,
     };
 
     const response = await httpClient.request('/any_url', {} as any);

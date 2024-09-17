@@ -1,6 +1,7 @@
 'use client';
 
 import { useTask } from '@/hooks/useTask';
+import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import { useEffect, useState } from 'react';
 import { type Task } from '../../types/task';
 import CardTask from './CardTask';
@@ -17,7 +18,12 @@ export default function Task({ tasks: tasksReceived }: ITask) {
   const [selected, setSelected] = useState('all tasks');
 
   useEffect(() => {
-    setTasks(tasksReceived);
+    setTasks(
+      tasksReceived?.map(task => ({
+        ...task,
+        date: `${dateFormat(task.date)} ${TimeFormat(task.date)}`,
+      })) || [],
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,7 +44,7 @@ export default function Task({ tasks: tasksReceived }: ITask) {
     setCurrentTasks(newCurrentTasks);
   }, [selected, tasks]);
 
-  const handleTasks = (id: number) => {
+  const handleTasks = (id: string) => {
     const newTasks = tasks.map(task =>
       task.id === id ? { ...task, checked: !task.checked } : task,
     );
@@ -53,15 +59,13 @@ export default function Task({ tasks: tasksReceived }: ITask) {
         <option value="task">Tarefas</option>
         <option value="completed">Concluídas</option>
       </S.Select>
-      {tasks && tasks.length ? (
+        {tasks && tasks.length ? (
         <S.ContainerTask>
-          {currentTasks.length &&
-            currentTasks.map(task => (
-              <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />
-            ))}
+          {currentTasks.map(task => (
+            <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />
+          ))}
         </S.ContainerTask>
       ) : (
-        // <ContainerTask tasks={isTask} />
         <S.NoTask>Você ainda não tem atividades para hoje.</S.NoTask>
       )}
     </S.Conteiner>

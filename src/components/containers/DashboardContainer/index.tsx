@@ -34,7 +34,11 @@ export default function DashboardContainer() {
   return (
     <ContainerHeaderFooterMobileResponsive>
       {formIsOpen && <TaskForm />}
-      {selectedActionForm && <ConfirmAction>mensagem</ConfirmAction>}
+      {selectedActionForm.openConfirm && (
+        <ConfirmAction textButtonPrimary="Sim" textButtonDanger="Não">
+          Tem certeza que deseja salvar?
+        </ConfirmAction>
+      )}
       <S.ContainerPrincipal $isVisible={!formIsOpen}>
         <CalendarProvider>
           <S.Main className="container-main">

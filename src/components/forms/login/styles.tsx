@@ -17,7 +17,7 @@ export const Form = styled.form`
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 10px;
 `;
 export const ShowPassword = styled.span`
   cursor: pointer;

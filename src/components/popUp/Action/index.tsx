@@ -4,6 +4,7 @@ import ButtonDanger from '@/components/buttons/ButtonDanger';
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import PopUp from '@/components/popUp';
 import { useTask } from '@/hooks/useTask';
+import { useSession } from 'next-auth/react';
 import * as S from './styles';
 
 export interface IAction {
@@ -13,17 +14,24 @@ export interface IAction {
 }
 
 export default function ConfirmAction({ children, textButtonDanger, textButtonPrimary }: IAction) {
-  const { executeServiceTask, setActionForm, setFormIsOpen } = useTask();
+  const { data: session } = useSession();
+
+  const { executeServiceTask, setActionForm, setFormIsOpen, selectedActionForm } = useTask();
 
   const handleOptions = async (operation: 'yes' | 'not') => {
     switch (operation) {
       case 'yes':
-        executeServiceTask && (await executeServiceTask());
-        setActionForm(null);
+        const ok =
+          executeServiceTask &&
+          (await executeServiceTask.execute({ token: session?.user?.token! }));
+
+        if (ok === false) return;
+
+        setActionForm({ openConfirm: false, action: null });
         setFormIsOpen(false);
         break;
       case 'not':
-        setActionForm(null);
+        setActionForm({ openConfirm: false, action: selectedActionForm.action });
         break;
     }
   };

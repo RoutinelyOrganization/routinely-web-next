@@ -29,6 +29,7 @@ describe('Get Tasks', () => {
     const mockResponse: HttpResponse = {
       status: 200,
       body: { token: 'fake-token' },
+      ok: true,
     };
 
     const response = await getTasks(httpClient, month, year, token);
@@ -40,6 +41,7 @@ describe('Get Tasks', () => {
     const mockResponse: HttpResponse = {
       status: 500,
       body: ['Credenciais inválidas'],
+      ok: false,
     };
 
     const response = await getTasks(httpClient, month, year, token);
@@ -54,7 +56,9 @@ describe('Get Tasks', () => {
   });
 
   it('Shoul call httpClient with correct params', async () => {
-    jest.spyOn(httpClient, 'request').mockImplementation(() => Promise.resolve({ status: 200 }));
+    jest
+      .spyOn(httpClient, 'request')
+      .mockImplementation(() => Promise.resolve({ status: 200, ok: true }));
     await getTasks(httpClient, month, year, token);
     expect(httpClient.request).toHaveBeenCalledWith('/tasks/?month=september&year=2020', {
       method: 'GET',

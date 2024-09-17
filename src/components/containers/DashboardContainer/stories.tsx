@@ -1,4 +1,5 @@
 import { TaskProvider } from '@/providers/taskProvider';
+import { GlobalStyles } from '@/styles/globalStyles';
 import { tasks as tasksMock } from '@mocks/taskMock';
 import { SessionProvider } from 'next-auth/react';
 import type { IDashboardContainer } from '.';
@@ -26,6 +27,7 @@ export const Template = (args: IDashboardContainer) => {
         expires: '',
       }}
     >
+      <GlobalStyles />
       <TaskProvider>
         <DashboardContainer {...args} />
       </TaskProvider>
