@@ -14,7 +14,7 @@ export const ContainerPasswords = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 10px;
 
   ${Button} {
     max-width: 192px;

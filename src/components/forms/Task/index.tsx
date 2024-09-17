@@ -41,15 +41,17 @@ export default function TaskForm() {
     };
   }, []);
   return (
-    <>
+    <S.ResponsiveContainer>
       {!isMobile ? (
         <PopUp>
           <Form />
         </PopUp>
       ) : (
-        <Form />
+        <div className="center-form">
+          <Form />
+        </div>
       )}
-    </>
+    </S.ResponsiveContainer>
   );
 }
 

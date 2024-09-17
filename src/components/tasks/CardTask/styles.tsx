@@ -92,7 +92,7 @@ export const Container = styled.div<ICardTaskStyles>`
 `;
 
 export const ContainerBtnIcon = styled.div`
-  width: calc(100% - 15px);
+  width: 100%;
   display: flex;
   justify-content: space-between;
   position: absolute;

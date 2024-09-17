@@ -13,7 +13,10 @@ export const Header = styled.header`
   > div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
+    &.container-main {
+      justify-content: space-between;
+    }
   }
 
   ${Logo} {

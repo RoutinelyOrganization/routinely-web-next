@@ -40,6 +40,17 @@ export const ContainerTypeTask = styled.div`
     border-radius: 0 8px 0 8px;
     top: -84px;
   }
+
+  ${media.mobile} {
+    max-height: 157px;
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+
+    > p {
+      padding: 16px;
+    }
+  }
 `;
 
 export const Option = styled.p`
@@ -66,22 +77,18 @@ export const ContainerNewTask = styled.div`
     top: auto;
     bottom: 0px;
     right: 20px;
+
+    ${ContainerTypeTask} {
+      top: auto;
+      bottom: 64px;
+    }
   }
 
   ${media.mobile} {
-    top: auto;
-    bottom: 57px;
-    right: -71px;
-    max-width: 100%;
+    max-width: 500px;
     width: 100%;
-    height: 157px;
-    ${ContainerTypeTask} {
-      top: 0;
-      max-width: 400px;
-      max-height: 157px;
-      > p {
-        padding: 16px;
-      }
-    }
+    right: auto;
+    bottom: -10px;
+    left: 0px;
   }
 `;

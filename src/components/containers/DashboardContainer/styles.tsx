@@ -9,7 +9,9 @@ interface IDashboardContainerStyles {
 }
 
 export const ContainerPrincipal = styled.div<IDashboardContainerStyles>`
-  display: ${({ $isVisible }) => ($isVisible ? 'block' : 'none')};
+  ${media.mobile} {
+    display: ${({ $isVisible }) => ($isVisible ? 'block' : 'none')};
+  }
 `;
 
 export const Main = styled.main`
