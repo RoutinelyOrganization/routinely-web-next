@@ -245,7 +245,7 @@ function Form() {
       )}
 
       <S.ContainerButtons>
-        {(selectedActionForm.action !== 'create' ||
+        {((selectedActionForm.action && selectedActionForm.action !== 'create') ||
           buttonSubmitRef.current === 'duplicateTask') && (
           <>
             <ButtonDanger
@@ -254,13 +254,15 @@ function Form() {
             >
               Excluir
             </ButtonDanger>
-            <ButtonSecondary
-              name="duplicateTask"
-              hover={false}
-              onClick={() => (buttonSubmitRef.current = 'duplicateTask')}
-            >
-              Duplicar
-            </ButtonSecondary>
+            {selectedTypeTask?.name === 'Tarefa' && (
+              <ButtonSecondary
+                name="duplicateTask"
+                hover={false}
+                onClick={() => (buttonSubmitRef.current = 'duplicateTask')}
+              >
+                Duplicar
+              </ButtonSecondary>
+            )}
           </>
         )}
         <ButtonPrimary

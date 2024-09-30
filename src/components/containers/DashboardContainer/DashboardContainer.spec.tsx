@@ -21,7 +21,6 @@ const DashboardContainerMock = async () => {
   });
 };
 
-
 const mockTasks = tasks;
 const expectedTasks = mockTasks.filter(task => !task.checked);
 const expectedTasksHabit = mockTasks.filter(task => task.type === 'habit' && !task.checked);
@@ -172,9 +171,7 @@ describe('<DashboardContainer/>', () => {
   });
 
   it('should change display when task is checked', async () => {
-
     await DashboardContainerMock();
-
 
     const [checkbox] = screen.getAllByTestId('checkbox');
     const [taskChecked, ...expectTasksUpdated] = expectedTasks;

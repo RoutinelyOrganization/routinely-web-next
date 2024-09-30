@@ -13,7 +13,7 @@ export const createTask = async (
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      body,
+      body: { ...body, id: Number(body.id) },
     });
 
     return response;

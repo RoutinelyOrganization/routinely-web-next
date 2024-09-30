@@ -3,6 +3,7 @@ import { TaskProvider } from '@/providers/taskProvider';
 import { GlobalStyles } from '@/styles/globalStyles';
 import { tasks } from '@mocks/taskMock';
 import type { Meta } from '@storybook/react';
+import { useEffect } from 'react';
 import TaskForm from '.';
 
 export default {
@@ -19,8 +20,11 @@ export default {
 } as Meta;
 
 export const TemplateAddTask = () => {
-  const { setSelectedTypeTask } = useTask();
-  setSelectedTypeTask(tasks[0].type);
+  const { setSelectedTypeTask, setActionForm } = useTask();
+  useEffect(() => {
+    setActionForm({ action: null, openConfirm: false });
+    setSelectedTypeTask(tasks[0].type);
+  }, [setActionForm, setSelectedTypeTask]);
 
   return (
     <div>
@@ -30,8 +34,12 @@ export const TemplateAddTask = () => {
 };
 
 export const TemplateUpdateTask = () => {
-  const { setSelectedTask, setSelectedTypeTask } = useTask();
-  setSelectedTask(tasks[0]);
-  setSelectedTypeTask(tasks[0].type);
+  const { setSelectedTask, setSelectedTypeTask, setActionForm } = useTask();
+  useEffect(() => {
+    setActionForm({ action: 'update', openConfirm: false });
+    setSelectedTypeTask(tasks[1].type);
+    setSelectedTask(tasks[0]);
+  }, [setActionForm, setSelectedTask, setSelectedTypeTask]);
+
   return <TaskForm />;
 };
