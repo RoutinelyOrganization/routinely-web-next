@@ -1,3 +1,4 @@
+import SessionProvider from '@/providers/sessionProvider';
 import { TaskProvider } from '@/providers/taskProvider';
 import { tasks as tasksMock } from '@mocks/taskMock';
 import type { ITask } from '.';
@@ -16,10 +17,10 @@ export default {
 
 export const Template = (args: ITask) => {
   return (
-    <div>
+    <SessionProvider>
       <TaskProvider>
         <Tasks {...args} />
       </TaskProvider>
-    </div>
+    </SessionProvider>
   );
 };

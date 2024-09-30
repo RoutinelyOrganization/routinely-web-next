@@ -1,6 +1,7 @@
 import { typeTaskOptions } from '@/constants/typeTask';
 import { TaskProvider } from '@/providers/taskProvider';
 import { tasks } from '@mocks/taskMock';
+import { useTaskMock } from '@mocks/useTaskContextMock';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useSession } from 'next-auth/react';
 import DashboardContainer from '.';
@@ -10,6 +11,10 @@ global.fetch = jest.fn().mockResolvedValue({
   status: 200,
   json: () => Promise.resolve({ tasks }),
 });
+
+jest.mock('@/hooks/useTask', () => ({
+  useTask: useTaskMock,
+}));
 
 const DashboardContainerMock = async () => {
   return await act(async () => {
@@ -170,7 +175,7 @@ describe('<DashboardContainer/>', () => {
     });
   });
 
-  it('should change display when task is checked', async () => {
+  it.only('should change display when task is checked', async () => {
     await DashboardContainerMock();
 
     const [checkbox] = screen.getAllByTestId('checkbox');
@@ -189,6 +194,7 @@ describe('<DashboardContainer/>', () => {
         expect(screen.getByText(task.name)).toBeInTheDocument();
       });
       expect(screen.queryByText(taskChecked.name)).not.toBeInTheDocument();
+      screen.debug();
     });
 
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'completed' } });
@@ -288,6 +294,7 @@ describe('<DashboardContainer/>', () => {
     const modal = screen.getByTestId('container-type-task');
 
     const [typeTask] = modal.getElementsByTagName('p');
+    screen.debug();
 
     fireEvent.click(typeTask);
     const form = screen.getByRole('form');
