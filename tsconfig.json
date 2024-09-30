@@ -8,7 +8,6 @@
     "target": "ES2015",
     "allowJs": true,
     "skipLibCheck": true,
-    "target": "ES2015",
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -16,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
@@ -55,6 +54,6 @@
     ".next",
     "dist",
     "public",
-    "coverage",
+    "coverage"
   ]
 }

@@ -66,7 +66,10 @@ describe('Create Task', () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      body,
+      body: {
+        ...body,
+        id: Number(body.id),
+      },
     });
   });
 });

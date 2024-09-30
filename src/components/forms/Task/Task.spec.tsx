@@ -274,6 +274,13 @@ describe('<TaskForm/>', () => {
   });
 
   it('should submit duplicate task', async () => {
+    useTaskMock.mockReturnValue({
+      selectedTask: tasks[0],
+      selectedActionForm: { openConfirm: false, action: 'update' },
+      setActionForm: jest.fn(),
+      setSelectedTask: jest.fn(),
+      selectedTypeTask: typeTaskOptions.find(type => type.type === tasks[0].type),
+    });
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Duplicar' });

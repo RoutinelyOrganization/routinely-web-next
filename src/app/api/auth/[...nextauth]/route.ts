@@ -21,7 +21,7 @@ const nextAuthOptions: NextAuthOptions = {
           type: 'checkbox',
         },
       },
-     async authorize(credentials) {
+      async authorize(credentials) {
         const remember: boolean = credentials!.remember === 'true' ? true : false;
 
         try {

@@ -1,7 +1,8 @@
 import { typeTaskOptions } from '@/constants/typeTask';
 import type { ITaskContext } from '@/contexts/TaskContext';
+import { tasks } from './taskMock';
 
-export const useTaskMock: jest.Mock<Partial<ITaskContext>> = jest.fn().mockReturnValue({
+export const useTaskMock: jest.Mock<ITaskContext> = jest.fn().mockReturnValue({
   setFormIsOpen: jest.fn(),
   setActionForm: jest.fn(),
   setSelectedTask: jest.fn(),
@@ -10,4 +11,6 @@ export const useTaskMock: jest.Mock<Partial<ITaskContext>> = jest.fn().mockRetur
   selectedActionForm: { openConfirm: false, action: null },
   selectedTypeTask: typeTaskOptions[0],
   selectedTask: null,
+  setTasks: jest.fn(),
+  tasks: tasks,
 });
