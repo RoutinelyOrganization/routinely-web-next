@@ -15,7 +15,7 @@ import ContainerHeaderFooterMobileResponsive from '../ContainerHeaderFooterRespo
 import * as S from './styles';
 
 export default function DashboardContainer() {
-  const { setTasks, tasks } = useTask();
+  const { setTasks, tasks, selectedActionForm, formIsOpen } = useTask();
   useRefreshSession();
   const { data: session } = useSession();
 
@@ -30,7 +30,6 @@ export default function DashboardContainer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user.token]);
 
-  const { formIsOpen, selectedActionForm } = useTask();
   return (
     <ContainerHeaderFooterMobileResponsive>
       {formIsOpen && <TaskForm />}

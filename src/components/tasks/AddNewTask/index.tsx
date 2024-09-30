@@ -22,11 +22,12 @@ export default function AddNewTask() {
 }
 
 export function TypeTask({ onClick }: { onClick: (value: any) => void }) {
-  const { setFormIsOpen, setSelectedTypeTask } = useTask();
+  const { setFormIsOpen, setSelectedTypeTask, setActionForm } = useTask();
 
   const handleTypeTask = (type: TypeTask['type']) => {
     setFormIsOpen(true);
     setSelectedTypeTask(type);
+    setActionForm({ action: 'create', openConfirm: false });
     onClick(false);
   };
 
