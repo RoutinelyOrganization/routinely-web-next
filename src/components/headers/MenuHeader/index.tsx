@@ -1,6 +1,5 @@
 'use client';
 
-import bellNotificationIcon from '@public/icons/bellNotification.svg';
 import closeMenuIcon from '@public/icons/closeMenuHeader.svg';
 import hamburguerIcon from '@public/icons/hamburguer.svg';
 import Image from 'next/image';
@@ -24,8 +23,8 @@ export default function MenuHeader({ menuItems }: IMenuHeader) {
 
   return (
     <S.Container>
+      <S.ExitButton>Sair</S.ExitButton>
       <S.ContainerIcons>
-        <Image src={bellNotificationIcon} alt="notificações" role="icon" />
         <Image
           src={hamburguerIcon}
           alt="abrir menu"
