@@ -251,7 +251,7 @@ describe('<TaskForm/>', () => {
     await act(async () => {
       fireEvent.click(button);
     });
-
+    screen.debug();
     expect(useTaskMock().setActionForm).toHaveBeenCalledWith({
       openConfirm: true,
       action: 'update',

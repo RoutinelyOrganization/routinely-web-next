@@ -8,10 +8,10 @@ export const tasks: Task[] = [
     name: 'Tarefa 1',
     checked: false,
     category: Categories.Career,
-    date: '2024-10-01 10:00',
+    date: '2025-10-01 10:00',
     description: 'teste',
     quantityPerWeek: 1,
-    finallyDate: '2024-11-01 10:00',
+    finallyDate: '2025-11-01 10:00',
     weekDays: ['Monday', 'Friday'],
   },
   {
