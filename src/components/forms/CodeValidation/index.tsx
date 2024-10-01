@@ -39,7 +39,7 @@ export default function CodeValidationForm() {
     } catch (error) {
       const errorApi = error as ErrorApi;
 
-      setErrorsApi(errorApi.body);
+      setErrorsApi(errorApi.body || null);
     }
   };
   return (
