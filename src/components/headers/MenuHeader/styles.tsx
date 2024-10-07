@@ -13,11 +13,15 @@ export const Container = styled.div`
 `;
 
 export const ContainerIcons = styled.div`
-  display: flex;
+  display: none;
   gap: 8px;
+  ${media.mobile} {
+    display: flex;
+  }
 `;
 
 export const Wrapper = styled.div`
+  display: none;
   position: absolute;
   top: 40px;
   left: -104px;
@@ -33,6 +37,7 @@ export const Wrapper = styled.div`
   }
 
   ${media.mobile} {
+    display: block;
     top: 152%;
   }
 `;
@@ -66,5 +71,17 @@ export const Item = styled.li`
 
   > p {
     margin: 0;
+  }
+`;
+
+export const ExitButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: ${colors.white};
+  cursor: pointer;
+  font-weight: bold;
+
+  ${media.mobile} {
+    display: none;
   }
 `;

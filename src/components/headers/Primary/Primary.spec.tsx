@@ -19,11 +19,13 @@ describe('PrimaryHeader', () => {
   //O texto "Notificações vem do componente de imagem do "MenuHeader". Caso o alt desse componente alterar, o teste irá apresentar erro
   it('should render MenuHeader Component hasUser if true', () => {
     render(<PrimaryHeader menuItems={menuItems} hasUser={true} />);
-    expect(screen.getByAltText('notificações')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Sair' })).toBeInTheDocument();
+    expect(screen.getByAltText('abrir menu')).toBeInTheDocument();
   });
   //O texto "Notificações vem do componente de imagem do "MenuHeader". Caso o alt desse componente alterar, o teste irá apresentar erro
   it('should not render MenuHeader Component hasUser if false', () => {
     render(<PrimaryHeader menuItems={menuItems} hasUser={false} />);
-    expect(screen.queryByAltText('notificações')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Sair' })).not.toBeInTheDocument();
+    expect(screen.queryByAltText('abrir menu')).not.toBeInTheDocument();
   });
 });

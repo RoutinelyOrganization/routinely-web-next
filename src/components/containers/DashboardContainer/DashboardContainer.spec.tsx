@@ -98,7 +98,7 @@ describe('<DashboardContainer/>', () => {
 
     await DashboardContainerMock();
 
-    const iconNotification = screen.getByAltText('notificações');
+    const iconNotification = screen.getByRole('button', { name: 'Sair' });
     expect(iconNotification).toBeInTheDocument();
 
     const iconMenu = screen.getByAltText('abrir menu');
