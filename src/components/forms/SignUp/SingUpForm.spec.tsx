@@ -6,8 +6,8 @@ import SingUpForm from '.';
 jest.mock('@/factories/services/makeSignUp', () => ({
   makeSignUp: jest
     .fn()
-    .mockResolvedValueOnce(undefined)
-    .mockRejectedValueOnce({ status: 500, body: ['invalid data'] } as ErrorApi),
+    .mockResolvedValueOnce({ ok: true })
+    .mockResolvedValueOnce({ status: 500, body: ['invalid data'] } as ErrorApi),
 }));
 
 describe('<SingUpForm/>', () => {

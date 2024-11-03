@@ -5,7 +5,7 @@ import 'jest-styled-components';
 export const useRouter = jest.fn();
 
 jest.mock('next/navigation', () => ({
-  useRouter: jest.fn(),
+  useRouter: jest.fn().mockReturnValue({ push: jest.fn(), replace: jest.fn() }),
 }));
 
 export const mockUseRouter = props => {
