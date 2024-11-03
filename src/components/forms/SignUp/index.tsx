@@ -3,7 +3,6 @@
 import ButtonPrimary from '@/components/buttons/ButtonPrimary';
 import ErrorApiContainer from '@/components/containers/ErrorApiContainer';
 import { makeSignUp } from '@/factories/services/makeSignUp';
-import type { ErrorApi } from '@/services/errors/errorApi';
 import type { SignUp } from '@/types/signUp';
 import infoError from '@public/icons/infoErro.svg';
 import Image from 'next/image';
@@ -40,14 +39,8 @@ export default function SignUpForm() {
   const confirmPassword = watch('confirmPassword');
 
   const handleSignUp = async (data: ISignUpProps) => {
-    try {
-      await makeSignUp(data);
-
-      router.push('/login');
-    } catch (error) {
-      const errorApi = error as ErrorApi;
-      setErrorsApi(errorApi.body!);
-    }
+    const { ok, body } = await makeSignUp(data);
+    ok ? router.push('/dashboard') : setErrorsApi(body);
   };
 
   useEffect(() => {
