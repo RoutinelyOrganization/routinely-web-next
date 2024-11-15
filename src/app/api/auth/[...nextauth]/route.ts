@@ -24,26 +24,26 @@ const nextAuthOptions: NextAuthOptions = {
       async authorize(credentials) {
         const remember: boolean = credentials!.remember === 'true' ? true : false;
 
-        try {
-          const { body } = await makeLogin({
-            email: credentials!.email,
-            password: credentials!.password,
-            remember,
-          });
+        const { body, ok } = await makeLogin({
+          email: credentials!.email,
+          password: credentials!.password,
+          remember,
+        });
 
-          const formattedUser = {
-            token: body.token,
-            refreshToken: body.refreshToken,
-            expires: body.expiresIn,
-            remember,
-          };
-
-          const user: User = { ...formattedUser } as any;
-
-          return user;
-        } catch (error) {
-          return null;
+        if (!ok) {
+          throw new Error(body[0]);
         }
+
+        const formattedUser = {
+          token: body.token,
+          refreshToken: body.refreshToken,
+          expires: body.expiresIn,
+          remember,
+        };
+
+        const user: User = { ...formattedUser } as any;
+
+        return user;
       },
     }),
   ],

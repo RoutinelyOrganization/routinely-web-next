@@ -36,7 +36,7 @@ export default function LoginForm() {
       });
 
       if (!response?.ok) {
-        setErrosApi('Credenciais inválidas');
+        setErrosApi(response?.error as string);
         return;
       }
 

@@ -114,7 +114,9 @@ describe('<LoginForm/>', () => {
   });
 
   it('should not execute function on submit with error', async () => {
-    (signIn as jest.Mock).mockImplementation(() => Promise.resolve({ ok: false }));
+    (signIn as jest.Mock).mockImplementation(() =>
+      Promise.resolve({ ok: false, error: 'Credenciais inválidas' }),
+    );
     render(<LoginForm />);
     const [inputEmail, inputPassword] = screen.getAllByRole('textbox');
     const button = screen.getByRole('button', { name: /fazer login/i });
