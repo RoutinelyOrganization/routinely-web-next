@@ -7,6 +7,9 @@ export const updateTask = async (
   body: Partial<Task>,
   token: string,
 ): Promise<HttpResponse> => {
+	if (!body.id) {
+    throw new Error("O campo 'id' é obrigatório para atualizar uma tarefa.");
+  }
   try {
     const response = await httpClient.request(`/tasks`, {
       method: 'PATCH',

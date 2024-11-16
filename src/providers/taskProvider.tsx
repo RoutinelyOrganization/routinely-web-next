@@ -51,7 +51,7 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
 
             if (!ok) return ok;
 
-            const id = selectedTask?.id || data.task.id;
+            const id = selectedTask?.id ?? data.task.id;
             const updatedTask = selectedTask || data.task;
             setTasks(tasks.map(task => (task.id === id ? updatedTask : task)));
             setSelectedTask(null);
