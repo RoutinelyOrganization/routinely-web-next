@@ -6,7 +6,7 @@ export const updateTask = async (
   httpClient: HttpClient,
   body: Partial<Task>,
   token: string,
-): Promise<HttpResponse> =>
+): Promise<HttpResponse> => {
   try {
     const response = await httpClient.request(`/tasks`, {
       method: 'PATCH',
