@@ -6,10 +6,7 @@ export const updateTask = async (
   httpClient: HttpClient,
   body: Partial<Task>,
   token: string,
-): Promise<HttpResponse> => {
-	if (!body.id) {
-    throw new Error("O campo 'id' é obrigatório para atualizar uma tarefa.");
-  }
+): Promise<HttpResponse> =>
   try {
     const response = await httpClient.request(`/tasks`, {
       method: 'PATCH',
