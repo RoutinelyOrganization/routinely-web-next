@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.routinely.routinely",
+    "sha256_cert_fingerprints":
+    ["BC:A8:6F:C7:05:A4:ED:DF:53:49:1E:FD:E4:8D:FC:DD:2D:E8:15:63:A8:B3:FF:78:45:D6:CF:AC:3B:70:07:D9"]
+  }
+}]

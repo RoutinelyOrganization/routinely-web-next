@@ -16,17 +16,17 @@ describe('ContainerHeaderFooterResponsive Component', () => {
     const logo = screen.getByRole('img', { name: 'logo Routinely' });
     expect(logo).toBeInTheDocument();
 
-    const iconNotification = screen.getByAltText('notificações');
-    expect(iconNotification).toBeInTheDocument();
-
     const iconMenu = screen.getByAltText('abrir menu');
     expect(iconMenu).toBeInTheDocument();
 
     const title = screen.getByRole('heading', { name: 'jest test' });
     expect(title).toBeInTheDocument();
 
-    const button = screen.getByRole('button');
-    expect(button).toBeInTheDocument();
+    const buttonBack = screen.getByRole('button', { name: /Voltar/i });
+    expect(buttonBack).toBeInTheDocument();
+
+    const buttonExit = screen.getByRole('button', { name: /Sair/i });
+    expect(buttonExit).toBeInTheDocument();
   });
 
   it('should render without session', () => {

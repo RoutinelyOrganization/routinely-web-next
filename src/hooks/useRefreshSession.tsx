@@ -4,7 +4,7 @@ import { makeAuthorization } from '@/factories/services/makeAuthorization';
 import { signOut, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
-export const useRefreshSession = async () => {
+export const useRefreshSession = () => {
   const { data: session, update } = useSession();
   const now = new Date().getTime();
   const expires = new Date((session?.user as any)?.expires).getTime();

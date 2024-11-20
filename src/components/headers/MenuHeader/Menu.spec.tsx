@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import MenuHeader from '.';
+import { fireEvent, render, screen } from '@testing-library/react';
 import type { IMenuItem } from '.';
+import MenuHeader from '.';
 
 const mockMenuItems: IMenuItem[] = [
   { name: 'Home', id: 1, url: '/' },
@@ -13,7 +13,6 @@ describe('MenuHeader', () => {
   it('renders notification and icons', () => {
     render(<MenuHeader menuItems={mockMenuItems} />);
 
-    expect(screen.getByAltText('notificações')).toBeInTheDocument();
     expect(screen.getByAltText('abrir menu')).toBeInTheDocument();
   });
 

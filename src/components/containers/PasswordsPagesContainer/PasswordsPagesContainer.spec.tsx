@@ -22,11 +22,13 @@ describe('PasswordsPagesContainer Component', () => {
   it('Should render', () => {
     render(<PasswordsPagesContainer {...mockProps} />);
 
-    const buttonHeader = screen.getByRole('button');
-    expect(buttonHeader).toBeInTheDocument();
-    expect(buttonHeader).toHaveTextContent('Voltar');
+    const [buttonHeaderBack, buttonHeaderExit] = screen.getAllByRole('button');
+    expect(buttonHeaderBack).toBeInTheDocument();
+    expect(buttonHeaderBack).toHaveTextContent('Voltar');
+    expect(buttonHeaderExit).toBeInTheDocument();
+    expect(buttonHeaderExit).toHaveTextContent('Sair');
 
-    const iconBack = buttonHeader.querySelector('img[alt="Voltar"]');
+    const iconBack = buttonHeaderBack.querySelector('img[alt="Voltar"]');
     expect(iconBack).toBeInTheDocument();
 
     const logo = screen.getByRole('img', { name: 'logo Routinely' });

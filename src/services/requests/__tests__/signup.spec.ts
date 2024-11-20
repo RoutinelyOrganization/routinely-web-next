@@ -65,9 +65,12 @@ describe('Sign Up', () => {
       .spyOn(httpClient, 'request')
       .mockImplementation(() => Promise.resolve({ status: 200, ok: true }));
     await signUp(httpClient, testSignUpData);
-    expect(httpClient.request).toHaveBeenCalledWith('/auth/register', {
-      method: 'POST',
-      body: testSignUpData,
-    });
+    expect(httpClient.request).toHaveBeenCalledWith(
+      `/auth/register?callBackUrl=${process.env.NEXT_PUBLIC_FRONT_URL}/login`,
+      {
+        method: 'POST',
+        body: testSignUpData,
+      },
+    );
   });
 });
