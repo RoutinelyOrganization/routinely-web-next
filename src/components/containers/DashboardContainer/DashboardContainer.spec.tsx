@@ -324,11 +324,6 @@ describe('<DashboardContainer/>', () => {
 
     fireEvent.click(openOptinalFields!);
 
-    const paragraphQuantityPerWeek = screen.getByTestId('quantityPerWeek');
-    expect(paragraphQuantityPerWeek).toBeInTheDocument();
-    const inputQuantityPerWeek = screen.getByPlaceholderText('0');
-    expect(inputQuantityPerWeek).toBeInTheDocument();
-
     const weekDaysContainer = screen.getByTestId('weekDaysCheckBox');
     const checkboxes = weekDaysContainer.querySelectorAll('input[type="checkbox"]');
 

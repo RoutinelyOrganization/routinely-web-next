@@ -33,11 +33,11 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
       case 'create':
         setExecuteServiceTask({
           execute: async (data?: any) => {
-            const { ok } = await makeCreateTask(selectedTask!, data.token);
+            const { ok, body } = await makeCreateTask(selectedTask!, data.token);
 
             if (!ok) return ok;
 
-            setTasks([...tasks, selectedTask!]);
+            setTasks([...tasks, { ...selectedTask!, id: body.id }]);
             setSelectedTask(null);
 
             return ok;
