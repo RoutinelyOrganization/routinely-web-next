@@ -9,7 +9,9 @@ import type { Task } from '@/types/task';
 import type { TypeTask } from '@/types/typeTasks';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import * as S from './styles';
+
 
 export interface ICardTask {
   task: Task;
@@ -39,7 +41,8 @@ export default function CardTask({ task, onChangeCheck }: ICardTask) {
     setSelectedTypeTask(type);
   };
   const handleChecked = async (id: string) => {
-    setSelectedTask({ ...task, checked: !isChecked });
+		const formattedDate = `${dateFormat(new Date(task.date))} ${TimeFormat(new Date(task.date))}`;
+    setSelectedTask({ ...task, checked: !isChecked,date: formattedDate });
     setChecked(!isChecked);
     onChangeCheck(id);
   };
