@@ -203,7 +203,7 @@ describe('<TaskForm/>', () => {
 
     await act(async () => {
       fireEvent.change(inputTitle, { target: { value: 'teste' } });
-      fireEvent.change(inputDate, { target: { value: '2025-01-01' } });
+      fireEvent.change(inputDate, { target: { value: '2026-01-01' } });
       fireEvent.change(inputHour, { target: { value: '10:00' } });
       fireEvent.change(inputDescription, { target: { value: 'teste' } });
       fireEvent.change(select, { target: { value: categories[0] } });
