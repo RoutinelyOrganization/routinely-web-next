@@ -55,7 +55,7 @@ describe('<CalendarContainer/>', () => {
     expect(iconNext).toHaveAttribute('alt', 'Icone para avançar');
   });
 
-  it('should change title to prev date on clin in icon prev', () => {
+  it('should change title to prev date on click in icon prev', () => {
     render(
       <CalendarProvider>
         <CalendarContainer />
@@ -82,11 +82,11 @@ describe('<CalendarContainer/>', () => {
     const prevMonth = today.subtract(today.date(), 'day');
 
     expect(heading.textContent).toBe(
-      `${weekDay(prevMonth.day())}, ${prevMonth.date()} de ${monthName(prevMonth.month())} de ${today.year()}`,
+      `${weekDay(prevMonth.day())}, ${prevMonth.date()} de ${monthName(prevMonth.month())} de ${prevMonth.year()}`,
     );
   });
 
-  it('should change title to next date on clin in icon next', () => {
+  it('should change title to next date on click in icon next', () => {
     render(
       <CalendarProvider>
         <CalendarContainer />
