@@ -61,8 +61,8 @@ export default function Task({ tasks: tasksReceived }: ITask) {
       </S.Select>
       {tasks && tasks.length ? (
         <S.ContainerTask>
-          {currentTasks.map(task => (
-            <CardTask key={task.id} task={task} onChangeCheck={handleTasks} />
+          {currentTasks.map((task, index) => (
+            <CardTask key={task.id || `${index}`} task={task} onChangeCheck={handleTasks} />
           ))}
         </S.ContainerTask>
       ) : (

@@ -16,23 +16,8 @@ export default function Header({ header = 'primary', hrefBackPage = '/' }: IHead
 
   const menuItems: IMenuItem[] = [
     {
-      name: 'Configurações',
-      url: '#',
-      id: 1,
-    },
-    {
-      name: 'Metas',
-      url: '#',
-      id: 2,
-    },
-    {
-      name: 'Notificações',
-      url: '#',
-      id: 3,
-    },
-    {
       name: 'Sair da conta',
-      id: 4,
+      id: 1,
       onClick: async () => {
         await makeLogout(session?.user?.token!);
         await signOut({ callbackUrl: '/' });
