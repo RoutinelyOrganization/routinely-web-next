@@ -1,8 +1,13 @@
 'use client';
 
+import { makeGetTasks } from '@/factories/services/makeGetTasks';
+import { useCalendar } from '@/hooks/useCalendar';
 import { useTask } from '@/hooks/useTask';
+import type { DaysOfWeek } from '@/types/weekDays';
 import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
-import { useEffect, useState } from 'react';
+import { stringToDate } from '@/utils/formats/stringToDate';
+import { useSession } from 'next-auth/react';
+import { useCallback, useEffect, useState } from 'react';
 import { type Task } from '../../types/task';
 import CardTask from './CardTask';
 import * as S from './styles';
@@ -12,7 +17,9 @@ export interface ITask {
 }
 
 export default function Task({ tasks: tasksReceived }: ITask) {
+  const { data: session } = useSession();
   const { setTasks, tasks } = useTask();
+  const { day, month, year } = useCalendar();
 
   const [currentTasks, setCurrentTasks] = useState<Task[]>([]);
   const [selected, setSelected] = useState('all tasks');
@@ -26,23 +33,69 @@ export default function Task({ tasks: tasksReceived }: ITask) {
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const tasksFiltered = useCallback(
+    (currentTasks: Task[] = [], checked: boolean = false, type: string = 'all tasks') => {
+      const {
+        shortDateString: nowStr,
+        timestamp: nowTs,
+        weekDay: nowWeekDay,
+      } = stringToDate(`${year}-${month}-${day}`);
+
+      return currentTasks.filter(task => {
+        if (task.checked === checked && (type === 'all tasks' || task.type === type)) {
+          if (checked) return true;
+
+          const { shortDateString: initialDateStr, timestamp: initialDateTs } = stringToDate(
+            task.date,
+          );
+          if (initialDateStr === nowStr) return true;
+
+          const { timestamp: finallyDateTs } = stringToDate(task.finallyDate);
+          if (
+            task.finallyDate &&
+            finallyDateTs > nowTs &&
+            initialDateTs < nowTs &&
+            task.weekDays.includes(nowWeekDay as DaysOfWeek)
+          )
+            return true;
+        }
+        return false;
+      });
+    },
+    [day, month, year],
+  );
 
   useEffect(() => {
+    if (!day) {
+      return;
+    }
+
     let newCurrentTasks: Task[] = [];
     switch (selected) {
       case 'all tasks':
-        newCurrentTasks = tasks && tasks.filter(task => !task.checked);
+        newCurrentTasks = tasksFiltered(tasks);
         break;
       case 'completed':
-        newCurrentTasks = tasks && tasks.filter(task => task.checked);
+        newCurrentTasks = tasksFiltered(tasks, true);
         break;
       default:
-        newCurrentTasks = tasks.filter(task => task.type === selected && !task.checked);
+        newCurrentTasks = tasksFiltered(tasks, false, selected);
         break;
     }
 
     setCurrentTasks(newCurrentTasks);
-  }, [selected, tasks]);
+  }, [selected, tasks, day, tasksFiltered]);
+
+  useEffect(() => {
+    if (!session?.user.token) return;
+
+    (async () => {
+      const { status, body } = await makeGetTasks(session?.user.token);
+
+      if (status === 200) setTasks(body.tasks);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.user.token, month]);
 
   const handleTasks = (id: string) => {
     const newTasks = tasks.map(task =>
