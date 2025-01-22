@@ -33,11 +33,11 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
       case 'create':
         setExecuteServiceTask({
           execute: async (data?: any) => {
-            const { ok } = await makeCreateTask(selectedTask!, data.token);
+            const { ok, body } = await makeCreateTask(selectedTask!, data.token);
 
             if (!ok) return ok;
 
-            setTasks([...tasks, selectedTask!]);
+            setTasks([...tasks, { ...selectedTask!, id: body.id }]);
             setSelectedTask(null);
 
             return ok;
@@ -51,7 +51,7 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
 
             if (!ok) return ok;
 
-            const id = selectedTask?.id || data.task.id;
+            const id = selectedTask?.id ?? data.task.id;
             const updatedTask = selectedTask || data.task;
             setTasks(tasks.map(task => (task.id === id ? updatedTask : task)));
             setSelectedTask(null);

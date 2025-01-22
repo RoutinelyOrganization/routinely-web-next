@@ -15,7 +15,7 @@ dayjs.locale('pt-br');
 interface ICalendar {
   version?: 'expanded' | 'compact';
   setReturnDateValue?: React.Dispatch<React.SetStateAction<Dayjs | null>>;
-  initialDate?: Dayjs;
+  initialDate?: Dayjs | null;
 }
 
 const customDayOfWeekFormatter = (date: Dayjs) => {
@@ -45,6 +45,7 @@ export default function DateCalendar({
   const handleChangeDate = (selectedValue: Dayjs) => {
     version === 'expanded' && setDate(selectedValue);
     setValueDate(selectedValue);
+
     setReturnDateValue && setReturnDateValue(selectedValue);
   };
 

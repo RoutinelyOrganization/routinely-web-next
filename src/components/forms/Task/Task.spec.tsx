@@ -49,13 +49,6 @@ describe('<TaskForm/>', () => {
     // dispara o evento de click no icone para abrir os campos opcionais
     fireEvent.click(iconeOpenOptinalFields);
 
-    // verifica se o paragrafo de quantidade por semana aparece
-    const paragraphQuantityPerWeek = screen.getByTestId('quantityPerWeek');
-    const input = screen.getByPlaceholderText('0');
-
-    expect(paragraphQuantityPerWeek).toBeInTheDocument();
-    expect(input).toBeInTheDocument();
-
     //verifica se todos os checkboxes de dias da semana aparecem
     const weekDaysContainer = screen.getByTestId('weekDaysCheckBox');
     const checkboxes = weekDaysContainer.querySelectorAll('input[type="checkbox"]');
@@ -111,20 +104,6 @@ describe('<TaskForm/>', () => {
     fireEvent.change(inputDescription, { target: { value: 'a'.repeat(1001) } });
 
     expect(await screen.findByText('Quantidade máxima de caracteres, 1000!')).toBeInTheDocument();
-  });
-
-  it('should render error message for invalid quantity per week', async () => {
-    render(<TaskForm />);
-
-    const iconeOpenOptinalFields = screen.getByRole('img', {
-      name: 'Abrir campos de frequencia semanal',
-    });
-    fireEvent.click(iconeOpenOptinalFields);
-    const input = screen.getByPlaceholderText('0');
-
-    fireEvent.change(input, { target: { value: 'a' } });
-
-    expect(await screen.findByText('Apenas numeros positivos')).toBeInTheDocument();
   });
 
   it('should update correct chekboxes', async () => {
@@ -224,7 +203,7 @@ describe('<TaskForm/>', () => {
 
     await act(async () => {
       fireEvent.change(inputTitle, { target: { value: 'teste' } });
-      fireEvent.change(inputDate, { target: { value: '2025-01-01' } });
+      fireEvent.change(inputDate, { target: { value: '2026-01-01' } });
       fireEvent.change(inputHour, { target: { value: '10:00' } });
       fireEvent.change(inputDescription, { target: { value: 'teste' } });
       fireEvent.change(select, { target: { value: categories[0] } });

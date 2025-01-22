@@ -21,7 +21,6 @@ import { useEffect, useRef, useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import CategorySelect from '../fields/CategorySelect';
-import ErrorMessage from '../fields/ErrorMessage';
 import Input from '../fields/Input';
 import WeekDaysCheckBox from '../fields/WeekDaysCheckBox';
 import * as S from './styles';
@@ -116,6 +115,7 @@ function Form() {
         setActionForm({ action: 'delete', openConfirm: true });
         break;
     }
+
     setSelectedTask(formattedTask);
   };
 
@@ -213,21 +213,6 @@ function Form() {
 
       {isWeekFrequencyOpen && (
         <>
-          <S.QuantityPerWeekParagraph data-testid="quantityPerWeek" role="paragraph">
-            Quantidade{' '}
-            <Input
-              hasError={!!errors.quantityPerWeek}
-              placeholder="0"
-              id="quantityPerWeek"
-              type="text"
-              register={register('quantityPerWeek', {
-                validate: value => (value ? Number(value) > 0 : true),
-              })}
-            />
-            Semana
-          </S.QuantityPerWeekParagraph>
-          {errors.quantityPerWeek && <ErrorMessage>Apenas numeros positivos</ErrorMessage>}
-
           <div>
             <p>Dias da semana</p>
             <WeekDaysCheckBox weekDays={selectedTask?.weekDays} setWeekDays={setWeekDays} />
@@ -238,7 +223,7 @@ function Form() {
             <DateCalendar
               version="compact"
               setReturnDateValue={setFinallyDate}
-              initialDate={dayjs(dateFormat(selectedTask?.finallyDate as string))}
+              initialDate={selectedTask && dayjs(dateFormat(selectedTask?.finallyDate))}
             />
           </S.ContainerCalendar>
         </>

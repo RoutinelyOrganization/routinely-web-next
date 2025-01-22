@@ -8,7 +8,6 @@ export interface Task extends Pick<TypeTask, 'type'>, WeekDays {
   date: string;
   category: Categories;
   description: string;
-  quantityPerWeek: number;
   finallyDate: string;
   checked: boolean;
 }

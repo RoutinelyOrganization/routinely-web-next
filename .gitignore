@@ -39,3 +39,5 @@ next-env.d.ts
 .eslintcache
 *storybook.log
 .env
+pnpm-lock.yaml
+package-lock.json
