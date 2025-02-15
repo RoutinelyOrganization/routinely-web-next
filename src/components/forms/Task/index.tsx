@@ -166,6 +166,7 @@ function Form() {
           register={register('date', {
             required: 'O campo data é obrigatório',
           })}
+          max="2200-12-31"
         ></Input>
         <Input
           label="Hora"
