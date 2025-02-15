@@ -227,9 +227,11 @@ describe('<TaskForm/>', () => {
     render(<TaskForm />);
 
     const button = screen.getByRole('button', { name: 'Salvar Alterações' });
+
     await act(async () => {
       fireEvent.click(button);
     });
+
     expect(useTaskMock().setActionForm).toHaveBeenCalledWith({
       openConfirm: true,
       action: 'update',

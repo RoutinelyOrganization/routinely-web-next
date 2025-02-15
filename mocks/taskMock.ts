@@ -2,23 +2,10 @@ import { Categories } from '@/types/categories';
 import type { Task } from '@/types/task';
 import { stringToDate } from '@/utils/formats/stringToDate';
 
-const dateNow = new Date();
-const {
-  longDateString: dateNowStr,
-  day,
-  month,
-  year,
-} = stringToDate(`${dateNow.getFullYear()}-${dateNow.getMonth() + 1}-${dateNow.getDate()}`);
+const { longDateString: dateNowStr, day, month, year } = stringToDate();
 
-const dateTomorrow = new Date(year, month - 1, day + 1);
-const dateNextMonth = new Date(year, month, 1);
-
-const { longDateString: dateTomorrowStr } = stringToDate(
-  `${dateTomorrow.getFullYear()}-${dateTomorrow.getMonth() + 1}-${dateTomorrow.getDate()}`,
-);
-const { longDateString: dateNextMonthStr } = stringToDate(
-  `${dateNextMonth.getFullYear()}-${dateNextMonth.getMonth() + 1}-${dateNextMonth.getDate()}`,
-);
+const dateTomorrow = stringToDate(`${year}-${month}-${day + 1}`);
+const dateNextMonth = stringToDate(`${year}-${month + 1}-${day + 1}`);
 
 export const tasks: Task[] = [
   {
@@ -49,9 +36,9 @@ export const tasks: Task[] = [
     name: 'Tarefa 3',
     checked: false,
     category: Categories.Career,
-    date: dateTomorrowStr,
+    date: dateTomorrow.longDateString,
     description: 'teste',
-    finallyDate: dateNextMonthStr,
+    finallyDate: dateNextMonth.longDateString,
     weekDays: ['Monday', 'Friday'],
   },
   {
@@ -60,9 +47,9 @@ export const tasks: Task[] = [
     name: 'Tarefa 4',
     checked: false,
     category: Categories.Studies,
-    date: dateTomorrowStr,
+    date: dateTomorrow.longDateString,
     description: 'teste',
-    finallyDate: dateNextMonthStr,
+    finallyDate: dateNextMonth.longDateString,
     weekDays: ['Monday', 'Friday'],
   },
   {

@@ -15,7 +15,7 @@ import ContainerHeaderFooterMobileResponsive from '../ContainerHeaderFooterRespo
 import * as S from './styles';
 
 export default function DashboardContainer() {
-  const { setTasks, tasks, selectedActionForm, formIsOpen } = useTask();
+  const { setTasks, selectedTask, selectedActionForm, formIsOpen } = useTask();
   useRefreshSession();
   const { data: session } = useSession();
 
@@ -27,6 +27,7 @@ export default function DashboardContainer() {
 
       if (status === 200) setTasks(body.tasks);
     })();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user.token]);
 
@@ -55,7 +56,7 @@ export default function DashboardContainer() {
               <CalendarContainer />
               <AddNewTask />
             </S.ContainerCalendar>
-            <Task tasks={tasks} />
+            <Task />
           </S.Main>
         </CalendarProvider>
       </S.ContainerPrincipal>

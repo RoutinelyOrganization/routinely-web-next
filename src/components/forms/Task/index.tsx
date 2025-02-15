@@ -118,7 +118,6 @@ function Form() {
 
     setSelectedTask(formattedTask);
   };
-
   return (
     <S.Form onSubmit={handleSubmit(handleSubmitFormTask)} role="form">
       <S.ContainerTitle>
