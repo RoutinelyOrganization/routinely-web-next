@@ -26,6 +26,7 @@ export const Button = styled.button<ButtonProps>`
     $hover &&
     css`
       &:hover {
+        padding: 10px 8px;
         transition: all 0.4s ease;
         background-color: ${colors.secondary};
         color: ${colors.black};

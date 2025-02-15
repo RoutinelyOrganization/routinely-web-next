@@ -356,8 +356,8 @@ describe('<DashboardContainer/>', () => {
 
     const buttons = form.getElementsByTagName('button');
     expect(buttons).toHaveLength(3);
-    expect(buttons[0]).toHaveTextContent('Excluir');
+    expect(buttons[0]).toHaveTextContent('Salvar Alterações');
     expect(buttons[1]).toHaveTextContent('Duplicar');
-    expect(buttons[2]).toHaveTextContent('Salvar Alterações');
+    expect(buttons[2]).toHaveTextContent('Excluir');
   });
 });
