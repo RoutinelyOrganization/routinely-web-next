@@ -2,10 +2,10 @@
 
 import closeMenuIcon from '@public/icons/closeMenuHeader.svg';
 import hamburguerIcon from '@public/icons/hamburguer.svg';
+import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { signOut } from 'next-auth/react';
 import * as S from './styles';
 
 export interface IMenuItem {
@@ -22,7 +22,7 @@ export interface IMenuHeader {
 export default function MenuHeader({ menuItems }: IMenuHeader) {
   const [isShowMenu, setIsShowMenu] = useState(false);
 
-	const handleSignOut = async () => {
+  const handleSignOut = async () => {
     await signOut({ callbackUrl: '/' });
   };
 

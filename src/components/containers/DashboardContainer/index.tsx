@@ -42,7 +42,7 @@ export default function DashboardContainer() {
               <CalendarContainer />
               <AddNewTask />
             </S.ContainerCalendar>
-            <Task tasks={[]} />
+            <Task />
           </S.Main>
         </CalendarProvider>
       </S.ContainerPrincipal>

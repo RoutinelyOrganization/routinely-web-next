@@ -16,7 +16,7 @@ export const stringToDate = (date?: string): StringToDateOutput => {
   const hours = now.getUTCHours();
   const minutes = now.getUTCMinutes();
   const nowShortStr = `${year}-${month.toString().padStart(2, '0')}-${day}`;
-  const nowLongStr = `${year}-${month.toString().padStart(2, '0')}-${day}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  const nowLongStr = `${year}-${month.toString().padStart(2, '0')}-${day} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
   return {
     day,
     month,

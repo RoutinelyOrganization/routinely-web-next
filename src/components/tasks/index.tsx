@@ -4,7 +4,6 @@ import { makeGetTasks } from '@/factories/services/makeGetTasks';
 import { useCalendar } from '@/hooks/useCalendar';
 import { useTask } from '@/hooks/useTask';
 import type { DaysOfWeek } from '@/types/weekDays';
-import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import { stringToDate } from '@/utils/formats/stringToDate';
 import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useState } from 'react';
@@ -12,11 +11,7 @@ import { type Task } from '../../types/task';
 import CardTask from './CardTask';
 import * as S from './styles';
 
-export interface ITask {
-  tasks: Task[];
-}
-
-export default function Task({ tasks: tasksReceived }: ITask) {
+export default function Task() {
   const { data: session } = useSession();
   const { setTasks, tasks } = useTask();
   const { day, month, year } = useCalendar();
@@ -24,15 +19,6 @@ export default function Task({ tasks: tasksReceived }: ITask) {
   const [currentTasks, setCurrentTasks] = useState<Task[]>([]);
   const [selected, setSelected] = useState('all tasks');
 
-  useEffect(() => {
-    setTasks(
-      tasksReceived?.map(task => ({
-        ...task,
-        date: `${dateFormat(task.date)} ${TimeFormat(task.date)}`,
-      })) || [],
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const tasksFiltered = useCallback(
     (currentTasks: Task[] = [], checked: boolean = false, type: string = 'all tasks') => {
       const {
@@ -90,7 +76,7 @@ export default function Task({ tasks: tasksReceived }: ITask) {
     if (!session?.user.token) return;
 
     (async () => {
-      const { status, body } = await makeGetTasks(session?.user.token);
+      const { status, body } = await makeGetTasks(session?.user.token, month, year);
 
       if (status === 200) setTasks(body.tasks);
     })();
