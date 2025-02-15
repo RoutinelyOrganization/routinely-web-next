@@ -104,7 +104,7 @@ function Form() {
 
     switch (buttonSubmitRef.current) {
       case 'saveTask':
-        selectedTask
+        selectedTask && selectedActionForm.action !== 'create'
           ? setActionForm({ action: 'update', openConfirm: true })
           : setActionForm({ action: 'create', openConfirm: true });
         break;
@@ -118,7 +118,6 @@ function Form() {
 
     setSelectedTask(formattedTask);
   };
-
   return (
     <S.Form onSubmit={handleSubmit(handleSubmitFormTask)} role="form">
       <S.ContainerTitle>
@@ -166,6 +165,7 @@ function Form() {
           register={register('date', {
             required: 'O campo data é obrigatório',
           })}
+          max="2200-12-31"
         ></Input>
         <Input
           label="Hora"
@@ -230,15 +230,16 @@ function Form() {
       )}
 
       <S.ContainerButtons>
+        <ButtonPrimary
+          className="mobile"
+          type="submit"
+          onClick={() => (buttonSubmitRef.current = 'saveTask')}
+        >
+          Salvar Alterações
+        </ButtonPrimary>
         {((selectedActionForm.action && selectedActionForm.action !== 'create') ||
           buttonSubmitRef.current === 'duplicateTask') && (
           <>
-            <ButtonDanger
-              name="deleteTask"
-              onClick={() => (buttonSubmitRef.current = 'deleteTask')}
-            >
-              Excluir
-            </ButtonDanger>
             {selectedTypeTask?.name === 'Tarefa' && (
               <ButtonSecondary
                 name="duplicateTask"
@@ -248,15 +249,14 @@ function Form() {
                 Duplicar
               </ButtonSecondary>
             )}
+            <ButtonDanger
+              name="deleteTask"
+              onClick={() => (buttonSubmitRef.current = 'deleteTask')}
+            >
+              Excluir
+            </ButtonDanger>
           </>
         )}
-        <ButtonPrimary
-          className="mobile"
-          type="submit"
-          onClick={() => (buttonSubmitRef.current = 'saveTask')}
-        >
-          Salvar Alterações
-        </ButtonPrimary>
       </S.ContainerButtons>
     </S.Form>
   );

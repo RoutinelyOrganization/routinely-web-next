@@ -1,5 +1,4 @@
 'use client';
-
 import { CalendarContext } from '@/contexts/CalendarContext';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';

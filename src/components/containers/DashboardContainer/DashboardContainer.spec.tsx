@@ -1,5 +1,8 @@
 import { typeTaskOptions } from '@/constants/typeTask';
 import { TaskProvider } from '@/providers/taskProvider';
+import type { Task } from '@/types/task';
+import type { DaysOfWeek } from '@/types/weekDays';
+import { stringToDate } from '@/utils/formats/stringToDate';
 import { tasks } from '@mocks/taskMock';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useSession } from 'next-auth/react';
@@ -21,11 +24,45 @@ const DashboardContainerMock = async () => {
   });
 };
 
+const tasksFiltered = (
+  currentTasks: Task[] = [],
+  checked: boolean = false,
+  type: string = 'all tasks',
+  year?: number,
+  month?: number,
+  day?: number,
+) => {
+  const {
+    shortDateString: nowStr,
+    timestamp: nowTs,
+    weekDay: nowWeekDay,
+  } = stringToDate(year && month && day ? `${year}-${month}-${day}` : undefined);
+
+  return currentTasks.filter(task => {
+    if (task.checked === checked && (type === 'all tasks' || task.type === type)) {
+      if (checked) return true;
+
+      const { shortDateString: initialDateStr, timestamp: initialDateTs } = stringToDate(task.date);
+      if (initialDateStr === nowStr) return true;
+
+      const { timestamp: finallyDateTs } = stringToDate(task.finallyDate);
+      if (
+        task.finallyDate &&
+        finallyDateTs > nowTs &&
+        initialDateTs < nowTs &&
+        task.weekDays.includes(nowWeekDay as DaysOfWeek)
+      )
+        return true;
+    }
+    return false;
+  });
+};
+
 const mockTasks = tasks;
-const expectedTasks = mockTasks.filter(task => !task.checked);
-const expectedTasksHabit = mockTasks.filter(task => task.type === 'habit' && !task.checked);
-const expectedTasksTask = mockTasks.filter(task => task.type === 'task' && !task.checked);
-const expectedTasksCompleted = mockTasks.filter(task => task.checked);
+const expectedTasks = tasksFiltered(mockTasks);
+const expectedTasksHabit = tasksFiltered(mockTasks, false, 'habit');
+const expectedTasksTask = tasksFiltered(mockTasks, false, 'task');
+const expectedTasksCompleted = tasksFiltered(mockTasks, true);
 
 type DateMockProps = {
   subtractDays?: number;
@@ -50,6 +87,10 @@ const dateMock = ({ subtractDays, addDays }: DateMockProps = {}) => {
 };
 
 const formatString = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+beforeEach(() => {
+  (useSession as jest.Mock).mockReturnValue({ data: { user: { token: 'mockedToken' } } });
+});
 
 describe('<DashboardContainer/>', () => {
   it('should render without session user', async () => {
@@ -94,8 +135,6 @@ describe('<DashboardContainer/>', () => {
   });
 
   it('should render with session user', async () => {
-    (useSession as jest.Mock).mockReturnValue({ data: { user: { token: 'mockedToken' } } });
-
     await DashboardContainerMock();
 
     const iconNotification = screen.getByRole('button', { name: 'Sair' });
@@ -107,12 +146,6 @@ describe('<DashboardContainer/>', () => {
 
   it('should render correctly with tasks', async () => {
     await DashboardContainerMock();
-
-    const select = screen.getByRole('combobox');
-
-    act(() => {
-      fireEvent.change(select, { target: { value: 'all tasks' } });
-    });
 
     expect(screen.getByText('Todas as atividades')).toBeInTheDocument();
     await waitFor(() => {
@@ -356,8 +389,8 @@ describe('<DashboardContainer/>', () => {
 
     const buttons = form.getElementsByTagName('button');
     expect(buttons).toHaveLength(3);
-    expect(buttons[0]).toHaveTextContent('Excluir');
+    expect(buttons[0]).toHaveTextContent('Salvar Alterações');
     expect(buttons[1]).toHaveTextContent('Duplicar');
-    expect(buttons[2]).toHaveTextContent('Salvar Alterações');
+    expect(buttons[2]).toHaveTextContent('Excluir');
   });
 });

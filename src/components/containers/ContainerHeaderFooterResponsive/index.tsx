@@ -12,10 +12,12 @@ import * as S from './styles';
 
 export interface IContainerHeaderFooterMobileResponsiveProps {
   children: React.ReactNode;
+  hrefBackPage?: string;
 }
 
 export default function ContainerHeaderFooterMobileResponsive({
   children,
+  hrefBackPage,
 }: IContainerHeaderFooterMobileResponsiveProps) {
   const { formIsOpen, setFormIsOpen, setSelectedTypeTask, setSelectedTask } = useTask();
   const [openTypeTaskContainer, setOpenTypeTaskContainer] = useState(false);
@@ -28,7 +30,7 @@ export default function ContainerHeaderFooterMobileResponsive({
 
   return (
     <S.Container>
-      <Header />
+      <Header hrefBackPage={hrefBackPage} />
       {children}
       <S.ContainerFooter>
         {openTypeTaskContainer && <TypeTask onClick={() => setOpenTypeTaskContainer(false)} />}

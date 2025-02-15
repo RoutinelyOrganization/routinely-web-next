@@ -1,5 +1,11 @@
 import { Categories } from '@/types/categories';
 import type { Task } from '@/types/task';
+import { stringToDate } from '@/utils/formats/stringToDate';
+
+const { longDateString: dateNowStr, day, month, year } = stringToDate();
+
+const dateTomorrow = stringToDate(`${year}-${month}-${day + 1}`);
+const dateNextMonth = stringToDate(`${year}-${month + 1}-${day + 1}`);
 
 export const tasks: Task[] = [
   {
@@ -8,9 +14,8 @@ export const tasks: Task[] = [
     name: 'Tarefa 1',
     checked: false,
     category: Categories.Career,
-    date: '2025-10-01 10:00',
+    date: dateNowStr,
     description: 'teste',
-    quantityPerWeek: 1,
     finallyDate: '2025-11-01 10:00',
     weekDays: ['Monday', 'Friday'],
   },
@@ -20,9 +25,8 @@ export const tasks: Task[] = [
     name: 'Tarefa 2',
     checked: false,
     category: Categories.Studies,
-    date: '2024-10-01 10:00',
+    date: dateNowStr,
     description: 'teste',
-    quantityPerWeek: 1,
     finallyDate: '2024-11-01 10:00',
     weekDays: ['Monday', 'Friday'],
   },
@@ -30,12 +34,11 @@ export const tasks: Task[] = [
     type: 'habit',
     id: '3',
     name: 'Tarefa 3',
-    checked: true,
+    checked: false,
     category: Categories.Career,
-    date: '2024-10-01 10:00',
+    date: dateTomorrow.longDateString,
     description: 'teste',
-    quantityPerWeek: 1,
-    finallyDate: '2024-11-01 10:00',
+    finallyDate: dateNextMonth.longDateString,
     weekDays: ['Monday', 'Friday'],
   },
   {
@@ -44,10 +47,20 @@ export const tasks: Task[] = [
     name: 'Tarefa 4',
     checked: false,
     category: Categories.Studies,
-    date: '2024-10-01 10:00',
+    date: dateTomorrow.longDateString,
     description: 'teste',
-    quantityPerWeek: 1,
-    finallyDate: '2024-11-01 10:00',
+    finallyDate: dateNextMonth.longDateString,
     weekDays: ['Monday', 'Friday'],
+  },
+  {
+    type: 'task',
+    id: '5',
+    name: 'Tarefa 5',
+    checked: true,
+    category: Categories.Studies,
+    date: dateNowStr,
+    description: 'teste',
+    finallyDate: '2024-11-01 10:00',
+    weekDays: ['Monday', 'Wednesday'],
   },
 ];
