@@ -104,7 +104,7 @@ function Form() {
 
     switch (buttonSubmitRef.current) {
       case 'saveTask':
-        selectedTask
+        selectedTask && selectedActionForm.action !== 'create'
           ? setActionForm({ action: 'update', openConfirm: true })
           : setActionForm({ action: 'create', openConfirm: true });
         break;

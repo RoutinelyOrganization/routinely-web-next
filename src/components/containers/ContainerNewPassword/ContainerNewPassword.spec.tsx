@@ -6,7 +6,7 @@ describe('ContainerNewPassword Component', () => {
     render(<ContainerNewPassword />);
     const buttonHeader = screen.getByRole('link');
     expect(buttonHeader).toBeInTheDocument();
-    expect(buttonHeader).toHaveAttribute('href', '/redefine-password');
+    expect(buttonHeader).toHaveAttribute('href', '/validation-code');
     expect(buttonHeader).toHaveTextContent('Voltar');
 
     const iconBack = buttonHeader.querySelector('img[alt="Voltar"]');
