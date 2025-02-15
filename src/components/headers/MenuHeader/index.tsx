@@ -22,7 +22,7 @@ export interface IMenuHeader {
 export default function MenuHeader({ menuItems }: IMenuHeader) {
   const [isShowMenu, setIsShowMenu] = useState(false);
 
-	const handleSignOut = async () => {
+  const handleSignOut = async () => {
     await signOut({ callbackUrl: '/' });
   };
 

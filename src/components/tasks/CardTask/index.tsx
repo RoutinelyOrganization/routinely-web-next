@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react';
 import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import * as S from './styles';
 
-
 export interface ICardTask {
   task: Task;
   onChangeCheck: (id: string) => void;
@@ -41,8 +40,8 @@ export default function CardTask({ task, onChangeCheck }: ICardTask) {
     setSelectedTypeTask(type);
   };
   const handleChecked = async (id: string) => {
-		const formattedDate = `${dateFormat(new Date(task.date))} ${TimeFormat(new Date(task.date))}`;
-    setSelectedTask({ ...task, checked: !isChecked,date: formattedDate });
+    const formattedDate = `${dateFormat(new Date(task.date))} ${TimeFormat(new Date(task.date))}`;
+    setSelectedTask({ ...task, checked: !isChecked, date: formattedDate });
     setChecked(!isChecked);
     onChangeCheck(id);
   };
