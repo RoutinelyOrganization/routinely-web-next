@@ -31,7 +31,7 @@ export default function DashboardContainer() {
   }, [session?.user.token]);
 
   return (
-    <ContainerHeaderFooterMobileResponsive>
+    <ContainerHeaderFooterMobileResponsive hrefBackPage="/">
       {formIsOpen && <TaskForm />}
       {selectedActionForm.openConfirm && (
         <ConfirmAction textButtonPrimary="Sim" textButtonDanger="Não">

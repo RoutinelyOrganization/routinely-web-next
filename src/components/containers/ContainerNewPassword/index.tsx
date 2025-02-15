@@ -8,7 +8,7 @@ export default function ContainerNewPassword() {
     <S.Container>
       <PasswordsPagesContainer
         image={{ src: newPasswordPageImage, alt: 'Personagem observando uma lista de papel' }}
-        headerHrefBackPage="/redefine-password"
+        headerHrefBackPage="/validation-code"
         title="Criar nova senha"
         subtitle="Escolha uma nova senha abaixo, ela precisa ser diferente da anterior."
         form={<CreateNewPassword />}

@@ -7,14 +7,19 @@ import * as S from './styles';
 export interface IPrimaryHeader {
   menuItems: IMenuItem[];
   hasUser?: boolean;
+  hrefBackPage?: string;
 }
 
-export default function PrimaryHeader({ menuItems, hasUser = false }: IPrimaryHeader) {
+export default function PrimaryHeader({
+  menuItems,
+  hrefBackPage,
+  hasUser = false,
+}: IPrimaryHeader) {
   return (
     <S.PrimaryHeader>
       <div className="container-main">
         <S.ContainerLogoBackPage>
-          <ButtonBackPage />
+          <ButtonBackPage href={hrefBackPage} />
           <Logo />
         </S.ContainerLogoBackPage>
         {hasUser && <MenuHeader menuItems={menuItems} />}

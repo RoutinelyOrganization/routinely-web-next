@@ -26,7 +26,7 @@ export default function Header({ header = 'primary', hrefBackPage = '/' }: IHead
   ];
 
   return header === 'primary' ? (
-    <PrimaryHeader menuItems={menuItems} hasUser={!!session?.user} />
+    <PrimaryHeader menuItems={menuItems} hasUser={!!session?.user} hrefBackPage={hrefBackPage} />
   ) : (
     <SecondaryHeader menuItems={menuItems} hrefBackPage={hrefBackPage} hasUser={!!session?.user} />
   );
