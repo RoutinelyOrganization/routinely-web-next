@@ -230,15 +230,16 @@ function Form() {
       )}
 
       <S.ContainerButtons>
+        <ButtonPrimary
+          className="mobile"
+          type="submit"
+          onClick={() => (buttonSubmitRef.current = 'saveTask')}
+        >
+          Salvar Alterações
+        </ButtonPrimary>
         {((selectedActionForm.action && selectedActionForm.action !== 'create') ||
           buttonSubmitRef.current === 'duplicateTask') && (
           <>
-            <ButtonDanger
-              name="deleteTask"
-              onClick={() => (buttonSubmitRef.current = 'deleteTask')}
-            >
-              Excluir
-            </ButtonDanger>
             {selectedTypeTask?.name === 'Tarefa' && (
               <ButtonSecondary
                 name="duplicateTask"
@@ -248,15 +249,14 @@ function Form() {
                 Duplicar
               </ButtonSecondary>
             )}
+            <ButtonDanger
+              name="deleteTask"
+              onClick={() => (buttonSubmitRef.current = 'deleteTask')}
+            >
+              Excluir
+            </ButtonDanger>
           </>
         )}
-        <ButtonPrimary
-          className="mobile"
-          type="submit"
-          onClick={() => (buttonSubmitRef.current = 'saveTask')}
-        >
-          Salvar Alterações
-        </ButtonPrimary>
       </S.ContainerButtons>
     </S.Form>
   );
