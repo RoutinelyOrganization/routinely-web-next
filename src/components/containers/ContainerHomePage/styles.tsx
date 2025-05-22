@@ -90,7 +90,7 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 152px 0 80px 0;
+  padding: 90px 0 80px 0;
 
   > hr {
     display: none;
@@ -181,7 +181,8 @@ export const ContainerCaptionImg = styled.div`
 
   > img {
     &.desktop {
-      width: 100%;
+      width: 70%;
+      height: auto;
       max-width: 1198px;
       display: block;
     }
