@@ -110,24 +110,26 @@ export const Caption = styled.p`
     line-height: 20px;
   }
 `;
-export const Button = styled.button`
-  max-width: 256px;
-  width: 50%;
-  height: 40px;
-  border-radius: 8px;
-  background-color: ${colors.success};
-  color: ${colors.white};
-  outline: none;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 38px;
-  &:hover {
-    transition: all 0.4s ease;
-    background-color: ${colors.lightSuccess};
-    color: ${colors.black};
-    font-weight: bold;
-  }
-`;
+
+// !! O botão foi removido do código, mas o estilo foi mantido, caso precise de ser utilizado novamente
+// export const Button = styled.button`
+//   max-width: 256px;
+//   width: 50%;
+//   height: 40px;
+//   border-radius: 8px;
+//   background-color: ${colors.success};
+//   color: ${colors.white};
+//   outline: none;
+//   border: none;
+//   cursor: pointer;
+//   margin-bottom: 38px;
+//   &:hover {
+//     transition: all 0.4s ease;
+//     background-color: ${colors.lightSuccess};
+//     color: ${colors.black};
+//     font-weight: bold;
+//   }
+// `;
 
 export const ContainerCaptionImg = styled.div`
   display: flex;

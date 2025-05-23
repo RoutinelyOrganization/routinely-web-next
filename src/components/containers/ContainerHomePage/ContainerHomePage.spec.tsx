@@ -8,9 +8,8 @@ describe('', () => {
     expect(logo).toBeInTheDocument();
 
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(2);
-    expect(buttons[0]).toHaveTextContent('Acesse');
-    expect(buttons[1]).toHaveTextContent('Teste de graça');
+    expect(buttons).toHaveLength(1);
+    expect(buttons[2]).toHaveTextContent('Acesse');
 
     const headding = screen.getByRole('heading', {
       name: 'Domine sua rotina e conquiste o dia com nossa ferramenta Routinely.',
