@@ -1,15 +1,18 @@
 'use client';
 
-import { Button as ButtonStyle } from '@/components/buttons/ButtonPrimary/styles';
-import { ContainerIcons, Container as MenuHeader } from '@/components/headers/MenuHeader/styles';
-import { LinkNext as Logo } from '@/components/logos/Logo/styles';
+import { Button as ButtonStyle, LinkNext } from '@/components/buttons/ButtonPrimary/styles';
 import media from '@/styles/mediaQueries';
 import { colors, fonts } from '@/styles/variables';
 import styled from 'styled-components';
 
 export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 14px 24px;
   background-color: ${colors.primary};
+  gap: 2rem;
+
   > div {
     display: flex;
     align-items: center;
@@ -19,69 +22,26 @@ export const Header = styled.header`
     }
   }
 
-  ${Logo} {
-    margin-right: 100px;
-  }
-
-  & ${ButtonStyle} {
+  ${LinkNext} {
+    width: 100%;
     max-width: 160px;
   }
 
-  ${media.tablet} {
-    ${Logo} {
-      margin-right: 45px;
+  ${media.desktop} {
+    ${LinkNext} {
+      width: 120px;
     }
   }
 
   ${media.mobile} {
     padding: 4px 0;
 
-    & ${ButtonStyle} {
-      margin-right: 8px;
+    ${ButtonStyle} {
+      background: none;
     }
 
     .d-none-mobile {
       display: none;
-    }
-  }
-`;
-
-export const ContainerButtonsHeader = styled.div`
-  display: flex;
-  align-items: center;
-  max-width: 500px;
-  width: 100%;
-  justify-content: space-between;
-
-  ${MenuHeader} {
-    display: none;
-  }
-
-  ${media.desktop} {
-    max-width: 408px;
-    width: 70%;
-    gap: 24px;
-  }
-
-  ${media.tablet} {
-    gap: 0px;
-  }
-
-  ${media.mobile} {
-    max-width: 150px;
-    gap: 16px;
-    & .resources,
-    & .plans {
-      display: none;
-    }
-
-    > ${MenuHeader} {
-      display: block;
-      ${ContainerIcons} {
-        :first-child {
-          display: none;
-        }
-      }
     }
   }
 `;
@@ -109,6 +69,7 @@ export const Main = styled.main`
     }
   }
 `;
+
 export const Title = styled.h1`
   font-size: ${fonts.sizes.xxxlarge};
   font-weight: 700;
