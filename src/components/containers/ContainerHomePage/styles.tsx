@@ -181,7 +181,7 @@ export const ContainerCaptionImg = styled.div`
 
   > img {
     &.desktop {
-      width: 70%;
+      width: 65%;
       height: auto;
       max-width: 1198px;
       display: block;
