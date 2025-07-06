@@ -90,18 +90,16 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 152px 0 80px 0;
-
+  justify-content: center;
+  min-height: calc(100vh - 76px - 2rem);
+  margin: 1rem 2rem;
   > hr {
     display: none;
   }
 
-  ${media.desktop} {
-    padding-top: 56px;
-  }
-
   ${media.mobile} {
-    padding-top: 40px;
+    height: calc(100vh - 2.5rem - 2.5rem);
+    margin-inline: 1.5rem;
     > hr {
       display: block;
       width: 100%;
@@ -130,6 +128,7 @@ export const Title = styled.h1`
   }
 
   ${media.mobile} {
+    margin-bottom: 1.5rem;
     font-size: ${fonts.sizes.medium};
     line-height: 28px;
   }
@@ -145,6 +144,7 @@ export const Caption = styled.p`
   margin-bottom: 48px;
 
   ${media.mobile} {
+    margin-bottom: 4.5rem;
     font-size: ${fonts.sizes.xxsmall};
     line-height: 20px;
   }
@@ -182,13 +182,15 @@ export const ContainerCaptionImg = styled.div`
   > img {
     &.desktop {
       width: 100%;
-      max-width: 1198px;
+      height: auto;
+      max-width: 1157px;
       display: block;
     }
     &.tablet-horizontal,
     &.tablet-vertical {
       max-width: 435px;
       width: 50%;
+      height: auto;
       display: none;
     }
   }
@@ -244,7 +246,8 @@ export const ContainerCaptionImg = styled.div`
       }
       &.tablet-horizontal {
         display: block;
-        width: 100%;
+        width: 70%;
+        height: auto;
         margin: 0 auto;
       }
     }

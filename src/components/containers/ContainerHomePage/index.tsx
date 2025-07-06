@@ -43,7 +43,7 @@ export default function ContainerHomePage() {
         </div>
       </S.Header>
 
-      <S.Main className="container-main">
+      <S.Main>
         <S.Title>Domine sua rotina e conquiste o dia com nossa ferramenta Routinely.</S.Title>
         <S.ContainerCaptionImg>
           <div>
