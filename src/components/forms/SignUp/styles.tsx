@@ -50,10 +50,6 @@ export const ContainerPasswords = styled.div`
   flex-direction: column;
   gap: 10px;
 
-  & ${Input} {
-    height: auto;
-  }
-
   ${media.mobile} {
     flex-direction: column;
     gap: 10px;
