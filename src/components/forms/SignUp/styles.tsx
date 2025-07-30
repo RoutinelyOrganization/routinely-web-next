@@ -45,20 +45,10 @@ export const TermsOfUseContainer = styled.div`
 `;
 
 export const ContainerPasswords = styled.div`
-  max-width: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-
-  ${media.desktop} {
-    flex-direction: row;
-    gap: 6%;
-
-    & ${Input} {
-      width: 47%;
-    }
-  }
 
   ${media.mobile} {
     flex-direction: column;
