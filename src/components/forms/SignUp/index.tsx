@@ -113,10 +113,17 @@ export default function SignUpForm() {
           placeholder="senha"
           register={register('password', {
             required: 'O campo senha é obrigatório.',
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*=])[a-zA-Z\d!@#$%&*=]{6,}$/,
-              message:
-                'A senha deve ter o mínimo de 6 caracteres e conter letras maiúsculas e minúsculas, números e símbolos como ! @ # $ % & * =',
+            validate: {
+              hasMinimumLength: value =>
+                value.length >= 6 || 'A senha deve ter no mínimo 6 caracteres',
+              hasUppercase: value =>
+                /[A-Z]/.test(value) || 'A senha deve ter no mínimo uma letra maiúscula',
+              hasLowercase: value =>
+                /[a-z]/.test(value) || 'A senha deve ter no mínimo uma letra minúscula',
+              hasNumber: value => /[0-9]/.test(value) || 'A senha deve ter no mínimo um número',
+              hasSymbol: value =>
+                /[!@#$%^&*(),.?":{}|<>[\]\\\/'`~_\-+=]/.test(value) ||
+                'A senha deve ter no mínimo um símbolo (!, @, #, $, +)',
             },
             onChange({ target }: React.ChangeEvent<HTMLInputElement>) {
               target.value !== confirmPassword

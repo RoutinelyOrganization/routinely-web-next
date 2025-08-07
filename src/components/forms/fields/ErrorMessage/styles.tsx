@@ -6,6 +6,5 @@ import styled from 'styled-components';
 export const ErrorMessage = styled.p`
   color: ${colors.danger};
   font-size: ${fonts.sizes.xxxsmall};
-  max-width: 368px;
   text-align: justify;
 `;
