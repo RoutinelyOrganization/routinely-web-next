@@ -12,11 +12,11 @@ type StringToDateOutput = {
 
 export const stringToDate = (date?: string): StringToDateOutput => {
   const now = date ? new Date(date) : new Date();
-  const day = now.getUTCDate();
-  const month = now.getUTCMonth() + 1;
-  const year = now.getUTCFullYear();
+  const day = now.getDate();
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
   const hours = now.getHours();
-  const minutes = now.getUTCMinutes();
+  const minutes = now.getMinutes();
   const nowShortStr = `${year}-${month.toString().padStart(2, '0')}-${day}`;
   const nowLongStr = `${year}-${month.toString().padStart(2, '0')}-${day} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
   return {
@@ -27,7 +27,7 @@ export const stringToDate = (date?: string): StringToDateOutput => {
     minutes,
     shortDateString: nowShortStr,
     longDateString: nowLongStr,
-    weekDay: new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone: 'UTC' }).format(now),
+    weekDay: new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(now),
     timestamp: now.getTime(),
   };
 };
