@@ -5,5 +5,6 @@ import { makeClientAndToken } from './makeClientAndToken';
 
 export const makeCreateTask = async (body: Task, token: string): Promise<HttpResponse> => {
   const { httpClient } = await makeClientAndToken();
+
   return createTask(httpClient, body, token);
 };

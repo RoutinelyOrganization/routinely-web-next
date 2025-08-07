@@ -26,7 +26,6 @@ export default function Task() {
         timestamp: nowTs,
         weekDay: nowWeekDay,
       } = stringToDate(`${year}-${month}-${day}`);
-
       return currentTasks.filter(task => {
         if (task.checked === checked && (type === 'all tasks' || task.type === type)) {
           if (checked) return true;
@@ -34,9 +33,11 @@ export default function Task() {
           const { shortDateString: initialDateStr, timestamp: initialDateTs } = stringToDate(
             task.date,
           );
+
           if (initialDateStr === nowStr) return true;
 
           const { timestamp: finallyDateTs } = stringToDate(task.finallyDate);
+
           if (
             task.finallyDate &&
             finallyDateTs > nowTs &&
@@ -68,7 +69,6 @@ export default function Task() {
         newCurrentTasks = tasksFiltered(tasks, false, selected);
         break;
     }
-
     setCurrentTasks(newCurrentTasks);
   }, [selected, tasks, day, tasksFiltered]);
 

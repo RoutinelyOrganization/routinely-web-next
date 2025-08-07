@@ -37,7 +37,7 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
 
             if (!ok) return ok;
 
-            setTasks([...tasks, { ...selectedTask!, id: body.id }]);
+            setTasks([...tasks, { ...selectedTask!, id: body.id, checked: false }]);
             setSelectedTask(null);
 
             return ok;
