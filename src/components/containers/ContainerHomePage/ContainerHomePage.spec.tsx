@@ -9,7 +9,7 @@ describe('', () => {
 
     const buttons = screen.getAllByRole('button');
     expect(buttons).toHaveLength(1);
-    expect(buttons[2]).toHaveTextContent('Acesse');
+    expect(buttons[0]).toHaveTextContent('Acesse');
 
     const headding = screen.getByRole('heading', {
       name: 'Domine sua rotina e conquiste o dia com nossa ferramenta Routinely.',

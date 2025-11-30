@@ -114,6 +114,8 @@ export default function SignUpForm() {
           register={register('password', {
             required: 'O campo senha é obrigatório.',
             validate: {
+              hasMaximumLength: value =>
+                value.length <= 20 || 'A senha deve ter no máximo 20 caracteres',
               hasMinimumLength: value =>
                 value.length >= 6 || 'A senha deve ter no mínimo 6 caracteres',
               hasUppercase: value =>
