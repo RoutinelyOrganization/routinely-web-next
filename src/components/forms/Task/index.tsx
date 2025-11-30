@@ -135,7 +135,7 @@ function Form() {
           src={closeFormIcon}
           alt="fechar formulario"
           onClick={() => {
-            setFormIsOpen(false), setSelectedTask(null);
+            (setFormIsOpen(false), setSelectedTask(null));
           }}
         />
       </S.ContainerTitle>
