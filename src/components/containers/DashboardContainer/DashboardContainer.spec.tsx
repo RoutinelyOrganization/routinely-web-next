@@ -8,10 +8,6 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { useSession } from 'next-auth/react';
 import DashboardContainer from '.';
 
-// Data do sistema entra em concordância com data no mock de tarefas
-jest.useFakeTimers();
-jest.setSystemTime(new Date('2026-06-01 10:00'));
-
 global.fetch = jest.fn().mockResolvedValue({
   ok: true,
   status: 200,
