@@ -2,7 +2,10 @@ import { Categories } from '@/types/categories';
 import type { Task } from '@/types/task';
 import { stringToDate } from '@/utils/formats/stringToDate';
 
-const { longDateString: dateNowStr, day, month, year } = stringToDate('2026-06-01 10:00');
+const today = new Date();
+today.setMinutes(today.getMinutes() + 3); //3 minutos depois do horário atual
+
+const { longDateString: dateNowStr, day, month, year } = stringToDate(today.toString());
 
 const dateTomorrow = stringToDate(`${year}-${month}-${day + 1}`);
 const dateNextMonth = stringToDate(`${year}-${month + 1}-${day + 1}`);
@@ -27,7 +30,7 @@ export const tasks: Task[] = [
     category: Categories.Studies,
     date: dateNowStr,
     description: 'teste',
-    finallyDate: '2026-11-01 10:00',
+    finallyDate: '2024-11-01 10:00',
     weekDays: ['Monday', 'Friday'],
   },
   {
@@ -60,7 +63,7 @@ export const tasks: Task[] = [
     category: Categories.Studies,
     date: dateNowStr,
     description: 'teste',
-    finallyDate: '2026-11-01 10:00',
+    finallyDate: '2024-11-01 10:00',
     weekDays: ['Monday', 'Wednesday'],
   },
 ];
