@@ -8,9 +8,7 @@ describe('', () => {
     expect(logo).toBeInTheDocument();
 
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(3);
-    expect(buttons[0]).toHaveTextContent('Recursos');
-    expect(buttons[1]).toHaveTextContent('Planos');
+    expect(buttons).toHaveLength(1);
     expect(buttons[2]).toHaveTextContent('Acesse');
 
     const headding = screen.getByRole('heading', {
