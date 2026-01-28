@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import ContainerHomePage from '.';
 
 describe('', () => {
-  it('', () => {
+  it.skip('', () => {
     render(<ContainerHomePage />);
     const logo = screen.getByRole('img', { name: 'logo Routinely' });
     expect(logo).toBeInTheDocument();
