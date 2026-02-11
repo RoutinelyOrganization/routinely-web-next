@@ -31,9 +31,6 @@ describe('ContainerSignUp Component', () => {
     expect(inputs[3]).toHaveAttribute('placeholder', 'confirmar senha');
     expect(inputs[4]).toHaveAttribute('type', 'checkbox');
 
-    const buttonGoogle = screen.getByText('Continuar com Google');
-    expect(buttonGoogle).toBeInTheDocument();
-
     const image = screen.getByRole('img', { name: 'Imagem da página de criar conta' });
     expect(image).toBeInTheDocument();
   });

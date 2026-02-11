@@ -31,7 +31,7 @@ const nextAuthOptions: NextAuthOptions = {
         });
 
         if (!ok) {
-          throw new Error(body[0]);
+          throw new Error(body ? body[0] : 'Invalid credentials');
         }
 
         const formattedUser = {

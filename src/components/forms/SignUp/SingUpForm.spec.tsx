@@ -127,18 +127,44 @@ describe('<SingUpForm/>', () => {
   });
 
   it('should render error messages of pattern in field password', async () => {
+    const arrange = [
+      {
+        value: '123',
+        message: 'A senha deve ter no mínimo 6 caracteres',
+      },
+      {
+        value: '123456',
+        message: 'A senha deve ter no mínimo uma letra maiúscula',
+      },
+      {
+        value: '12345A',
+        message: 'A senha deve ter no mínimo uma letra minúscula',
+      },
+      {
+        value: '12345Aa',
+        message: 'A senha deve ter no mínimo um símbolo (!, @, #, $, +)',
+      },
+      {
+        value: 'Semnum',
+        message: 'A senha deve ter no mínimo um número',
+      },
+      {
+        value: '12345Aa@12345Aa@12345Aa@',
+        message: 'A senha deve ter no máximo 20 caracteres',
+      },
+    ];
+
     render(<SingUpForm />);
     const inputPassword = screen.getAllByRole('textbox')[2];
 
-    act(() => {
-      fireEvent.change(inputPassword, { target: { value: '123' } });
-    });
+    for (const item of arrange) {
+      act(() => {
+        fireEvent.change(inputPassword, { target: { value: item.value } });
+      });
 
-    expect(
-      await screen.findByText(
-        'A senha deve ter o mínimo de 6 caracteres e conter letras maiúsculas e minúsculas, números e símbolos como ! @ # $ % & * =',
-      ),
-    ).toBeInTheDocument();
+      expect(inputPassword).toHaveValue(item.value);
+      expect(await screen.findByText(item.message)).toBeInTheDocument();
+    }
   });
 
   it('should render error message password is different from confirm password', async () => {

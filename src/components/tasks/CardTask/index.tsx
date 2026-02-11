@@ -7,9 +7,9 @@ import { typeTaskOptions } from '@/constants/typeTask';
 import { useTask } from '@/hooks/useTask';
 import type { Task } from '@/types/task';
 import type { TypeTask } from '@/types/typeTasks';
+import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import { dateFormat, TimeFormat } from '@/utils/formats/dateAndTime';
 import * as S from './styles';
 
 export interface ICardTask {
