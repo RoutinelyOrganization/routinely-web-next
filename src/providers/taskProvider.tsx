@@ -37,7 +37,8 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
 
             if (!ok) return ok;
 
-            setTasks([...tasks, { ...selectedTask!, id: body.id }]);
+            setTasks(prev => [...prev, { ...selectedTask!, id: body.id, checked: false }]);
+
             setSelectedTask(null);
 
             return ok;
@@ -53,7 +54,8 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
 
             const id = selectedTask?.id ?? data.task.id;
             const updatedTask = selectedTask || data.task;
-            setTasks(tasks.map(task => (task.id === id ? updatedTask : task)));
+
+            setTasks(prev => prev.map(task => (task.id === id ? updatedTask : task)));
             setSelectedTask(null);
 
             return ok;
@@ -65,7 +67,7 @@ export const TaskProvider: React.FC<ITaskProvider> = ({ children }) => {
           execute: async (data?: any) => {
             await makeDeleteTask(selectedTask!.id, data.token);
 
-            setTasks(tasks.filter(task => task.id !== selectedTask!.id));
+            setTasks(prev => prev.filter(task => task.id !== selectedTask!.id));
             setSelectedTask(null);
             return true;
           },

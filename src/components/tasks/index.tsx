@@ -6,7 +6,7 @@ import { useTask } from '@/hooks/useTask';
 import type { DaysOfWeek } from '@/types/weekDays';
 import { stringToDate } from '@/utils/formats/stringToDate';
 import { useSession } from 'next-auth/react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { type Task } from '../../types/task';
 import CardTask from './CardTask';
 import * as S from './styles';
@@ -16,7 +16,6 @@ export default function Task() {
   const { setTasks, tasks } = useTask();
   const { day, month, year } = useCalendar();
 
-  const [currentTasks, setCurrentTasks] = useState<Task[]>([]);
   const [selected, setSelected] = useState('all tasks');
 
   const tasksFiltered = useCallback(
@@ -34,6 +33,7 @@ export default function Task() {
           const { shortDateString: initialDateStr, timestamp: initialDateTs } = stringToDate(
             task.date,
           );
+
           if (initialDateStr === nowStr) return true;
 
           const { timestamp: finallyDateTs } = stringToDate(task.finallyDate);
@@ -51,26 +51,18 @@ export default function Task() {
     [day, month, year],
   );
 
-  useEffect(() => {
-    if (!day) {
-      return;
-    }
+  const currentTasks = useMemo(() => {
+    if (!day) return [];
 
-    let newCurrentTasks: Task[] = [];
     switch (selected) {
       case 'all tasks':
-        newCurrentTasks = tasksFiltered(tasks);
-        break;
+        return tasksFiltered(tasks);
       case 'completed':
-        newCurrentTasks = tasksFiltered(tasks, true);
-        break;
+        return tasksFiltered(tasks, true);
       default:
-        newCurrentTasks = tasksFiltered(tasks, false, selected);
-        break;
+        return tasksFiltered(tasks, false, selected);
     }
-
-    setCurrentTasks(newCurrentTasks);
-  }, [selected, tasks, day, tasksFiltered]);
+  }, [tasks, selected, day, tasksFiltered]);
 
   useEffect(() => {
     if (!session?.user.token) return;
